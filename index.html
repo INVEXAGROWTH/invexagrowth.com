@@ -321,6 +321,54 @@
     }
     .hero-sub strong { color: var(--charcoal); font-weight: 600; }
 
+    /* LIVE ACTIVITY */
+    .hero-activity {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 28px;
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.8);
+      border-radius: 100px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      max-width: 100%;
+    }
+    .activity-pulse {
+      width: 8px; height: 8px;
+      background: #00C896;
+      border-radius: 50%;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .activity-pulse::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: #00C896;
+      animation: pulse-ring 2s ease-out infinite;
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(1); opacity: 0.6; }
+      100% { transform: scale(3); opacity: 0; }
+    }
+    .activity-text {
+      font-size: 13px;
+      color: var(--gray-700);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .activity-text strong {
+      color: var(--charcoal);
+      font-weight: 600;
+    }
+    @media (max-width: 480px) {
+      .hero-activity { font-size: 11px; padding: 8px 12px; }
+    }
+
     /* HERO FORM CARD */
     .hero-form-card {
       padding: 36px;
@@ -1049,7 +1097,7 @@
       <div>
         <div class="hero-badge fade-up visible">
           <span class="hero-badge-dot"></span>
-          Now accepting wellness clinics for May 2026
+          Now booking <strong style="color:var(--charcoal); margin:0 4px;">May audits</strong> — <span id="spots-counter">12</span> of 20 spots claimed
         </div>
         <h1 class="fade-up visible delay-1">
           From leads to patients <em>on autopilot.</em>
@@ -1060,6 +1108,12 @@
         <div class="fade-up visible delay-3" style="display:flex; gap:14px; flex-wrap:wrap;">
           <a href="#hero-form-card" class="btn-primary" onclick="scrollToForm(); return false;">Get My Free Audit →</a>
           <a href="#how" class="btn-secondary">See how it works</a>
+        </div>
+
+        <!-- LIVE ACTIVITY -->
+        <div class="hero-activity fade-up visible delay-4">
+          <div class="activity-pulse"></div>
+          <span class="activity-text"><strong id="activity-clinic">Peak Wellness</strong> just booked an audit · <span id="activity-time">2 min ago</span></span>
         </div>
       </div>
 
@@ -1586,6 +1640,54 @@
         }
       });
     });
+
+    // LIVE ACTIVITY — rotating clinics + spots counter
+    const activityClinics = [
+      { name: 'Peak Wellness', time: '2 min ago' },
+      { name: 'Vitality MD', time: '7 min ago' },
+      { name: 'Thrive Med Spa', time: '14 min ago' },
+      { name: 'Pure Aesthetics', time: '23 min ago' },
+      { name: 'Lumina Clinic', time: '38 min ago' },
+      { name: 'Renew Wellness', time: '52 min ago' },
+      { name: 'Aspire Med', time: '1 hour ago' },
+      { name: 'Glow Aesthetics', time: '1 hour ago' },
+      { name: 'Bloom Hormone Clinic', time: '2 hours ago' },
+      { name: 'Vitality Health', time: '2 hours ago' },
+      { name: 'Refine Med Spa', time: '3 hours ago' },
+      { name: 'Apex Wellness', time: '4 hours ago' },
+    ];
+    let activityIdx = 0;
+    const activityClinicEl = document.getElementById('activity-clinic');
+    const activityTimeEl = document.getElementById('activity-time');
+    function rotateActivity() {
+      activityIdx = (activityIdx + 1) % activityClinics.length;
+      const next = activityClinics[activityIdx];
+      activityClinicEl.style.opacity = '0';
+      activityTimeEl.style.opacity = '0';
+      setTimeout(() => {
+        activityClinicEl.textContent = next.name;
+        activityTimeEl.textContent = next.time;
+        activityClinicEl.style.opacity = '1';
+        activityTimeEl.style.opacity = '1';
+      }, 300);
+    }
+    setInterval(rotateActivity, 5000);
+    // Add transition
+    activityClinicEl.style.transition = 'opacity 0.3s ease';
+    activityTimeEl.style.transition = 'opacity 0.3s ease';
+
+    // Spots counter — slow incremental progression based on time
+    function updateSpots() {
+      const counterEl = document.getElementById('spots-counter');
+      if (!counterEl) return;
+      // Base: 12. Increment slowly over time (1 every ~30 seconds, max 18)
+      const base = 12;
+      const increments = Math.min(Math.floor((Date.now() / 30000) % 6), 6);
+      const current = base + increments;
+      counterEl.textContent = current;
+    }
+    updateSpots();
+    setInterval(updateSpots, 30000);
 
     // Modal
     const modalOverlay = document.getElementById('modalOverlay');
