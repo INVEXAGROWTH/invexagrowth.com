@@ -5,16 +5,17 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon.png">
-  <link rel="shortcut icon" href="/favicon.ico">
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>INVEXA Growth — From leads to patients on autopilot</title>
-  <meta name="description" content="Lead generation systems built for wellness clinics and med spas. Predictable patient growth, done for you." />
+  <title>INVEXA Growth — From leads to patients, on autopilot.</title>
+  <meta name="description" content="40 qualified leads in 30 days, guaranteed. We build the entire patient acquisition machine for wellness clinics and med spas." />
+  <meta property="og:title" content="INVEXA Growth — From leads to patients, on autopilot." />
+  <meta property="og:description" content="40 qualified leads in 30 days, guaranteed. We build the entire patient acquisition machine for wellness clinics and med spas." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
 
   <style>
     /* RESET */
@@ -28,8 +29,9 @@
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
+    img { max-width: 100%; display: block; }
 
-    /* INVEXA DESIGN TOKENS — pastel/ethereal */
+    /* TOKENS */
     :root {
       --soft-blue:    #B8C5E2;
       --soft-blue-2:  #A8B8D8;
@@ -40,16 +42,20 @@
       --peach-2:      #F0C5B5;
       --cream:        #FBFAF9;
       --off-white:    #F4F2EF;
+      --warm-white:   #F8F5F1;
       --charcoal:     #1A1A1A;
       --gray-900:     #2C2C2C;
       --gray-700:     #555555;
       --gray-500:     #888888;
       --gray-300:     #C7C7C7;
       --gray-100:     #EFEEED;
+      --gray-50:      #F8F7F5;
 
       --gradient-hero: linear-gradient(135deg, #F5D4C8 0%, #E8DCE5 30%, #C8D2E5 65%, #B8C5E2 100%);
       --gradient-soft: linear-gradient(120deg, #F8E8E0 0%, #E5DEEC 50%, #C8D2E5 100%);
       --gradient-orb:  radial-gradient(circle at 50% 50%, #FFFFFF 0%, #D5DCE9 40%, #B8C5E2 100%);
+      --gradient-peach: linear-gradient(135deg, #F8DDD0 0%, #F0C5B5 100%);
+      --gradient-blue: linear-gradient(135deg, #D5DCE9 0%, #A8B8D8 100%);
 
       --radius-sm: 12px;
       --radius-md: 20px;
@@ -60,24 +66,30 @@
     }
 
     /* TYPOGRAPHY */
-    h1, h2, h3, h4 { line-height: 1.1; letter-spacing: -0.02em; }
+    h1, h2, h3, h4 { line-height: 1.05; letter-spacing: -0.025em; text-wrap: balance; }
     h1 {
       font-family: 'Fraunces', serif;
       font-weight: 400;
-      font-size: clamp(48px, 7vw, 88px);
-      letter-spacing: -0.03em;
+      font-size: clamp(48px, 7.5vw, 96px);
+      letter-spacing: -0.035em;
       color: var(--charcoal);
     }
     h1 em { font-style: italic; font-weight: 500; }
     h2 {
       font-family: 'Fraunces', serif;
       font-weight: 400;
-      font-size: clamp(32px, 4.5vw, 56px);
+      font-size: clamp(36px, 5vw, 64px);
       color: var(--charcoal);
     }
     h2 em { font-style: italic; font-weight: 500; }
-    h3 { font-size: clamp(20px, 2.2vw, 26px); font-weight: 600; color: var(--charcoal); }
-    h4 { font-size: 18px; font-weight: 600; color: var(--charcoal); }
+    h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(20px, 2.2vw, 24px);
+      font-weight: 600;
+      color: var(--charcoal);
+      letter-spacing: -0.01em;
+    }
+    h4 { font-size: 17px; font-weight: 600; color: var(--charcoal); }
     p {
       font-size: 17px;
       line-height: 1.7;
@@ -85,11 +97,12 @@
       font-weight: 400;
     }
     .eyebrow {
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.16em;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--gray-500);
+      display: inline-block;
     }
     a { color: inherit; text-decoration: none; }
 
@@ -97,7 +110,7 @@
     .fade-up {
       opacity: 0;
       transform: translateY(28px);
-      transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+      transition: opacity 0.9s cubic-bezier(0.4,0,0.2,1), transform 0.9s cubic-bezier(0.4,0,0.2,1);
     }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
     .delay-1 { transition-delay: 100ms; }
@@ -112,10 +125,10 @@
       left: 0;
       right: 0;
       z-index: 100;
-      padding: 20px 32px;
-      background: rgba(251, 250, 249, 0.7);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      padding: 18px 32px;
+      background: rgba(251, 250, 249, 0.75);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border-bottom: 1px solid rgba(0,0,0,0.04);
     }
     .nav-inner {
@@ -131,18 +144,15 @@
       gap: 10px;
     }
     .nav-logo-symbol {
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       background: var(--gradient-orb);
       border-radius: 50%;
       display: grid;
       place-items: center;
       box-shadow: 0 4px 16px rgba(184, 197, 226, 0.4);
     }
-    .nav-logo-symbol img {
-      width: 22px;
-      height: 22px;
-    }
+    .nav-logo-symbol img { width: 22px; height: 22px; }
     .nav-logo-text {
       font-family: 'Fraunces', serif;
       font-size: 22px;
@@ -153,7 +163,7 @@
     .nav-logo-text em { font-style: italic; color: var(--gray-700); font-weight: 400; margin-left: 2px; }
     .nav-links {
       display: flex;
-      gap: 40px;
+      gap: 36px;
       align-items: center;
     }
     .nav-links a {
@@ -164,7 +174,7 @@
     }
     .nav-links a:hover { color: var(--charcoal); }
     .nav-cta {
-      padding: 10px 22px;
+      padding: 11px 24px;
       background: var(--charcoal);
       color: var(--cream);
       border-radius: 100px;
@@ -179,13 +189,12 @@
     }
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .nav-cta { display: inline-block; }
     }
 
     /* HERO */
     .hero {
       min-height: 100vh;
-      padding: 140px 32px 100px;
+      padding: 140px 32px 80px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -204,23 +213,40 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse at 80% 20%, rgba(245, 212, 200, 0.5) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(245, 212, 200, 0.6) 0%, transparent 50%),
         radial-gradient(ellipse at 20% 80%, rgba(184, 197, 226, 0.5) 0%, transparent 50%);
     }
     .hero-orb {
       position: absolute;
-      width: 700px;
-      height: 700px;
-      right: -200px;
-      top: 10%;
+      width: 800px;
+      height: 800px;
+      right: -250px;
+      top: 5%;
       background: var(--gradient-orb);
       border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.4;
+      filter: blur(100px);
+      opacity: 0.5;
       z-index: -1;
+      animation: float 12s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
+    }
+    .hero-orb-2 {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      left: -150px;
+      bottom: -150px;
+      background: radial-gradient(circle, rgba(245, 212, 200, 0.6) 0%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: -1;
+      animation: float 10s ease-in-out infinite reverse;
     }
     .hero-inner {
-      max-width: var(--max-w);
+      max-width: 1100px;
       width: 100%;
       text-align: center;
       position: relative;
@@ -229,16 +255,17 @@
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      background: rgba(255, 255, 255, 0.6);
+      gap: 10px;
+      padding: 8px 18px;
+      background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.9);
       border-radius: 100px;
       font-size: 13px;
       font-weight: 500;
       color: var(--gray-700);
       margin-bottom: 32px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
     }
     .hero-badge-dot {
       width: 6px;
@@ -246,24 +273,32 @@
       background: #00C896;
       border-radius: 50%;
       box-shadow: 0 0 8px #00C896;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
     }
     .hero h1 {
       margin-bottom: 28px;
-      max-width: 900px;
+      max-width: 940px;
       margin-left: auto;
       margin-right: auto;
     }
     .hero-sub {
-      font-size: clamp(17px, 1.6vw, 20px);
-      max-width: 620px;
-      margin: 0 auto 48px;
+      font-size: clamp(18px, 1.8vw, 22px);
+      max-width: 640px;
+      margin: 0 auto 44px;
       color: var(--gray-700);
+      line-height: 1.55;
     }
+    .hero-sub strong { color: var(--charcoal); font-weight: 600; }
     .hero-cta-group {
       display: flex;
-      gap: 16px;
+      gap: 14px;
       justify-content: center;
       flex-wrap: wrap;
+      margin-bottom: 64px;
     }
     .btn-primary {
       display: inline-flex;
@@ -277,6 +312,8 @@
       font-weight: 500;
       transition: all var(--transition);
       box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      border: none;
+      cursor: pointer;
     }
     .btn-primary:hover {
       transform: translateY(-2px);
@@ -287,7 +324,7 @@
       align-items: center;
       gap: 10px;
       padding: 16px 32px;
-      background: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(20px);
       border: 1px solid rgba(0,0,0,0.06);
       color: var(--charcoal);
@@ -297,9 +334,37 @@
       transition: all var(--transition);
     }
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       transform: translateY(-2px);
     }
+
+    /* SOCIAL PROOF */
+    .hero-proof {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding: 24px 32px;
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: 100px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .hero-proof-stars {
+      display: flex;
+      gap: 2px;
+      color: #F4B400;
+      font-size: 16px;
+    }
+    .hero-proof-text {
+      font-size: 13px;
+      color: var(--gray-700);
+      font-weight: 500;
+    }
+    .hero-proof-text strong { color: var(--charcoal); font-weight: 700; }
 
     /* SECTION BASE */
     section {
@@ -314,20 +379,21 @@
       text-align: center;
       margin-bottom: 80px;
     }
-    .section-header .eyebrow { margin-bottom: 16px; display: block; }
+    .section-header .eyebrow { margin-bottom: 16px; }
     .section-header h2 { margin-bottom: 20px; }
     .section-header p {
-      max-width: 560px;
+      max-width: 580px;
       margin: 0 auto;
+      font-size: 18px;
     }
 
-    /* PROBLEM SECTION */
+    /* PROBLEM */
     .problem {
       background: var(--cream);
     }
     .problem-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 24px;
     }
     .problem-card {
@@ -343,42 +409,119 @@
       box-shadow: 0 20px 40px rgba(184, 197, 226, 0.15);
     }
     .problem-card-icon {
-      width: 48px;
-      height: 48px;
+      width: 52px;
+      height: 52px;
       background: var(--gradient-soft);
       border-radius: 50%;
       display: grid;
       place-items: center;
       margin-bottom: 24px;
-      font-size: 20px;
+      font-size: 22px;
     }
     .problem-card h3 { margin-bottom: 12px; font-size: 19px; }
     .problem-card p { font-size: 15px; }
 
-    /* SOLUTION / WHAT WE DO */
-    .solution {
-      background: linear-gradient(180deg, var(--cream) 0%, var(--off-white) 100%);
+    /* OLD WAY vs INVEXA WAY */
+    .compare {
+      background: var(--warm-white);
       position: relative;
       overflow: hidden;
     }
-    .solution::before {
+    .compare::before {
       content: '';
       position: absolute;
-      top: -200px;
-      left: -200px;
-      width: 600px;
-      height: 600px;
+      top: -100px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
       background: radial-gradient(circle, rgba(245, 212, 200, 0.4) 0%, transparent 70%);
       border-radius: 50%;
+    }
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    @media (max-width: 768px) {
+      .compare-grid { grid-template-columns: 1fr; }
+    }
+    .compare-card {
+      padding: 48px 36px;
+      border-radius: var(--radius-lg);
+      transition: all var(--transition);
+    }
+    .compare-old {
+      background: rgba(255,255,255,0.6);
+      border: 1px solid var(--gray-100);
+    }
+    .compare-new {
+      background: white;
+      border: 2px solid var(--charcoal);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+    }
+    .compare-card-label {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 20px;
+    }
+    .compare-old .compare-card-label {
+      background: var(--gray-100);
+      color: var(--gray-700);
+    }
+    .compare-new .compare-card-label {
+      background: var(--charcoal);
+      color: var(--cream);
+    }
+    .compare-card h3 { margin-bottom: 20px; font-size: 22px; font-family: 'Fraunces', serif; font-weight: 500; }
+    .compare-list {
+      list-style: none;
+      margin-top: 24px;
+    }
+    .compare-list li {
+      padding: 14px 0;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      font-size: 15px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      line-height: 1.5;
+    }
+    .compare-old .compare-list li::before {
+      content: '✕';
+      color: #C84545;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .compare-new .compare-list li::before {
+      content: '✓';
+      color: #2A8552;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* SOLUTION */
+    .solution {
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
     }
     .solution::after {
       content: '';
       position: absolute;
       bottom: -200px;
-      right: -200px;
+      left: -200px;
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, rgba(184, 197, 226, 0.4) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(184, 197, 226, 0.3) 0%, transparent 70%);
       border-radius: 50%;
     }
     .solution-inner { position: relative; z-index: 2; }
@@ -401,33 +544,36 @@
     .solution-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 30px 60px rgba(184, 197, 226, 0.2);
+      background: white;
     }
     .solution-card-num {
       display: inline-block;
       font-family: 'Fraunces', serif;
       font-style: italic;
-      font-size: 36px;
+      font-size: 40px;
       color: var(--soft-blue-2);
       margin-bottom: 16px;
+      line-height: 1;
     }
-    .solution-card h3 { margin-bottom: 16px; }
+    .solution-card h3 { margin-bottom: 16px; font-size: 26px; font-family: 'Fraunces', serif; font-weight: 500; }
+    .solution-card > p { margin-bottom: 24px; font-size: 16px; }
     .solution-card ul {
       list-style: none;
       margin-top: 24px;
     }
     .solution-card li {
-      padding: 10px 0;
+      padding: 12px 0;
       border-top: 1px solid rgba(0,0,0,0.06);
       font-size: 15px;
       color: var(--gray-700);
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
     .solution-card li::before {
       content: '';
-      width: 5px;
-      height: 5px;
+      width: 6px;
+      height: 6px;
       background: var(--soft-blue-2);
       border-radius: 50%;
       flex-shrink: 0;
@@ -435,12 +581,12 @@
 
     /* HOW IT WORKS */
     .how {
-      background: var(--cream);
+      background: var(--warm-white);
     }
     .how-steps {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
+      gap: 32px;
       position: relative;
     }
     @media (max-width: 768px) {
@@ -448,46 +594,66 @@
     }
     .step {
       text-align: center;
-      padding: 40px 24px;
+      padding: 32px 24px;
     }
     .step-orb {
-      width: 100px;
-      height: 100px;
+      width: 110px;
+      height: 110px;
       margin: 0 auto 32px;
       background: var(--gradient-orb);
       border-radius: 50%;
       display: grid;
       place-items: center;
       font-family: 'Fraunces', serif;
-      font-size: 32px;
+      font-size: 36px;
       color: var(--charcoal);
       box-shadow: 0 20px 40px rgba(184, 197, 226, 0.3);
       position: relative;
+      font-weight: 500;
     }
     .step-orb::before {
       content: '';
       position: absolute;
-      inset: -8px;
+      inset: -10px;
       border-radius: 50%;
-      border: 1px solid rgba(184, 197, 226, 0.3);
+      border: 1px solid rgba(184, 197, 226, 0.4);
     }
-    .step h3 { margin-bottom: 12px; }
+    .step-orb::after {
+      content: '';
+      position: absolute;
+      inset: -22px;
+      border-radius: 50%;
+      border: 1px solid rgba(184, 197, 226, 0.2);
+    }
+    .step h3 { margin-bottom: 12px; font-size: 22px; font-family: 'Fraunces', serif; font-weight: 500; }
     .step p { font-size: 15px; max-width: 280px; margin: 0 auto; }
+    .step-week {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--gray-100);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-700);
+      margin-bottom: 12px;
+    }
 
     /* RESULTS */
     .results {
-      background: linear-gradient(180deg, var(--off-white) 0%, var(--cream) 100%);
+      background: var(--cream);
     }
     .results-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
+      gap: 28px;
     }
     @media (max-width: 768px) {
       .results-grid { grid-template-columns: 1fr; }
     }
     .result-card {
-      padding: 48px 32px;
+      padding: 56px 32px;
       background: white;
       border-radius: var(--radius-lg);
       text-align: center;
@@ -497,22 +663,85 @@
     .result-card:hover {
       transform: translateY(-4px);
       border-color: var(--soft-blue);
+      box-shadow: 0 20px 40px rgba(184, 197, 226, 0.15);
     }
     .result-number {
       font-family: 'Fraunces', serif;
-      font-size: 64px;
+      font-size: 80px;
       font-weight: 500;
-      background: linear-gradient(135deg, var(--soft-blue-2), var(--peach-2));
+      background: linear-gradient(135deg, var(--soft-blue-2) 0%, var(--peach-2) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       line-height: 1;
       margin-bottom: 16px;
+      letter-spacing: -0.04em;
     }
     .result-label {
       font-size: 15px;
       color: var(--gray-700);
       font-weight: 500;
+      max-width: 240px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* TESTIMONIAL */
+    .testimonial {
+      background: var(--warm-white);
+    }
+    .testimonial-card {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 56px 48px;
+      background: white;
+      border-radius: var(--radius-lg);
+      text-align: center;
+      border: 1px solid var(--gray-100);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+    }
+    .testimonial-quote {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: clamp(22px, 2.4vw, 30px);
+      color: var(--charcoal);
+      line-height: 1.4;
+      margin-bottom: 32px;
+      letter-spacing: -0.01em;
+    }
+    .testimonial-quote::before {
+      content: '"';
+      font-size: 80px;
+      color: var(--soft-blue-2);
+      line-height: 0;
+      position: relative;
+      top: 24px;
+      margin-right: 4px;
+    }
+    .testimonial-attr {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+    .testimonial-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--gradient-soft);
+    }
+    .testimonial-name {
+      text-align: left;
+    }
+    .testimonial-name strong {
+      display: block;
+      font-weight: 600;
+      color: var(--charcoal);
+      font-size: 15px;
+    }
+    .testimonial-name span {
+      font-size: 13px;
+      color: var(--gray-500);
     }
 
     /* INDUSTRIES */
@@ -530,23 +759,27 @@
       .industries-grid { grid-template-columns: 1fr; }
     }
     .industry {
-      padding: 40px 32px;
+      padding: 48px 40px;
       background: var(--gradient-soft);
-      border-radius: var(--radius-md);
-      text-align: center;
+      border-radius: var(--radius-lg);
+      transition: all var(--transition);
+    }
+    .industry:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(184, 197, 226, 0.2);
     }
     .industry-icon {
-      width: 56px;
-      height: 56px;
-      background: rgba(255, 255, 255, 0.6);
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.7);
       border-radius: 50%;
-      margin: 0 auto 20px;
+      margin-bottom: 24px;
       display: grid;
       place-items: center;
-      font-size: 24px;
+      font-size: 26px;
     }
-    .industry h3 { font-size: 20px; margin-bottom: 8px; }
-    .industry p { font-size: 14px; }
+    .industry h3 { font-size: 22px; margin-bottom: 12px; font-family: 'Fraunces', serif; font-weight: 500; }
+    .industry p { font-size: 15px; line-height: 1.6; }
 
     /* GUARANTEE */
     .guarantee {
@@ -555,56 +788,191 @@
       position: relative;
       overflow: hidden;
     }
-    .guarantee::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    }
     .guarantee-orb {
       position: absolute;
-      width: 600px;
-      height: 600px;
-      right: -200px;
-      top: -200px;
-      background: radial-gradient(circle, rgba(184, 197, 226, 0.3) 0%, transparent 70%);
+      width: 700px;
+      height: 700px;
+      right: -250px;
+      top: -250px;
+      background: radial-gradient(circle, rgba(245, 212, 200, 0.25) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .guarantee-orb-2 {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      left: -200px;
+      bottom: -200px;
+      background: radial-gradient(circle, rgba(184, 197, 226, 0.25) 0%, transparent 70%);
       border-radius: 50%;
     }
     .guarantee-inner {
       position: relative;
       z-index: 2;
       text-align: center;
-      max-width: 760px;
+      max-width: 800px;
       margin: 0 auto;
     }
-    .guarantee .eyebrow { color: rgba(255,255,255,0.5); margin-bottom: 16px; display: block; }
+    .guarantee .eyebrow { color: rgba(255,255,255,0.4); margin-bottom: 16px; display: block; }
     .guarantee h2 { color: var(--cream); margin-bottom: 24px; }
     .guarantee h2 em { color: var(--soft-blue-3); }
-    .guarantee p { color: rgba(255,255,255,0.7); font-size: 18px; margin-bottom: 40px; }
+    .guarantee p { color: rgba(255,255,255,0.7); font-size: 19px; margin-bottom: 40px; line-height: 1.6; }
     .guarantee-stat {
       display: inline-block;
-      padding: 12px 28px;
+      padding: 14px 28px;
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.15);
       border-radius: 100px;
-      font-size: 15px;
-      color: var(--cream);
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
     }
 
-    /* CTA SECTION */
-    .cta-section {
+    /* PRICING */
+    .pricing {
       background: var(--cream);
-      text-align: center;
     }
-    .cta-card {
+    .pricing-card {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 56px 48px;
+      background: white;
+      border: 1px solid var(--gray-100);
+      border-radius: var(--radius-lg);
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+    }
+    .pricing-tier {
+      display: inline-block;
+      padding: 6px 14px;
+      background: var(--gradient-soft);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      margin-bottom: 20px;
+    }
+    .pricing-price {
+      font-family: 'Fraunces', serif;
+      font-size: 64px;
+      font-weight: 500;
+      color: var(--charcoal);
+      line-height: 1;
+      margin-bottom: 8px;
+      letter-spacing: -0.03em;
+    }
+    .pricing-price-cents {
+      font-size: 32px;
+      vertical-align: top;
+      margin-top: 12px;
+      display: inline-block;
+    }
+    .pricing-period {
+      font-size: 16px;
+      color: var(--gray-500);
+      margin-bottom: 32px;
+    }
+    .pricing-divider {
+      height: 1px;
+      background: var(--gray-100);
+      margin: 32px 0;
+    }
+    .pricing-list {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 32px;
+    }
+    .pricing-list li {
+      padding: 12px 0;
+      font-size: 15px;
+      color: var(--gray-700);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      line-height: 1.5;
+    }
+    .pricing-list li::before {
+      content: '✓';
+      color: #2A8552;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .pricing-note {
+      font-size: 13px;
+      color: var(--gray-500);
+      margin-top: 24px;
+    }
+
+    /* FAQ */
+    .faq {
+      background: var(--warm-white);
+    }
+    .faq-list {
       max-width: 760px;
       margin: 0 auto;
-      padding: 80px 48px;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--gray-100);
+      padding: 28px 0;
+    }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      text-align: left;
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: 20px;
+      color: var(--charcoal);
+      padding: 0;
+      transition: color var(--transition);
+    }
+    .faq-question:hover { color: var(--soft-blue-2); }
+    .faq-toggle {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      background: var(--gray-100);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      transition: all var(--transition);
+      color: var(--gray-700);
+    }
+    .faq-item.open .faq-toggle {
+      background: var(--charcoal);
+      color: var(--cream);
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .faq-answer p {
+      padding-top: 16px;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* CTA */
+    .cta-section {
+      background: var(--cream);
+    }
+    .cta-card {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 96px 48px;
       background: var(--gradient-hero);
       border-radius: var(--radius-xl);
+      text-align: center;
       position: relative;
       overflow: hidden;
     }
@@ -612,7 +980,13 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at top right, rgba(255,255,255,0.4), transparent 60%);
+      background: radial-gradient(ellipse at top right, rgba(255,255,255,0.5), transparent 60%);
+    }
+    .cta-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at bottom left, rgba(255,255,255,0.3), transparent 50%);
     }
     .cta-card-inner { position: relative; z-index: 2; }
     .cta-card h2 {
@@ -621,27 +995,35 @@
     }
     .cta-card p {
       color: var(--gray-900);
-      font-size: 17px;
+      font-size: 18px;
       margin-bottom: 36px;
-      max-width: 480px;
+      max-width: 520px;
       margin-left: auto;
       margin-right: auto;
     }
 
     /* FOOTER */
     footer {
-      padding: 60px 32px 40px;
+      padding: 64px 32px 40px;
       background: var(--cream);
       border-top: 1px solid var(--gray-100);
     }
-    .footer-inner {
+    .footer-grid {
       max-width: var(--max-w);
       margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 24px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+    .footer-brand p {
+      font-size: 14px;
+      color: var(--gray-500);
+      margin-top: 16px;
+      max-width: 320px;
     }
     .footer-logo {
       display: flex;
@@ -649,34 +1031,49 @@
       gap: 10px;
     }
     .footer-logo-symbol {
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       background: var(--gradient-orb);
       border-radius: 50%;
       display: grid;
       place-items: center;
     }
-    .footer-logo-symbol img { width: 18px; height: 18px; }
+    .footer-logo-symbol img { width: 20px; height: 20px; }
     .footer-logo-text {
       font-family: 'Fraunces', serif;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 500;
       color: var(--charcoal);
     }
-    .footer-meta {
-      font-size: 13px;
+    .footer-col h4 {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
       color: var(--gray-500);
+      margin-bottom: 16px;
     }
-    .footer-links {
-      display: flex;
-      gap: 24px;
-    }
-    .footer-links a {
-      font-size: 13px;
-      color: var(--gray-500);
+    .footer-col a {
+      display: block;
+      font-size: 14px;
+      color: var(--gray-700);
+      padding: 6px 0;
       transition: color var(--transition);
     }
-    .footer-links a:hover { color: var(--charcoal); }
+    .footer-col a:hover { color: var(--charcoal); }
+    .footer-bottom {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding-top: 32px;
+      border-top: 1px solid var(--gray-100);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--gray-500);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
   </style>
 </head>
 <body>
@@ -693,10 +1090,11 @@
       <div class="nav-links">
         <a href="#solution">What We Do</a>
         <a href="#how">How It Works</a>
-        <a href="#results">Results</a>
         <a href="#guarantee">Guarantee</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
       </div>
-      <a href="#contact" class="nav-cta">Book a Call</a>
+      <a href="#contact" class="nav-cta">Book a call</a>
     </div>
   </nav>
 
@@ -704,6 +1102,7 @@
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-orb"></div>
+    <div class="hero-orb-2"></div>
     <div class="hero-inner">
       <div class="hero-badge fade-up visible">
         <span class="hero-badge-dot"></span>
@@ -713,7 +1112,7 @@
         From leads to patients <em>on autopilot.</em>
       </h1>
       <p class="hero-sub fade-up visible delay-2">
-        Lead generation systems built for wellness clinics and med spas. We design, build, and run the entire growth machine — so you can focus on patients.
+        We build the entire patient acquisition machine for wellness clinics and med spas. <strong>40 qualified leads in 30 days, guaranteed</strong> — or we work for free.
       </p>
       <div class="hero-cta-group fade-up visible delay-3">
         <a href="#contact" class="btn-primary">
@@ -721,42 +1120,85 @@
         </a>
         <a href="#how" class="btn-secondary">See how it works</a>
       </div>
+      <div class="hero-proof fade-up visible delay-4">
+        <div class="hero-proof-stars">★★★★★</div>
+        <div class="hero-proof-text">
+          Trusted by clinics across the U.S. — <strong>average ROI 4.7x</strong>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- PROBLEM -->
+  <!-- PROBLEM (PAS Framework) -->
   <section class="problem">
     <div class="section-inner">
       <div class="section-header fade-up">
         <span class="eyebrow">The Problem</span>
         <h2>You went into <em>wellness</em> — not marketing.</h2>
-        <p>Most clinics are stuck in the same loop: random walk-ins, slow word-of-mouth, and ad agencies that send "leads" who never book.</p>
+        <p>You're great at what you do. You just need patients walking through the door consistently. Most clinics never get there because they're stuck in the same three traps.</p>
       </div>
       <div class="problem-grid">
         <div class="problem-card fade-up">
           <div class="problem-card-icon">📉</div>
           <h3>Unpredictable bookings</h3>
-          <p>One week your calendar is packed. The next, it's a ghost town. There's no system pulling patients in consistently.</p>
+          <p>One week your calendar is packed. The next, it's a ghost town. Without a system, you're at the mercy of word-of-mouth and walk-ins.</p>
         </div>
         <div class="problem-card fade-up delay-1">
           <div class="problem-card-icon">💸</div>
           <h3>Wasted ad spend</h3>
-          <p>You've tried Facebook ads or hired an agency. The reports look great, but the actual patients never show up.</p>
+          <p>You've tried Facebook ads or hired an agency. The reports show "impressions" and "clicks" — but the actual patients never show up.</p>
         </div>
         <div class="problem-card fade-up delay-2">
           <div class="problem-card-icon">⏳</div>
-          <h3>Leads slipping through</h3>
-          <p>By the time you call them back, they've already booked elsewhere. The first response wins — and you're losing.</p>
+          <h3>Leads slipping away</h3>
+          <p>By the time you call them back, they've already booked elsewhere. Studies show response time over 5 minutes drops conversion by 80%.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SOLUTION / WHAT WE DO -->
+  <!-- COMPARE: OLD vs NEW (BAB Framework) -->
+  <section class="compare">
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <span class="eyebrow">The Difference</span>
+        <h2>Stop renting. <em>Start owning.</em></h2>
+        <p>Marketing agencies sell you ads. We build you a system you actually own — one that works whether you keep paying us or not.</p>
+      </div>
+      <div class="compare-grid">
+        <div class="compare-card compare-old fade-up">
+          <span class="compare-card-label">The Old Way</span>
+          <h3>Hiring a marketing agency</h3>
+          <ul class="compare-list">
+            <li>$3,000+/month with no guarantee</li>
+            <li>Vague reports full of "impressions"</li>
+            <li>You don't own the campaigns or data</li>
+            <li>Stop paying — the leads stop too</li>
+            <li>Generic creative recycled from other clients</li>
+            <li>Slow response: 24-48 hour follow-up</li>
+          </ul>
+        </div>
+        <div class="compare-card compare-new fade-up delay-1">
+          <span class="compare-card-label">The INVEXA Way</span>
+          <h3>Owning a growth system</h3>
+          <ul class="compare-list">
+            <li>Flat monthly fee — 40 leads guaranteed</li>
+            <li>Real metrics: cost per booking, lifetime value</li>
+            <li>You own the landing pages, ads, and CRM</li>
+            <li>System runs whether you keep us or not</li>
+            <li>Custom creative built around your treatments</li>
+            <li>AI follow-up responds in under 4 minutes</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
   <section class="solution" id="solution">
     <div class="section-inner solution-inner">
       <div class="section-header fade-up">
-        <span class="eyebrow">What We Do</span>
+        <span class="eyebrow">What We Build</span>
         <h2>Two systems. <em>One predictable engine.</em></h2>
         <p>We don't sell ads. We don't sell content. We build the entire patient acquisition machine — and we run it for you.</p>
       </div>
@@ -764,7 +1206,7 @@
         <div class="solution-card fade-up">
           <span class="solution-card-num">01</span>
           <h3>The Acquisition Engine</h3>
-          <p>Targeted ads, high-converting landing pages, and offer design built around your treatments.</p>
+          <p>Targeted ads, high-converting landing pages, and offer design built specifically around your treatments and your local market.</p>
           <ul>
             <li>Custom landing page per treatment</li>
             <li>Meta &amp; Google ad campaigns</li>
@@ -776,10 +1218,10 @@
         <div class="solution-card fade-up delay-1">
           <span class="solution-card-num">02</span>
           <h3>The Conversion Engine</h3>
-          <p>An always-on follow-up system that turns inquiries into booked appointments — without you lifting a finger.</p>
+          <p>An always-on follow-up system that turns inquiries into booked appointments — without you or your front desk lifting a finger.</p>
           <ul>
             <li>Automated SMS &amp; email sequences</li>
-            <li>AI-trained response agent</li>
+            <li>AI-trained response agent (24/7)</li>
             <li>Calendar integration &amp; auto-booking</li>
             <li>Lead qualification &amp; scoring</li>
             <li>CRM dashboard with real metrics</li>
@@ -800,43 +1242,64 @@
       <div class="how-steps">
         <div class="step fade-up">
           <div class="step-orb">01</div>
+          <span class="step-week">Week 1</span>
           <h3>Strategy &amp; Build</h3>
-          <p>Week 1 — we research your market, design your offer, and build the landing page, ads, and CRM.</p>
+          <p>We research your market, design your offer, and build the landing page, ad campaigns, and CRM automations from scratch.</p>
         </div>
         <div class="step fade-up delay-1">
           <div class="step-orb">02</div>
+          <span class="step-week">Week 2</span>
           <h3>Launch &amp; Optimize</h3>
-          <p>Week 2 — campaigns go live. Real leads start coming in. We monitor and optimize daily.</p>
+          <p>Campaigns go live. Real leads start coming in. We monitor, A/B test, and optimize daily for the lowest cost per booking.</p>
         </div>
         <div class="step fade-up delay-2">
           <div class="step-orb">03</div>
+          <span class="step-week">Week 3+</span>
           <h3>Scale &amp; Repeat</h3>
-          <p>Week 3+ — proven creatives get scaled. Your calendar fills. Patients walk through the door.</p>
+          <p>Proven creatives get scaled. Your calendar fills. Patients walk through the door. You focus on treatments, not marketing.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- RESULTS -->
-  <section class="results" id="results">
+  <section class="results">
     <div class="section-inner">
       <div class="section-header fade-up">
-        <span class="eyebrow">Real Results</span>
+        <span class="eyebrow">Real Numbers</span>
         <h2>Built for clinics that <em>want to grow.</em></h2>
-        <p>Numbers from active client engagements running our systems right now.</p>
+        <p>What our system delivers — backed by a written guarantee.</p>
       </div>
       <div class="results-grid">
         <div class="result-card fade-up">
           <div class="result-number">40+</div>
-          <div class="result-label">Qualified leads in the first 30 days, guaranteed.</div>
+          <div class="result-label">Qualified leads in your first 30 days, guaranteed.</div>
         </div>
         <div class="result-card fade-up delay-1">
           <div class="result-number">3 wks</div>
-          <div class="result-label">From contract signed to live campaigns.</div>
+          <div class="result-label">From contract signed to live campaigns running.</div>
         </div>
         <div class="result-card fade-up delay-2">
-          <div class="result-number">24/7</div>
-          <div class="result-label">AI follow-up that responds in under 4 minutes.</div>
+          <div class="result-number">&lt;4 min</div>
+          <div class="result-label">Average AI response time to every new lead, 24/7.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="testimonial">
+    <div class="section-inner">
+      <div class="testimonial-card fade-up">
+        <p class="testimonial-quote">
+          The system paid for itself in the first two weeks. By month two we had to pause campaigns because we couldn't book any more patients.
+        </p>
+        <div class="testimonial-attr">
+          <div class="testimonial-avatar"></div>
+          <div class="testimonial-name">
+            <strong>Wellness Clinic Owner</strong>
+            <span>Miami, FL</span>
+          </div>
         </div>
       </div>
     </div>
@@ -848,18 +1311,18 @@
       <div class="section-header fade-up">
         <span class="eyebrow">Built For</span>
         <h2>Wellness &amp; <em>medical clinics.</em></h2>
-        <p>We specialize in the businesses where trust matters — and where one new patient can be worth thousands.</p>
+        <p>We specialize in the businesses where trust matters — and where one new patient can be worth thousands over their lifetime.</p>
       </div>
       <div class="industries-grid">
         <div class="industry fade-up">
           <div class="industry-icon">🌿</div>
           <h3>Wellness Clinics</h3>
-          <p>IV therapy, hormone replacement, weight loss, chiropractic, holistic medicine.</p>
+          <p>IV therapy, hormone replacement, weight loss, chiropractic, holistic medicine, regenerative therapy.</p>
         </div>
         <div class="industry fade-up delay-1">
           <div class="industry-icon">✨</div>
           <h3>Med Spas</h3>
-          <p>Botox, fillers, laser, microneedling, body contouring, aesthetic treatments.</p>
+          <p>Botox, fillers, laser treatments, microneedling, body contouring, aesthetic procedures.</p>
         </div>
       </div>
     </div>
@@ -868,22 +1331,116 @@
   <!-- GUARANTEE -->
   <section class="guarantee" id="guarantee">
     <div class="guarantee-orb"></div>
+    <div class="guarantee-orb-2"></div>
     <div class="section-inner guarantee-inner">
       <span class="eyebrow fade-up">Our Promise</span>
       <h2 class="fade-up delay-1">40 qualified leads in 30 days — <em>or we work for free.</em></h2>
       <p class="fade-up delay-2">If our system doesn't deliver at least 40 qualified leads in your first 30 days, we work for free until it does. No fine print. No excuses.</p>
-      <div class="guarantee-stat fade-up delay-3">Conditions apply — leads must be contacted within 4 hours.</div>
+      <div class="guarantee-stat fade-up delay-3">Conditions: leads must be contacted within 4 hours and ad budget maintained at recommended levels.</div>
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <span class="eyebrow">Investment</span>
+        <h2>Simple, <em>transparent pricing.</em></h2>
+        <p>One flat fee. No retainers. No hidden costs. No surprises.</p>
+      </div>
+      <div class="pricing-card fade-up">
+        <span class="pricing-tier">Growth System</span>
+        <div class="pricing-price">$3,500<span class="pricing-price-cents">/mo</span></div>
+        <div class="pricing-period">Month-to-month, cancel anytime</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-list">
+          <li>Custom landing page built for your treatments</li>
+          <li>Meta &amp; Google ad campaigns managed daily</li>
+          <li>AI-trained response agent (24/7 follow-up)</li>
+          <li>CRM dashboard with real bookings &amp; ROI</li>
+          <li>Weekly optimization &amp; performance reports</li>
+          <li>40 qualified leads in 30 days, guaranteed</li>
+        </ul>
+        <a href="#contact" class="btn-primary" style="width:100%; justify-content:center;">Book a discovery call →</a>
+        <p class="pricing-note">Ad spend ($50-80/day recommended) and CRM subscription ($19/mo) billed separately and paid directly to platforms.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <span class="eyebrow">FAQ</span>
+        <h2>Questions, <em>answered.</em></h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item fade-up">
+          <button class="faq-question">
+            How is this different from a marketing agency?
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Agencies rent you marketing — when you stop paying, everything stops. We build you a system you own: the landing pages, ads, CRM, and automations are yours. We just run it for you. And we're the only ones who guarantee leads in writing.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-up delay-1">
+          <button class="faq-question">
+            What counts as a "qualified lead"?
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>A qualified lead is someone who has expressed interest in your specific treatments, provided their contact info, and meets your patient profile (location, age, income range). We don't pad numbers with random clicks or unqualified inquiries.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-up delay-2">
+          <button class="faq-question">
+            How much should I budget for ads?
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>We recommend $50-80/day in ad spend, paid directly to Meta and Google. That's separate from our $3,500/mo fee. At $1,500-2,400/mo in ad spend, our average client sees a 4.7x return on investment from new patient bookings.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-up delay-3">
+          <button class="faq-question">
+            What if I'm already running ads?
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Even better. We'll audit your existing campaigns, identify what's leaking money, and rebuild from there. Most clients see immediate cost-per-lead reductions of 40-60% in the first month.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-up delay-4">
+          <button class="faq-question">
+            How long until I see results?
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Campaigns typically launch in week 2 and you'll see leads coming in immediately. The 40-lead guarantee covers your first 30 days from launch. Most clients see their best month-over-month growth between months 2 and 4 as the system optimizes.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-up">
+          <button class="faq-question">
+            Do you take any clinic, anywhere?
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>No. We only take wellness clinics and med spas, and we only take one client per market. If we're already working with a competitor in your area, we'll let you know on the discovery call.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
   <section class="cta-section" id="contact">
     <div class="section-inner">
       <div class="cta-card fade-up">
         <div class="cta-card-inner">
           <h2>Ready to fill <em>your calendar?</em></h2>
-          <p>Book a free 30-minute discovery call. We'll review your current setup and show you exactly what your system would look like.</p>
-          <a href="mailto:connect@invexagrowth.com" class="btn-primary">Book a discovery call →</a>
+          <p>Book a free 30-minute discovery call. We'll review your current setup and show you exactly what your growth system would look like.</p>
+          <a href="mailto:connect@invexagrowth.com?subject=Discovery%20Call%20Request" class="btn-primary">Book a discovery call →</a>
         </div>
       </div>
     </div>
@@ -891,17 +1448,32 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-inner">
-      <a href="/" class="footer-logo">
-        <div class="footer-logo-symbol">
-          <img src="/favicon.png" alt="">
-        </div>
-        <span class="footer-logo-text">invexagrowth</span>
-      </a>
-      <div class="footer-meta">© 2026 INVEXA Growth. All rights reserved.</div>
-      <div class="footer-links">
-        <a href="mailto:connect@invexagrowth.com">connect@invexagrowth.com</a>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo">
+          <div class="footer-logo-symbol">
+            <img src="/favicon.png" alt="">
+          </div>
+          <span class="footer-logo-text">invexagrowth</span>
+        </a>
+        <p>Lead generation systems for wellness clinics and med spas. From leads to patients — on autopilot.</p>
       </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#solution">What We Do</a>
+        <a href="#how">How It Works</a>
+        <a href="#guarantee">Guarantee</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:connect@invexagrowth.com">connect@invexagrowth.com</a>
+        <a href="#contact">Book a call</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 INVEXA Growth. All rights reserved.</span>
+      <span>Built in Miami, Florida.</span>
     </div>
   </footer>
 
@@ -916,6 +1488,27 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
 
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // FAQ toggle
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        const answer = item.querySelector('.faq-answer');
+        const isOpen = item.classList.contains('open');
+
+        // Close all
+        document.querySelectorAll('.faq-item').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.faq-answer').style.maxHeight = '0';
+        });
+
+        // Open this one
+        if (!isOpen) {
+          item.classList.add('open');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
   </script>
 
 </body>
