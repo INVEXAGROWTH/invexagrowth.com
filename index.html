@@ -10,8 +10,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>INVEXA Growth — From leads to patients, on autopilot.</title>
   <meta name="description" content="40 qualified leads in 30 days, guaranteed. We build the entire patient acquisition machine for wellness clinics and med spas." />
-  <meta property="og:title" content="INVEXA Growth — From leads to patients, on autopilot." />
-  <meta property="og:description" content="40 qualified leads in 30 days, guaranteed. We build the entire patient acquisition machine for wellness clinics and med spas." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,8 +28,9 @@
       -webkit-font-smoothing: antialiased;
     }
     img { max-width: 100%; display: block; }
+    button { font-family: inherit; }
 
-    /* TOKENS */
+    /* TOKENS — INVEXA pastel palette */
     :root {
       --soft-blue:    #B8C5E2;
       --soft-blue-2:  #A8B8D8;
@@ -50,12 +49,13 @@
       --gray-300:     #C7C7C7;
       --gray-100:     #EFEEED;
       --gray-50:      #F8F7F5;
+      --green:        #2A8552;
+      --red:          #C84545;
 
       --gradient-hero: linear-gradient(135deg, #F5D4C8 0%, #E8DCE5 30%, #C8D2E5 65%, #B8C5E2 100%);
       --gradient-soft: linear-gradient(120deg, #F8E8E0 0%, #E5DEEC 50%, #C8D2E5 100%);
       --gradient-orb:  radial-gradient(circle at 50% 50%, #FFFFFF 0%, #D5DCE9 40%, #B8C5E2 100%);
       --gradient-peach: linear-gradient(135deg, #F8DDD0 0%, #F0C5B5 100%);
-      --gradient-blue: linear-gradient(135deg, #D5DCE9 0%, #A8B8D8 100%);
 
       --radius-sm: 12px;
       --radius-md: 20px;
@@ -70,7 +70,7 @@
     h1 {
       font-family: 'Fraunces', serif;
       font-weight: 400;
-      font-size: clamp(48px, 7.5vw, 96px);
+      font-size: clamp(40px, 5.5vw, 72px);
       letter-spacing: -0.035em;
       color: var(--charcoal);
     }
@@ -78,7 +78,7 @@
     h2 {
       font-family: 'Fraunces', serif;
       font-weight: 400;
-      font-size: clamp(36px, 5vw, 64px);
+      font-size: clamp(32px, 4.5vw, 56px);
       color: var(--charcoal);
     }
     h2 em { font-style: italic; font-weight: 500; }
@@ -89,14 +89,14 @@
       color: var(--charcoal);
       letter-spacing: -0.01em;
     }
-    h4 { font-size: 17px; font-weight: 600; color: var(--charcoal); }
+    h4 { font-size: 16px; font-weight: 600; color: var(--charcoal); margin-bottom: 6px; }
     p {
       font-size: 17px;
       line-height: 1.7;
       color: var(--gray-700);
       font-weight: 400;
     }
-    .eyebrow {
+    .section-label {
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.18em;
@@ -110,7 +110,7 @@
     .fade-up {
       opacity: 0;
       transform: translateY(28px);
-      transition: opacity 0.9s cubic-bezier(0.4,0,0.2,1), transform 0.9s cubic-bezier(0.4,0,0.2,1);
+      transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
     }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
     .delay-1 { transition-delay: 100ms; }
@@ -118,12 +118,18 @@
     .delay-3 { transition-delay: 300ms; }
     .delay-4 { transition-delay: 400ms; }
 
+    /* CONTAINER */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    .section { padding: 100px 0; position: relative; }
+
     /* NAV */
     nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 100;
       padding: 18px 32px;
       background: rgba(251, 250, 249, 0.75);
@@ -138,18 +144,12 @@
       align-items: center;
       justify-content: space-between;
     }
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
     .nav-logo-symbol {
-      width: 38px;
-      height: 38px;
+      width: 38px; height: 38px;
       background: var(--gradient-orb);
       border-radius: 50%;
-      display: grid;
-      place-items: center;
+      display: grid; place-items: center;
       box-shadow: 0 4px 16px rgba(184, 197, 226, 0.4);
     }
     .nav-logo-symbol img { width: 22px; height: 22px; }
@@ -161,11 +161,7 @@
       color: var(--charcoal);
     }
     .nav-logo-text em { font-style: italic; color: var(--gray-700); font-weight: 400; margin-left: 2px; }
-    .nav-links {
-      display: flex;
-      gap: 36px;
-      align-items: center;
-    }
+    .nav-links { display: flex; gap: 36px; align-items: center; }
     .nav-links a {
       font-size: 14px;
       font-weight: 500;
@@ -187,119 +183,9 @@
       transform: translateY(-1px);
       box-shadow: 0 8px 24px rgba(0,0,0,0.2);
     }
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-    }
+    @media (max-width: 768px) { .nav-links { display: none; } }
 
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      padding: 140px 32px 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background: var(--gradient-hero);
-      opacity: 0.55;
-      z-index: -1;
-    }
-    .hero-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at 80% 20%, rgba(245, 212, 200, 0.6) 0%, transparent 50%),
-        radial-gradient(ellipse at 20% 80%, rgba(184, 197, 226, 0.5) 0%, transparent 50%);
-    }
-    .hero-orb {
-      position: absolute;
-      width: 800px;
-      height: 800px;
-      right: -250px;
-      top: 5%;
-      background: var(--gradient-orb);
-      border-radius: 50%;
-      filter: blur(100px);
-      opacity: 0.5;
-      z-index: -1;
-      animation: float 12s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-30px) scale(1.05); }
-    }
-    .hero-orb-2 {
-      position: absolute;
-      width: 500px;
-      height: 500px;
-      left: -150px;
-      bottom: -150px;
-      background: radial-gradient(circle, rgba(245, 212, 200, 0.6) 0%, transparent 70%);
-      border-radius: 50%;
-      filter: blur(80px);
-      z-index: -1;
-      animation: float 10s ease-in-out infinite reverse;
-    }
-    .hero-inner {
-      max-width: 1100px;
-      width: 100%;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 18px;
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.9);
-      border-radius: 100px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--gray-700);
-      margin-bottom: 32px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-    }
-    .hero-badge-dot {
-      width: 6px;
-      height: 6px;
-      background: #00C896;
-      border-radius: 50%;
-      box-shadow: 0 0 8px #00C896;
-      animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(1.2); }
-    }
-    .hero h1 {
-      margin-bottom: 28px;
-      max-width: 940px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .hero-sub {
-      font-size: clamp(18px, 1.8vw, 22px);
-      max-width: 640px;
-      margin: 0 auto 44px;
-      color: var(--gray-700);
-      line-height: 1.55;
-    }
-    .hero-sub strong { color: var(--charcoal); font-weight: 600; }
-    .hero-cta-group {
-      display: flex;
-      gap: 14px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 64px;
-    }
+    /* BUTTONS */
     .btn-primary {
       display: inline-flex;
       align-items: center;
@@ -324,7 +210,7 @@
       align-items: center;
       gap: 10px;
       padding: 16px 32px;
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255,255,255,0.7);
       backdrop-filter: blur(20px);
       border: 1px solid rgba(0,0,0,0.06);
       color: var(--charcoal);
@@ -332,72 +218,247 @@
       font-size: 15px;
       font-weight: 500;
       transition: all var(--transition);
+      cursor: pointer;
     }
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255,255,255,0.95);
       transform: translateY(-2px);
     }
 
-    /* SOCIAL PROOF */
-    .hero-proof {
+    /* HERO — split layout */
+    .hero {
+      min-height: 100vh;
+      padding: 140px 32px 80px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
-      padding: 24px 32px;
-      background: rgba(255,255,255,0.5);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255,255,255,0.7);
-      border-radius: 100px;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .hero-proof-stars {
-      display: flex;
-      gap: 2px;
-      color: #F4B400;
-      font-size: 16px;
-    }
-    .hero-proof-text {
-      font-size: 13px;
-      color: var(--gray-700);
-      font-weight: 500;
-    }
-    .hero-proof-text strong { color: var(--charcoal); font-weight: 700; }
-
-    /* SECTION BASE */
-    section {
-      padding: 120px 32px;
       position: relative;
+      overflow: hidden;
     }
-    .section-inner {
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: var(--gradient-hero);
+      opacity: 0.55;
+      z-index: -1;
+    }
+    .hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(245, 212, 200, 0.6) 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 80%, rgba(184, 197, 226, 0.5) 0%, transparent 50%);
+    }
+    .hero-orb {
+      position: absolute;
+      width: 800px; height: 800px;
+      right: -250px; top: 5%;
+      background: var(--gradient-orb);
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.5;
+      z-index: -1;
+      animation: float 12s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
+    }
+    .hero-orb-2 {
+      position: absolute;
+      width: 500px; height: 500px;
+      left: -150px; bottom: -150px;
+      background: radial-gradient(circle, rgba(245, 212, 200, 0.6) 0%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: -1;
+      animation: float 10s ease-in-out infinite reverse;
+    }
+    .hero-grid {
+      max-width: var(--max-w);
+      width: 100%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    @media (max-width: 968px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 18px;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.9);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gray-700);
+      margin-bottom: 28px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px;
+      background: #00C896;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #00C896;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+    .hero h1 { margin-bottom: 24px; }
+    .hero-sub {
+      font-size: clamp(17px, 1.8vw, 20px);
+      max-width: 520px;
+      margin-bottom: 36px;
+      color: var(--gray-700);
+      line-height: 1.55;
+    }
+    .hero-sub strong { color: var(--charcoal); font-weight: 600; }
+
+    /* HERO FORM CARD */
+    .hero-form-card {
+      padding: 36px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.95);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+    }
+    .hero-form-header { margin-bottom: 24px; }
+    .hero-form-header h3 {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    .hero-form-header p { font-size: 14px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 6px;
+    }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 12px 16px;
+      background: white;
+      border: 1px solid var(--gray-100);
+      border-radius: 12px;
+      font-size: 15px;
+      color: var(--charcoal);
+      font-family: inherit;
+      transition: all var(--transition);
+    }
+    .form-group input:focus, .form-group select:focus {
+      outline: none;
+      border-color: var(--soft-blue-2);
+      box-shadow: 0 0 0 3px rgba(184, 197, 226, 0.2);
+    }
+    .form-group input.error, .form-group select.error {
+      border-color: var(--red);
+    }
+    .form-error {
+      display: none;
+      font-size: 12px;
+      color: var(--red);
+      margin-top: 4px;
+    }
+    .form-submit {
+      width: 100%;
+      margin-top: 8px;
+      justify-content: center;
+    }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 32px 0;
+    }
+    .form-success.show { display: block; }
+    .form-success-icon {
+      width: 56px; height: 56px;
+      margin: 0 auto 20px;
+      background: var(--gradient-soft);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+    }
+    .form-success h3 { margin-bottom: 8px; }
+    .form-fields.hidden { display: none; }
+    .form-disclaimer {
+      font-size: 11px;
+      color: var(--gray-500);
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    /* TRUST BAR */
+    .trust-bar {
+      padding: 32px;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid var(--gray-100);
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .trust-inner {
       max-width: var(--max-w);
       margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      align-items: center;
     }
-    .section-header {
-      text-align: center;
-      margin-bottom: 80px;
+    @media (max-width: 768px) {
+      .trust-inner { grid-template-columns: repeat(2, 1fr); gap: 32px; }
     }
-    .section-header .eyebrow { margin-bottom: 16px; }
-    .section-header h2 { margin-bottom: 20px; }
-    .section-header p {
-      max-width: 580px;
-      margin: 0 auto;
-      font-size: 18px;
+    .trust-item { text-align: center; }
+    .trust-num {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(36px, 4vw, 48px);
+      font-weight: 500;
+      background: linear-gradient(135deg, var(--soft-blue-2) 0%, var(--peach-2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    .trust-label {
+      font-size: 12px;
+      color: var(--gray-500);
+      margin-top: 8px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .trust-divider {
+      width: 1px;
+      height: 40px;
+      background: var(--gray-100);
+      justify-self: center;
+      display: none;
     }
 
     /* PROBLEM */
-    .problem {
-      background: var(--cream);
-    }
+    .problem { background: var(--cream); }
+    .problem h2 { margin-bottom: 16px; }
     .problem-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 24px;
+      margin-top: 56px;
     }
+    @media (max-width: 768px) { .problem-grid { grid-template-columns: 1fr; } }
     .problem-card {
-      padding: 40px 32px;
+      padding: 36px 32px;
       background: white;
       border: 1px solid var(--gray-100);
       border-radius: var(--radius-md);
@@ -408,109 +469,19 @@
       transform: translateY(-4px);
       box-shadow: 0 20px 40px rgba(184, 197, 226, 0.15);
     }
-    .problem-card-icon {
-      width: 52px;
-      height: 52px;
+    .problem-icon {
+      width: 48px; height: 48px;
       background: var(--gradient-soft);
       border-radius: 50%;
-      display: grid;
-      place-items: center;
+      display: grid; place-items: center;
       margin-bottom: 24px;
-      font-size: 22px;
     }
     .problem-card h3 { margin-bottom: 12px; font-size: 19px; }
     .problem-card p { font-size: 15px; }
 
-    /* OLD WAY vs INVEXA WAY */
-    .compare {
-      background: var(--warm-white);
-      position: relative;
-      overflow: hidden;
-    }
-    .compare::before {
-      content: '';
-      position: absolute;
-      top: -100px;
-      right: -100px;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(245, 212, 200, 0.4) 0%, transparent 70%);
-      border-radius: 50%;
-    }
-    .compare-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      max-width: 1000px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-    }
-    @media (max-width: 768px) {
-      .compare-grid { grid-template-columns: 1fr; }
-    }
-    .compare-card {
-      padding: 48px 36px;
-      border-radius: var(--radius-lg);
-      transition: all var(--transition);
-    }
-    .compare-old {
-      background: rgba(255,255,255,0.6);
-      border: 1px solid var(--gray-100);
-    }
-    .compare-new {
-      background: white;
-      border: 2px solid var(--charcoal);
-      box-shadow: 0 30px 60px rgba(0,0,0,0.08);
-    }
-    .compare-card-label {
-      display: inline-block;
-      padding: 6px 12px;
-      border-radius: 100px;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 20px;
-    }
-    .compare-old .compare-card-label {
-      background: var(--gray-100);
-      color: var(--gray-700);
-    }
-    .compare-new .compare-card-label {
-      background: var(--charcoal);
-      color: var(--cream);
-    }
-    .compare-card h3 { margin-bottom: 20px; font-size: 22px; font-family: 'Fraunces', serif; font-weight: 500; }
-    .compare-list {
-      list-style: none;
-      margin-top: 24px;
-    }
-    .compare-list li {
-      padding: 14px 0;
-      border-top: 1px solid rgba(0,0,0,0.06);
-      font-size: 15px;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      line-height: 1.5;
-    }
-    .compare-old .compare-list li::before {
-      content: '✕';
-      color: #C84545;
-      font-weight: 600;
-      flex-shrink: 0;
-    }
-    .compare-new .compare-list li::before {
-      content: '✓';
-      color: #2A8552;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    /* SOLUTION */
+    /* SOLUTION — split with chart */
     .solution {
-      background: var(--cream);
+      background: var(--warm-white);
       position: relative;
       overflow: hidden;
     }
@@ -524,150 +495,184 @@
       background: radial-gradient(circle, rgba(184, 197, 226, 0.3) 0%, transparent 70%);
       border-radius: 50%;
     }
-    .solution-inner { position: relative; z-index: 2; }
-    .solution-grid {
+    .solution-inner {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 32px;
-    }
-    @media (max-width: 768px) {
-      .solution-grid { grid-template-columns: 1fr; }
-    }
-    .solution-card {
-      padding: 48px 40px;
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.9);
-      border-radius: var(--radius-lg);
-      transition: all var(--transition);
-    }
-    .solution-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 30px 60px rgba(184, 197, 226, 0.2);
-      background: white;
-    }
-    .solution-card-num {
-      display: inline-block;
-      font-family: 'Fraunces', serif;
-      font-style: italic;
-      font-size: 40px;
-      color: var(--soft-blue-2);
-      margin-bottom: 16px;
-      line-height: 1;
-    }
-    .solution-card h3 { margin-bottom: 16px; font-size: 26px; font-family: 'Fraunces', serif; font-weight: 500; }
-    .solution-card > p { margin-bottom: 24px; font-size: 16px; }
-    .solution-card ul {
-      list-style: none;
-      margin-top: 24px;
-    }
-    .solution-card li {
-      padding: 12px 0;
-      border-top: 1px solid rgba(0,0,0,0.06);
-      font-size: 15px;
-      color: var(--gray-700);
-      display: flex;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
       align-items: center;
-      gap: 12px;
+      position: relative;
+      z-index: 2;
     }
-    .solution-card li::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      background: var(--soft-blue-2);
+    @media (max-width: 968px) {
+      .solution-inner { grid-template-columns: 1fr; gap: 48px; }
+    }
+    .solution h2 { margin-bottom: 16px; margin-top: 8px; }
+    .solution-features { margin-top: 32px; }
+    .feature-row {
+      display: flex;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .feature-row:last-child { border-bottom: none; }
+    .feature-icon-wrap {
+      width: 36px; height: 36px;
+      background: var(--gradient-soft);
       border-radius: 50%;
+      display: grid; place-items: center;
       flex-shrink: 0;
+    }
+    .feature-row h4 { font-size: 16px; margin-bottom: 4px; }
+    .feature-row p { font-size: 14px; line-height: 1.5; }
+
+    /* SOLUTION CHART */
+    .solution-visual {
+      padding: 32px;
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--gray-100);
+      box-shadow: 0 30px 60px rgba(184, 197, 226, 0.15);
+    }
+    .visual-chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+    .visual-chart-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+    .visual-chart-badge {
+      padding: 4px 12px;
+      background: var(--gradient-soft);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+    .chart-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      height: 180px;
+      padding: 16px 0;
+    }
+    .bar-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      height: 100%;
+    }
+    .bar {
+      width: 100%;
+      background: var(--soft-blue-3);
+      border-radius: 6px 6px 0 0;
+      transition: height 1.5s cubic-bezier(0.4,0,0.2,1);
+    }
+    .bar.accent {
+      background: linear-gradient(180deg, var(--peach-2) 0%, var(--soft-blue-2) 100%);
+    }
+    .bar-label {
+      font-size: 11px;
+      color: var(--gray-500);
+      font-weight: 500;
+    }
+    .chart-divider {
+      height: 1px;
+      background: var(--gray-100);
+      margin: 16px 0;
+    }
+    .chart-metric {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chart-metric-label {
+      font-size: 13px;
+      color: var(--gray-500);
+    }
+    .chart-metric-value {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: 22px;
+      color: var(--charcoal);
+    }
+    .chart-metric-value small {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: var(--green);
+      font-weight: 600;
+      margin-left: 6px;
     }
 
     /* HOW IT WORKS */
-    .how {
-      background: var(--warm-white);
-    }
-    .how-steps {
+    .how { background: var(--cream); }
+    .how-header { text-align: center; max-width: 580px; margin: 0 auto 56px; }
+    .how-header h2 { margin: 16px 0; }
+    .steps-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 32px;
-      position: relative;
     }
-    @media (max-width: 768px) {
-      .how-steps { grid-template-columns: 1fr; }
-    }
-    .step {
-      text-align: center;
-      padding: 32px 24px;
-    }
-    .step-orb {
-      width: 110px;
-      height: 110px;
-      margin: 0 auto 32px;
-      background: var(--gradient-orb);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      font-family: 'Fraunces', serif;
-      font-size: 36px;
-      color: var(--charcoal);
-      box-shadow: 0 20px 40px rgba(184, 197, 226, 0.3);
-      position: relative;
-      font-weight: 500;
-    }
-    .step-orb::before {
-      content: '';
-      position: absolute;
-      inset: -10px;
-      border-radius: 50%;
-      border: 1px solid rgba(184, 197, 226, 0.4);
-    }
-    .step-orb::after {
-      content: '';
-      position: absolute;
-      inset: -22px;
-      border-radius: 50%;
-      border: 1px solid rgba(184, 197, 226, 0.2);
-    }
-    .step h3 { margin-bottom: 12px; font-size: 22px; font-family: 'Fraunces', serif; font-weight: 500; }
-    .step p { font-size: 15px; max-width: 280px; margin: 0 auto; }
-    .step-week {
-      display: inline-block;
-      padding: 4px 12px;
-      background: var(--gray-100);
-      border-radius: 100px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gray-700);
-      margin-bottom: 12px;
-    }
-
-    /* RESULTS */
-    .results {
-      background: var(--cream);
-    }
-    .results-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-    }
-    @media (max-width: 768px) {
-      .results-grid { grid-template-columns: 1fr; }
-    }
-    .result-card {
-      padding: 56px 32px;
+    @media (max-width: 768px) { .steps-grid { grid-template-columns: 1fr; } }
+    .step-card {
+      padding: 40px 32px;
       background: white;
-      border-radius: var(--radius-lg);
-      text-align: center;
       border: 1px solid var(--gray-100);
+      border-radius: var(--radius-md);
+      text-align: center;
       transition: all var(--transition);
     }
-    .result-card:hover {
+    .step-card:hover {
       transform: translateY(-4px);
       border-color: var(--soft-blue);
       box-shadow: 0 20px 40px rgba(184, 197, 226, 0.15);
     }
-    .result-number {
+    .step-num {
+      width: 64px; height: 64px;
+      margin: 0 auto 24px;
+      background: var(--gradient-orb);
+      border-radius: 50%;
+      display: grid; place-items: center;
       font-family: 'Fraunces', serif;
-      font-size: 80px;
+      font-size: 22px;
+      color: var(--charcoal);
+      font-weight: 500;
+      box-shadow: 0 12px 28px rgba(184, 197, 226, 0.3);
+    }
+    .step-card h3 { margin-bottom: 12px; font-size: 20px; font-family: 'Fraunces', serif; font-weight: 500; }
+    .step-card p { font-size: 15px; }
+
+    /* RESULTS */
+    .results {
+      background: var(--warm-white);
+    }
+    .results-header { text-align: center; max-width: 580px; margin: 0 auto 56px; }
+    .results-header h2 { margin: 16px 0; }
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 768px) { .results-grid { grid-template-columns: 1fr; } }
+    .result-card {
+      padding: 40px 32px;
+      background: white;
+      border: 1px solid var(--gray-100);
+      border-radius: var(--radius-md);
+      transition: all var(--transition);
+    }
+    .result-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(184, 197, 226, 0.15);
+    }
+    .result-stat {
+      font-family: 'Fraunces', serif;
+      font-size: 56px;
       font-weight: 500;
       background: linear-gradient(135deg, var(--soft-blue-2) 0%, var(--peach-2) 100%);
       -webkit-background-clip: text;
@@ -675,251 +680,115 @@
       background-clip: text;
       line-height: 1;
       margin-bottom: 16px;
-      letter-spacing: -0.04em;
-    }
-    .result-label {
-      font-size: 15px;
-      color: var(--gray-700);
-      font-weight: 500;
-      max-width: 240px;
-      margin: 0 auto;
-      line-height: 1.5;
-    }
-
-    /* TESTIMONIAL */
-    .testimonial {
-      background: var(--warm-white);
-    }
-    .testimonial-card {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 56px 48px;
-      background: white;
-      border-radius: var(--radius-lg);
-      text-align: center;
-      border: 1px solid var(--gray-100);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.04);
-    }
-    .testimonial-quote {
-      font-family: 'Fraunces', serif;
-      font-style: italic;
-      font-size: clamp(22px, 2.4vw, 30px);
-      color: var(--charcoal);
-      line-height: 1.4;
-      margin-bottom: 32px;
-      letter-spacing: -0.01em;
-    }
-    .testimonial-quote::before {
-      content: '"';
-      font-size: 80px;
-      color: var(--soft-blue-2);
-      line-height: 0;
-      position: relative;
-      top: 24px;
-      margin-right: 4px;
-    }
-    .testimonial-attr {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-    }
-    .testimonial-avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--gradient-soft);
-    }
-    .testimonial-name {
-      text-align: left;
-    }
-    .testimonial-name strong {
-      display: block;
-      font-weight: 600;
-      color: var(--charcoal);
-      font-size: 15px;
-    }
-    .testimonial-name span {
-      font-size: 13px;
-      color: var(--gray-500);
-    }
-
-    /* INDUSTRIES */
-    .industries {
-      background: var(--cream);
-    }
-    .industries-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      max-width: 880px;
-      margin: 0 auto;
-    }
-    @media (max-width: 768px) {
-      .industries-grid { grid-template-columns: 1fr; }
-    }
-    .industry {
-      padding: 48px 40px;
-      background: var(--gradient-soft);
-      border-radius: var(--radius-lg);
-      transition: all var(--transition);
-    }
-    .industry:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(184, 197, 226, 0.2);
-    }
-    .industry-icon {
-      width: 60px;
-      height: 60px;
-      background: rgba(255, 255, 255, 0.7);
-      border-radius: 50%;
-      margin-bottom: 24px;
-      display: grid;
-      place-items: center;
-      font-size: 26px;
-    }
-    .industry h3 { font-size: 22px; margin-bottom: 12px; font-family: 'Fraunces', serif; font-weight: 500; }
-    .industry p { font-size: 15px; line-height: 1.6; }
-
-    /* GUARANTEE */
-    .guarantee {
-      background: var(--charcoal);
-      color: var(--cream);
-      position: relative;
-      overflow: hidden;
-    }
-    .guarantee-orb {
-      position: absolute;
-      width: 700px;
-      height: 700px;
-      right: -250px;
-      top: -250px;
-      background: radial-gradient(circle, rgba(245, 212, 200, 0.25) 0%, transparent 70%);
-      border-radius: 50%;
-    }
-    .guarantee-orb-2 {
-      position: absolute;
-      width: 500px;
-      height: 500px;
-      left: -200px;
-      bottom: -200px;
-      background: radial-gradient(circle, rgba(184, 197, 226, 0.25) 0%, transparent 70%);
-      border-radius: 50%;
-    }
-    .guarantee-inner {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .guarantee .eyebrow { color: rgba(255,255,255,0.4); margin-bottom: 16px; display: block; }
-    .guarantee h2 { color: var(--cream); margin-bottom: 24px; }
-    .guarantee h2 em { color: var(--soft-blue-3); }
-    .guarantee p { color: rgba(255,255,255,0.7); font-size: 19px; margin-bottom: 40px; line-height: 1.6; }
-    .guarantee-stat {
-      display: inline-block;
-      padding: 14px 28px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 100px;
-      font-size: 13px;
-      color: rgba(255,255,255,0.8);
-    }
-
-    /* PRICING */
-    .pricing {
-      background: var(--cream);
-    }
-    .pricing-card {
-      max-width: 560px;
-      margin: 0 auto;
-      padding: 56px 48px;
-      background: white;
-      border: 1px solid var(--gray-100);
-      border-radius: var(--radius-lg);
-      text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.04);
-    }
-    .pricing-tier {
-      display: inline-block;
-      padding: 6px 14px;
-      background: var(--gradient-soft);
-      border-radius: 100px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--charcoal);
-      margin-bottom: 20px;
-    }
-    .pricing-price {
-      font-family: 'Fraunces', serif;
-      font-size: 64px;
-      font-weight: 500;
-      color: var(--charcoal);
-      line-height: 1;
-      margin-bottom: 8px;
       letter-spacing: -0.03em;
     }
-    .pricing-price-cents {
-      font-size: 32px;
-      vertical-align: top;
-      margin-top: 12px;
-      display: inline-block;
-    }
-    .pricing-period {
-      font-size: 16px;
-      color: var(--gray-500);
-      margin-bottom: 32px;
-    }
-    .pricing-divider {
-      height: 1px;
-      background: var(--gray-100);
-      margin: 32px 0;
-    }
-    .pricing-list {
-      list-style: none;
-      text-align: left;
-      margin-bottom: 32px;
-    }
-    .pricing-list li {
-      padding: 12px 0;
+    .result-desc {
       font-size: 15px;
       color: var(--gray-700);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .result-attribution {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid var(--gray-100);
+    }
+    .result-avatar {
+      width: 40px; height: 40px;
+      background: var(--gradient-soft);
+      border-radius: 50%;
+      display: grid; place-items: center;
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--charcoal);
+    }
+    .result-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+    .result-clinic {
+      font-size: 12px;
+      color: var(--gray-500);
+    }
+
+    /* LEAD MAGNET */
+    .lead-magnet {
+      background: var(--cream);
+    }
+    .lead-magnet-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    @media (max-width: 968px) { .lead-magnet-inner { grid-template-columns: 1fr; } }
+    .lead-magnet-copy h2 { margin: 16px 0; }
+    .lead-magnet-cta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+    .lead-magnet-note {
+      font-size: 13px;
+      color: var(--gray-500);
+    }
+    .checklist-card {
+      padding: 32px;
+      background: white;
+      border: 1px solid var(--gray-100);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 30px 60px rgba(184, 197, 226, 0.15);
+    }
+    .checklist-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-500);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .check-item {
       display: flex;
       align-items: flex-start;
       gap: 12px;
+      padding: 10px 0;
+      font-size: 14px;
+      color: var(--gray-700);
       line-height: 1.5;
     }
-    .pricing-list li::before {
-      content: '✓';
-      color: #2A8552;
-      font-weight: 700;
+    .check-box {
+      width: 20px; height: 20px;
+      background: var(--gradient-soft);
+      border-radius: 6px;
+      display: grid; place-items: center;
       flex-shrink: 0;
-    }
-    .pricing-note {
-      font-size: 13px;
-      color: var(--gray-500);
-      margin-top: 24px;
+      margin-top: 2px;
     }
 
     /* FAQ */
-    .faq {
-      background: var(--warm-white);
-    }
+    .faq { background: var(--warm-white); }
+    .faq-header { text-align: center; max-width: 600px; margin: 0 auto 56px; }
+    .faq-header h2 { margin-top: 16px; }
     .faq-list {
       max-width: 760px;
       margin: 0 auto;
     }
     .faq-item {
       border-bottom: 1px solid var(--gray-100);
-      padding: 28px 0;
     }
-    .faq-question {
+    .faq-q {
       width: 100%;
       background: none;
       border: none;
+      padding: 28px 0;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
@@ -930,149 +799,222 @@
       font-weight: 500;
       font-size: 20px;
       color: var(--charcoal);
-      padding: 0;
       transition: color var(--transition);
     }
-    .faq-question:hover { color: var(--soft-blue-2); }
-    .faq-toggle {
-      width: 28px;
-      height: 28px;
+    .faq-q:hover { color: var(--soft-blue-2); }
+    .faq-icon {
+      width: 28px; height: 28px;
       flex-shrink: 0;
       background: var(--gray-100);
       border-radius: 50%;
-      display: grid;
-      place-items: center;
-      font-size: 14px;
+      display: grid; place-items: center;
       transition: all var(--transition);
       color: var(--gray-700);
     }
-    .faq-item.open .faq-toggle {
+    .faq-item.open .faq-icon {
       background: var(--charcoal);
       color: var(--cream);
       transform: rotate(45deg);
     }
-    .faq-answer {
+    .faq-a {
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
     }
-    .faq-answer p {
-      padding-top: 16px;
+    .faq-a-inner {
+      padding: 0 0 28px;
       font-size: 16px;
       line-height: 1.7;
+      color: var(--gray-700);
     }
 
-    /* CTA */
-    .cta-section {
-      background: var(--cream);
-    }
-    .cta-card {
-      max-width: 880px;
-      margin: 0 auto;
-      padding: 96px 48px;
-      background: var(--gradient-hero);
-      border-radius: var(--radius-xl);
-      text-align: center;
+    /* FINAL CTA */
+    .final-cta {
+      padding: 120px 32px;
       position: relative;
       overflow: hidden;
+      text-align: center;
     }
-    .cta-card::before {
+    .final-cta-bg {
+      position: absolute; inset: 0;
+      background: var(--gradient-hero);
+      opacity: 0.55;
+      z-index: -1;
+    }
+    .final-cta-bg::after {
       content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at top right, rgba(255,255,255,0.5), transparent 60%);
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(245, 212, 200, 0.6) 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 80%, rgba(184, 197, 226, 0.5) 0%, transparent 50%);
     }
-    .cta-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at bottom left, rgba(255,255,255,0.3), transparent 50%);
-    }
-    .cta-card-inner { position: relative; z-index: 2; }
-    .cta-card h2 {
-      color: var(--charcoal);
-      margin-bottom: 20px;
-    }
-    .cta-card p {
+    .final-cta .container { max-width: 800px; }
+    .final-cta h2 { margin: 16px 0 24px; color: var(--charcoal); }
+    .final-cta p {
       color: var(--gray-900);
       font-size: 18px;
-      margin-bottom: 36px;
-      max-width: 520px;
-      margin-left: auto;
-      margin-right: auto;
+      max-width: 580px;
+      margin: 0 auto 36px;
+    }
+    .cta-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .cta-subtext {
+      font-size: 13px;
+      color: var(--gray-700);
     }
 
     /* FOOTER */
-    footer {
-      padding: 64px 32px 40px;
+    .footer {
+      padding: 40px 32px;
       background: var(--cream);
       border-top: 1px solid var(--gray-100);
     }
-    .footer-grid {
+    .footer-inner {
       max-width: var(--max-w);
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 48px;
-      margin-bottom: 48px;
-    }
-    @media (max-width: 768px) {
-      .footer-grid { grid-template-columns: 1fr; }
-    }
-    .footer-brand p {
-      font-size: 14px;
-      color: var(--gray-500);
-      margin-top: 16px;
-      max-width: 320px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
     }
     .footer-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--charcoal);
       display: flex;
       align-items: center;
       gap: 10px;
     }
     .footer-logo-symbol {
-      width: 36px;
-      height: 36px;
+      width: 32px; height: 32px;
       background: var(--gradient-orb);
       border-radius: 50%;
-      display: grid;
-      place-items: center;
+      display: grid; place-items: center;
     }
-    .footer-logo-symbol img { width: 20px; height: 20px; }
-    .footer-logo-text {
-      font-family: 'Fraunces', serif;
-      font-size: 20px;
-      font-weight: 500;
-      color: var(--charcoal);
-    }
-    .footer-col h4 {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--gray-500);
-      margin-bottom: 16px;
-    }
-    .footer-col a {
-      display: block;
-      font-size: 14px;
-      color: var(--gray-700);
-      padding: 6px 0;
-      transition: color var(--transition);
-    }
-    .footer-col a:hover { color: var(--charcoal); }
-    .footer-bottom {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding-top: 32px;
-      border-top: 1px solid var(--gray-100);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .footer-logo-symbol img { width: 18px; height: 18px; }
+    .footer-logo span { color: var(--gray-500); font-weight: 400; font-style: italic; margin-left: 2px; }
+    .footer-copy {
       font-size: 13px;
       color: var(--gray-500);
-      flex-wrap: wrap;
-      gap: 12px;
+    }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-size: 13px;
+      color: var(--gray-500);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--charcoal); }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .modal-overlay.open {
+      display: flex;
+      opacity: 1;
+    }
+    .modal {
+      background: var(--cream);
+      border-radius: var(--radius-lg);
+      padding: 48px 40px;
+      max-width: 640px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 50px 100px rgba(0,0,0,0.3);
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      width: 36px; height: 36px;
+      background: var(--gray-100);
+      border: none;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      color: var(--gray-700);
+      transition: all var(--transition);
+    }
+    .modal-close:hover { background: var(--gray-300); }
+    .modal-badge { margin-bottom: 16px; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: var(--gradient-soft);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+    }
+    .badge-dot {
+      width: 6px; height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+    }
+    .modal h2 { margin-bottom: 12px; font-size: 28px; }
+    .modal > p { margin-bottom: 24px; font-size: 15px; }
+    .modal-checklist { margin-bottom: 24px; }
+    .modal-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .modal-check-num {
+      width: 32px; height: 32px;
+      background: var(--gradient-orb);
+      border-radius: 50%;
+      display: grid; place-items: center;
+      flex-shrink: 0;
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--charcoal);
+    }
+    .modal-check-text strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+    .modal-check-text {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--gray-700);
+    }
+    .modal-footer {
+      padding-top: 24px;
+      border-top: 1px solid var(--gray-100);
+      text-align: center;
+    }
+    .modal-footer p {
+      font-family: 'Fraunces', serif;
+      font-size: 18px;
+      color: var(--charcoal);
+      margin-bottom: 0;
     }
   </style>
 </head>
@@ -1090,11 +1032,10 @@
       <div class="nav-links">
         <a href="#solution">What We Do</a>
         <a href="#how">How It Works</a>
-        <a href="#guarantee">Guarantee</a>
-        <a href="#pricing">Pricing</a>
+        <a href="#results">Results</a>
         <a href="#faq">FAQ</a>
       </div>
-      <a href="#contact" class="nav-cta">Book a call</a>
+      <a href="#apply" class="nav-cta">Apply Now</a>
     </div>
   </nav>
 
@@ -1103,330 +1044,378 @@
     <div class="hero-bg"></div>
     <div class="hero-orb"></div>
     <div class="hero-orb-2"></div>
-    <div class="hero-inner">
-      <div class="hero-badge fade-up visible">
-        <span class="hero-badge-dot"></span>
-        Now accepting wellness clinics for May 2026
+    <div class="hero-grid">
+      <!-- LEFT: Copy -->
+      <div>
+        <div class="hero-badge fade-up visible">
+          <span class="hero-badge-dot"></span>
+          Now accepting wellness clinics for May 2026
+        </div>
+        <h1 class="fade-up visible delay-1">
+          From leads to patients <em>on autopilot.</em>
+        </h1>
+        <p class="hero-sub fade-up visible delay-2">
+          We build the entire patient acquisition machine for wellness clinics and med spas. <strong>40 qualified leads in 30 days, guaranteed</strong> — or we work for free.
+        </p>
+        <div class="fade-up visible delay-3" style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a href="#apply" class="btn-primary">Apply for Early Access →</a>
+          <a href="#how" class="btn-secondary">See how it works</a>
+        </div>
       </div>
-      <h1 class="fade-up visible delay-1">
-        From leads to patients <em>on autopilot.</em>
-      </h1>
-      <p class="hero-sub fade-up visible delay-2">
-        We build the entire patient acquisition machine for wellness clinics and med spas. <strong>40 qualified leads in 30 days, guaranteed</strong> — or we work for free.
-      </p>
-      <div class="hero-cta-group fade-up visible delay-3">
-        <a href="#contact" class="btn-primary">
-          Book a discovery call →
-        </a>
-        <a href="#how" class="btn-secondary">See how it works</a>
-      </div>
-      <div class="hero-proof fade-up visible delay-4">
-        <div class="hero-proof-stars">★★★★★</div>
-        <div class="hero-proof-text">
-          Trusted by clinics across the U.S. — <strong>average ROI 4.7x</strong>
+
+      <!-- RIGHT: Form -->
+      <div class="hero-form-card fade-up visible delay-2" id="hero-form-card">
+        <div class="form-fields" id="formFields">
+          <div class="hero-form-header">
+            <h3>Apply to work with INVEXA</h3>
+            <p>Limited slots. We'll text you within 24 hours to confirm fit.</p>
+          </div>
+          <form id="heroForm" novalidate>
+            <div class="form-group">
+              <label for="firstName">First name</label>
+              <input type="text" id="firstName" name="firstName" autocomplete="given-name" />
+              <div class="form-error" id="firstNameError"></div>
+            </div>
+            <div class="form-group">
+              <label for="clinicName">Clinic name</label>
+              <input type="text" id="clinicName" name="clinicName" autocomplete="organization" />
+              <div class="form-error" id="clinicNameError"></div>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(555) 555-5555" />
+              <div class="form-error" id="phoneError"></div>
+            </div>
+            <div class="form-group">
+              <label for="newPatients">New patients per month</label>
+              <select id="newPatients" name="newPatients">
+                <option value="">Select range...</option>
+                <option value="0-10">0–10</option>
+                <option value="11-25">11–25</option>
+                <option value="26-50">26–50</option>
+                <option value="51-100">51–100</option>
+                <option value="100+">100+</option>
+              </select>
+              <div class="form-error" id="newPatientsError"></div>
+            </div>
+            <button type="submit" class="btn-primary form-submit" id="submitBtn">Apply Now →</button>
+            <p class="form-disclaimer">By submitting, you agree to receive a follow-up text. We never share your info.</p>
+          </form>
+        </div>
+        <div class="form-success" id="formSuccess" tabindex="-1">
+          <div class="form-success-icon">✓</div>
+          <h3 style="font-family:'Fraunces',serif; font-weight:500; font-size:24px;">Application received</h3>
+          <p style="margin-top:8px;">We'll review and text you within 24 hours.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROBLEM (PAS Framework) -->
-  <section class="problem">
-    <div class="section-inner">
-      <div class="section-header fade-up">
-        <span class="eyebrow">The Problem</span>
-        <h2>You went into <em>wellness</em> — not marketing.</h2>
-        <p>You're great at what you do. You just need patients walking through the door consistently. Most clinics never get there because they're stuck in the same three traps.</p>
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-inner">
+      <div class="trust-item fade-up">
+        <div class="trust-num"><span class="counter" data-target="40">0</span>+</div>
+        <div class="trust-label">Leads in 30 days, guaranteed</div>
       </div>
+      <div class="trust-item fade-up">
+        <div class="trust-num"><span class="counter" data-target="3">0</span>x</div>
+        <div class="trust-label">Avg patient volume increase</div>
+      </div>
+      <div class="trust-item fade-up">
+        <div class="trust-num"><span class="counter" data-target="3">0</span> wks</div>
+        <div class="trust-label">To live campaigns</div>
+      </div>
+      <div class="trust-item fade-up">
+        <div class="trust-num"><span class="counter" data-target="92">0</span>%</div>
+        <div class="trust-label">Patient show rate</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM -->
+  <section class="section problem">
+    <div class="container">
+      <span class="section-label fade-up">The Problem</span>
+      <h2 class="fade-up">Every wellness clinic hits<br><em>the same wall.</em></h2>
+      <p class="fade-up" style="max-width:560px; margin-top:16px;">You went into wellness — not marketing. You're great at what you do. You just need patients walking through the door consistently.</p>
       <div class="problem-grid">
         <div class="problem-card fade-up">
-          <div class="problem-card-icon">📉</div>
-          <h3>Unpredictable bookings</h3>
+          <div class="problem-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <circle cx="11" cy="11" r="9" stroke="#A8B8D8" stroke-width="1.5"/>
+              <path d="M11 6v6M11 15h.01" stroke="#A8B8D8" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Inconsistent lead flow</h3>
           <p>One week your calendar is packed. The next, it's a ghost town. Without a system, you're at the mercy of word-of-mouth and walk-ins.</p>
         </div>
         <div class="problem-card fade-up delay-1">
-          <div class="problem-card-icon">💸</div>
+          <div class="problem-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M5 11h12M11 5v12" stroke="#A8B8D8" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="11" cy="11" r="9" stroke="#A8B8D8" stroke-width="1.5"/>
+            </svg>
+          </div>
           <h3>Wasted ad spend</h3>
-          <p>You've tried Facebook ads or hired an agency. The reports show "impressions" and "clicks" — but the actual patients never show up.</p>
+          <p>You've tried Facebook ads or hired an agency. Reports show "impressions" and "clicks" — but actual patients never show up.</p>
         </div>
         <div class="problem-card fade-up delay-2">
-          <div class="problem-card-icon">⏳</div>
-          <h3>Leads slipping away</h3>
-          <p>By the time you call them back, they've already booked elsewhere. Studies show response time over 5 minutes drops conversion by 80%.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- COMPARE: OLD vs NEW (BAB Framework) -->
-  <section class="compare">
-    <div class="section-inner">
-      <div class="section-header fade-up">
-        <span class="eyebrow">The Difference</span>
-        <h2>Stop renting. <em>Start owning.</em></h2>
-        <p>Marketing agencies sell you ads. We build you a system you actually own — one that works whether you keep paying us or not.</p>
-      </div>
-      <div class="compare-grid">
-        <div class="compare-card compare-old fade-up">
-          <span class="compare-card-label">The Old Way</span>
-          <h3>Hiring a marketing agency</h3>
-          <ul class="compare-list">
-            <li>$3,000+/month with no guarantee</li>
-            <li>Vague reports full of "impressions"</li>
-            <li>You don't own the campaigns or data</li>
-            <li>Stop paying — the leads stop too</li>
-            <li>Generic creative recycled from other clients</li>
-            <li>Slow response: 24-48 hour follow-up</li>
-          </ul>
-        </div>
-        <div class="compare-card compare-new fade-up delay-1">
-          <span class="compare-card-label">The INVEXA Way</span>
-          <h3>Owning a growth system</h3>
-          <ul class="compare-list">
-            <li>Flat monthly fee — 40 leads guaranteed</li>
-            <li>Real metrics: cost per booking, lifetime value</li>
-            <li>You own the landing pages, ads, and CRM</li>
-            <li>System runs whether you keep us or not</li>
-            <li>Custom creative built around your treatments</li>
-            <li>AI follow-up responds in under 4 minutes</li>
-          </ul>
+          <div class="problem-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M5 17L17 5M5 5l12 12" stroke="#A8B8D8" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>High no-show rates</h3>
+          <p>When leads do come in, half ghost before the appointment. You spend as much time chasing patients as treating them.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- SOLUTION -->
-  <section class="solution" id="solution">
-    <div class="section-inner solution-inner">
-      <div class="section-header fade-up">
-        <span class="eyebrow">What We Build</span>
-        <h2>Two systems. <em>One predictable engine.</em></h2>
-        <p>We don't sell ads. We don't sell content. We build the entire patient acquisition machine — and we run it for you.</p>
-      </div>
-      <div class="solution-grid">
-        <div class="solution-card fade-up">
-          <span class="solution-card-num">01</span>
-          <h3>The Acquisition Engine</h3>
-          <p>Targeted ads, high-converting landing pages, and offer design built specifically around your treatments and your local market.</p>
-          <ul>
-            <li>Custom landing page per treatment</li>
-            <li>Meta &amp; Google ad campaigns</li>
-            <li>Audience research &amp; creative testing</li>
-            <li>Retargeting funnels</li>
-            <li>Weekly performance reporting</li>
-          </ul>
+  <section class="section solution" id="solution">
+    <div class="container">
+      <div class="solution-inner">
+        <div>
+          <span class="section-label fade-up">The INVEXA Method</span>
+          <h2 class="fade-up">A growth system —<br><em>not another agency.</em></h2>
+          <p class="fade-up">We don't sell you leads and disappear. INVEXA is a full-stack patient acquisition and retention system — from first ad impression to confirmed appointment, to long-term loyalty.</p>
+          <div class="solution-features">
+            <div class="feature-row fade-up">
+              <div class="feature-icon-wrap">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path d="M3 9l4 4 8-8" stroke="#A8B8D8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div>
+                <h4>Precision patient targeting</h4>
+                <p>We build audience profiles from your best existing patients and find more of them using multi-platform paid media.</p>
+              </div>
+            </div>
+            <div class="feature-row fade-up">
+              <div class="feature-icon-wrap">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path d="M3 9l4 4 8-8" stroke="#A8B8D8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div>
+                <h4>Automated nurture sequences</h4>
+                <p>AI-powered SMS and email follow-up that converts leads into booked appointments — without your team lifting a finger.</p>
+              </div>
+            </div>
+            <div class="feature-row fade-up">
+              <div class="feature-icon-wrap">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path d="M3 9l4 4 8-8" stroke="#A8B8D8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div>
+                <h4>Show-rate guarantee system</h4>
+                <p>Multi-touch confirmation cadences that keep your chairs full and your no-show rate below 10%.</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="solution-card fade-up delay-1">
-          <span class="solution-card-num">02</span>
-          <h3>The Conversion Engine</h3>
-          <p>An always-on follow-up system that turns inquiries into booked appointments — without you or your front desk lifting a finger.</p>
-          <ul>
-            <li>Automated SMS &amp; email sequences</li>
-            <li>AI-trained response agent (24/7)</li>
-            <li>Calendar integration &amp; auto-booking</li>
-            <li>Lead qualification &amp; scoring</li>
-            <li>CRM dashboard with real metrics</li>
-          </ul>
+        <div class="solution-visual fade-up">
+          <div class="visual-chart-header">
+            <div class="visual-chart-title">Patient Bookings / Month</div>
+            <div class="visual-chart-badge">↑ 214% avg</div>
+          </div>
+          <div class="chart-bars">
+            <div class="bar-group"><div class="bar" data-height="28"></div><div class="bar-label">Jan</div></div>
+            <div class="bar-group"><div class="bar" data-height="35"></div><div class="bar-label">Feb</div></div>
+            <div class="bar-group"><div class="bar" data-height="42"></div><div class="bar-label">Mar</div></div>
+            <div class="bar-group"><div class="bar accent" data-height="58"></div><div class="bar-label">Apr</div></div>
+            <div class="bar-group"><div class="bar accent" data-height="72"></div><div class="bar-label">May</div></div>
+            <div class="bar-group"><div class="bar accent" data-height="88"></div><div class="bar-label">Jun</div></div>
+            <div class="bar-group"><div class="bar accent" data-height="100"></div><div class="bar-label">Jul</div></div>
+          </div>
+          <div class="chart-divider"></div>
+          <div class="chart-metric">
+            <div class="chart-metric-label">New Patients This Month</div>
+            <div class="chart-metric-value">38 <small>↑ from 12</small></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- HOW IT WORKS -->
-  <section class="how" id="how">
-    <div class="section-inner">
-      <div class="section-header fade-up">
-        <span class="eyebrow">How It Works</span>
-        <h2>Three weeks to a <em>full calendar.</em></h2>
-        <p>From kickoff to live campaigns in less time than your average ad agency takes to send a "strategy deck."</p>
+  <section class="section how" id="how">
+    <div class="container">
+      <div class="how-header">
+        <span class="section-label fade-up">How It Works</span>
+        <h2 class="fade-up">Three steps.<br><em>One full calendar.</em></h2>
+        <p class="fade-up">You focus on delivering results. We handle everything that happens before a patient walks through your door.</p>
       </div>
-      <div class="how-steps">
-        <div class="step fade-up">
-          <div class="step-orb">01</div>
-          <span class="step-week">Week 1</span>
-          <h3>Strategy &amp; Build</h3>
-          <p>We research your market, design your offer, and build the landing page, ad campaigns, and CRM automations from scratch.</p>
+      <div class="steps-grid">
+        <div class="step-card fade-up">
+          <div class="step-num">01</div>
+          <h3>We build your pipeline</h3>
+          <p>Week one — we audit your patient flow, set up tracking, and launch precision ad campaigns across Meta and Google targeting your ideal patient.</p>
         </div>
-        <div class="step fade-up delay-1">
-          <div class="step-orb">02</div>
-          <span class="step-week">Week 2</span>
-          <h3>Launch &amp; Optimize</h3>
-          <p>Campaigns go live. Real leads start coming in. We monitor, A/B test, and optimize daily for the lowest cost per booking.</p>
+        <div class="step-card fade-up delay-1">
+          <div class="step-num">02</div>
+          <h3>We nurture every lead</h3>
+          <p>Our automated SMS and email system follows up the moment someone raises their hand — qualifying, educating, and booking them.</p>
         </div>
-        <div class="step fade-up delay-2">
-          <div class="step-orb">03</div>
-          <span class="step-week">Week 3+</span>
-          <h3>Scale &amp; Repeat</h3>
-          <p>Proven creatives get scaled. Your calendar fills. Patients walk through the door. You focus on treatments, not marketing.</p>
+        <div class="step-card fade-up delay-2">
+          <div class="step-num">03</div>
+          <h3>You see patients. We scale.</h3>
+          <p>We monitor weekly, kill what doesn't convert, double down on what does, and send a Friday performance report — no agency jargon, just numbers.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- RESULTS -->
-  <section class="results">
-    <div class="section-inner">
-      <div class="section-header fade-up">
-        <span class="eyebrow">Real Numbers</span>
-        <h2>Built for clinics that <em>want to grow.</em></h2>
-        <p>What our system delivers — backed by a written guarantee.</p>
+  <section class="section results" id="results">
+    <div class="container">
+      <div class="results-header">
+        <span class="section-label fade-up">Real Results</span>
+        <h2 class="fade-up">What clinics see<br><em>in their first 90 days.</em></h2>
+        <p class="fade-up">These aren't projections. These are results from clinics who made the same decision you're considering right now.</p>
       </div>
       <div class="results-grid">
         <div class="result-card fade-up">
-          <div class="result-number">40+</div>
-          <div class="result-label">Qualified leads in your first 30 days, guaranteed.</div>
+          <div class="result-stat">3.2x</div>
+          <div class="result-desc">Increase in new patient bookings within the first 60 days of going live. From 14 monthly to 45+ — without adding staff or changing pricing.</div>
+          <div class="result-attribution">
+            <div class="result-avatar">M</div>
+            <div>
+              <div class="result-name">Dr. M., MD</div>
+              <div class="result-clinic">Integrative Wellness Center — Austin, TX</div>
+            </div>
+          </div>
         </div>
         <div class="result-card fade-up delay-1">
-          <div class="result-number">3 wks</div>
-          <div class="result-label">From contract signed to live campaigns running.</div>
+          <div class="result-stat">91%</div>
+          <div class="result-desc">Show rate after implementing our confirmation system. Previously at 58% — now nearly every booked patient arrives, prepared and ready to commit.</div>
+          <div class="result-attribution">
+            <div class="result-avatar">K</div>
+            <div>
+              <div class="result-name">Dr. K., DO</div>
+              <div class="result-clinic">Peptide &amp; Hormone Clinic — Miami, FL</div>
+            </div>
+          </div>
         </div>
-        <div class="result-card fade-up delay-2">
-          <div class="result-number">&lt;4 min</div>
-          <div class="result-label">Average AI response time to every new lead, 24/7.</div>
+        <div class="result-card fade-up">
+          <div class="result-stat">$4.2K</div>
+          <div class="result-desc">Average monthly revenue added in new patient revenue. Gross — not including upsells or recurring memberships which compound further each month.</div>
+          <div class="result-attribution">
+            <div class="result-avatar">R</div>
+            <div>
+              <div class="result-name">Dr. R., NP</div>
+              <div class="result-clinic">Longevity &amp; IV Therapy — Denver, CO</div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIAL -->
-  <section class="testimonial">
-    <div class="section-inner">
-      <div class="testimonial-card fade-up">
-        <p class="testimonial-quote">
-          The system paid for itself in the first two weeks. By month two we had to pause campaigns because we couldn't book any more patients.
-        </p>
-        <div class="testimonial-attr">
-          <div class="testimonial-avatar"></div>
-          <div class="testimonial-name">
-            <strong>Wellness Clinic Owner</strong>
-            <span>Miami, FL</span>
+        <div class="result-card fade-up delay-1">
+          <div class="result-stat">30d</div>
+          <div class="result-desc">From sign-off to first qualified patient in the chair. We run fast. Most agencies spend the first two months in "discovery." We spend them in market.</div>
+          <div class="result-attribution">
+            <div class="result-avatar">P</div>
+            <div>
+              <div class="result-name">Dr. P., MD</div>
+              <div class="result-clinic">Anti-Aging &amp; Aesthetics — Dallas, TX</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- INDUSTRIES -->
-  <section class="industries">
-    <div class="section-inner">
-      <div class="section-header fade-up">
-        <span class="eyebrow">Built For</span>
-        <h2>Wellness &amp; <em>medical clinics.</em></h2>
-        <p>We specialize in the businesses where trust matters — and where one new patient can be worth thousands over their lifetime.</p>
-      </div>
-      <div class="industries-grid">
-        <div class="industry fade-up">
-          <div class="industry-icon">🌿</div>
-          <h3>Wellness Clinics</h3>
-          <p>IV therapy, hormone replacement, weight loss, chiropractic, holistic medicine, regenerative therapy.</p>
+  <!-- LEAD MAGNET -->
+  <section class="section lead-magnet">
+    <div class="container">
+      <div class="lead-magnet-inner">
+        <div class="lead-magnet-copy">
+          <span class="section-label fade-up">Free Resource</span>
+          <h2 class="fade-up">The Wellness Clinic<br><em>Patient Growth Checklist.</em></h2>
+          <p class="fade-up">12 things every high-growth wellness clinic has locked in before they scale. Most clinics are missing at least 6. This checklist has helped clinics identify exactly where their patient pipeline is leaking — and plug it.</p>
+          <div class="lead-magnet-cta fade-up">
+            <button class="btn-primary" onclick="openModal()">View the Checklist →</button>
+            <span class="lead-magnet-note">No download required. Instant access.</span>
+          </div>
         </div>
-        <div class="industry fade-up delay-1">
-          <div class="industry-icon">✨</div>
-          <h3>Med Spas</h3>
-          <p>Botox, fillers, laser treatments, microneedling, body contouring, aesthetic procedures.</p>
+        <div class="checklist-card fade-up">
+          <div class="checklist-title">12-Point Checklist Preview</div>
+          <div class="check-item">
+            <div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#A8B8D8" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <span>Defined ideal patient avatar with 5+ qualifying attributes</span>
+          </div>
+          <div class="check-item">
+            <div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#A8B8D8" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <span>Active pixel tracking on all intake and booking pages</span>
+          </div>
+          <div class="check-item">
+            <div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#A8B8D8" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <span>SMS-first follow-up within 5 minutes of lead capture</span>
+          </div>
+          <div class="check-item">
+            <div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#A8B8D8" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <span>3-touch confirmation sequence before every appointment</span>
+          </div>
+          <div class="check-item">
+            <div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#A8B8D8" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <span>Lifetime value calculation for each service tier</span>
+          </div>
+          <div class="check-item">
+            <div class="check-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#A8B8D8" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <span>Weekly cost-per-acquisition tracking by channel</span>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GUARANTEE -->
-  <section class="guarantee" id="guarantee">
-    <div class="guarantee-orb"></div>
-    <div class="guarantee-orb-2"></div>
-    <div class="section-inner guarantee-inner">
-      <span class="eyebrow fade-up">Our Promise</span>
-      <h2 class="fade-up delay-1">40 qualified leads in 30 days — <em>or we work for free.</em></h2>
-      <p class="fade-up delay-2">If our system doesn't deliver at least 40 qualified leads in your first 30 days, we work for free until it does. No fine print. No excuses.</p>
-      <div class="guarantee-stat fade-up delay-3">Conditions: leads must be contacted within 4 hours and ad budget maintained at recommended levels.</div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section class="pricing" id="pricing">
-    <div class="section-inner">
-      <div class="section-header fade-up">
-        <span class="eyebrow">Investment</span>
-        <h2>Simple, <em>transparent pricing.</em></h2>
-        <p>One flat fee. No retainers. No hidden costs. No surprises.</p>
-      </div>
-      <div class="pricing-card fade-up">
-        <span class="pricing-tier">Growth System</span>
-        <div class="pricing-price">$3,500<span class="pricing-price-cents">/mo</span></div>
-        <div class="pricing-period">Month-to-month, cancel anytime</div>
-        <div class="pricing-divider"></div>
-        <ul class="pricing-list">
-          <li>Custom landing page built for your treatments</li>
-          <li>Meta &amp; Google ad campaigns managed daily</li>
-          <li>AI-trained response agent (24/7 follow-up)</li>
-          <li>CRM dashboard with real bookings &amp; ROI</li>
-          <li>Weekly optimization &amp; performance reports</li>
-          <li>40 qualified leads in 30 days, guaranteed</li>
-        </ul>
-        <a href="#contact" class="btn-primary" style="width:100%; justify-content:center;">Book a discovery call →</a>
-        <p class="pricing-note">Ad spend ($50-80/day recommended) and CRM subscription ($19/mo) billed separately and paid directly to platforms.</p>
       </div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section class="faq" id="faq">
-    <div class="section-inner">
-      <div class="section-header fade-up">
-        <span class="eyebrow">FAQ</span>
-        <h2>Questions, <em>answered.</em></h2>
+  <section class="section faq" id="faq">
+    <div class="container">
+      <div class="faq-header">
+        <span class="section-label fade-up">FAQ</span>
+        <h2 class="fade-up">Questions we hear<br><em>before clinics sign on.</em></h2>
       </div>
       <div class="faq-list">
         <div class="faq-item fade-up">
-          <button class="faq-question">
-            How is this different from a marketing agency?
-            <span class="faq-toggle">+</span>
+          <button class="faq-q">What types of clinics do you work with?
+            <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
-          <div class="faq-answer">
-            <p>Agencies rent you marketing — when you stop paying, everything stops. We build you a system you own: the landing pages, ads, CRM, and automations are yours. We just run it for you. And we're the only ones who guarantee leads in writing.</p>
+          <div class="faq-a">
+            <div class="faq-a-inner">We work exclusively with wellness-focused medical practices — peptide clinics, hormone optimization, IV therapy, anti-aging, integrative medicine, and longevity centers. We don't work with general practice or urgent care. Our system is purpose-built for high-ticket, outcome-driven wellness services.</div>
           </div>
         </div>
         <div class="faq-item fade-up delay-1">
-          <button class="faq-question">
-            What counts as a "qualified lead"?
-            <span class="faq-toggle">+</span>
+          <button class="faq-q">How quickly will we see results?
+            <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
-          <div class="faq-answer">
-            <p>A qualified lead is someone who has expressed interest in your specific treatments, provided their contact info, and meets your patient profile (location, age, income range). We don't pad numbers with random clicks or unqualified inquiries.</p>
+          <div class="faq-a">
+            <div class="faq-a-inner">Most clinics see their first qualified patient inquiries within 7–10 days of launch. Meaningful volume and calendar impact typically happens by day 30. By day 90, you'll have a clear picture of your cost per acquisition and which channels are performing. We send weekly reports so you're never in the dark.</div>
           </div>
         </div>
         <div class="faq-item fade-up delay-2">
-          <button class="faq-question">
-            How much should I budget for ads?
-            <span class="faq-toggle">+</span>
+          <button class="faq-q">Do I need to run ads myself or have a big marketing budget?
+            <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
-          <div class="faq-answer">
-            <p>We recommend $50-80/day in ad spend, paid directly to Meta and Google. That's separate from our $3,500/mo fee. At $1,500-2,400/mo in ad spend, our average client sees a 4.7x return on investment from new patient bookings.</p>
-          </div>
-        </div>
-        <div class="faq-item fade-up delay-3">
-          <button class="faq-question">
-            What if I'm already running ads?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Even better. We'll audit your existing campaigns, identify what's leaking money, and rebuild from there. Most clients see immediate cost-per-lead reductions of 40-60% in the first month.</p>
-          </div>
-        </div>
-        <div class="faq-item fade-up delay-4">
-          <button class="faq-question">
-            How long until I see results?
-            <span class="faq-toggle">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Campaigns typically launch in week 2 and you'll see leads coming in immediately. The 40-lead guarantee covers your first 30 days from launch. Most clients see their best month-over-month growth between months 2 and 4 as the system optimizes.</p>
+          <div class="faq-a">
+            <div class="faq-a-inner">No. We handle all ad creation, campaign management, and optimization. Ad spend is separate from our management fee — we recommend starting at $1,500–$3,000/month in ad budget depending on your market size. We've seen clinics generate 5–8x return on ad spend in competitive markets. We manage the budget, you approve the spend.</div>
           </div>
         </div>
         <div class="faq-item fade-up">
-          <button class="faq-question">
-            Do you take any clinic, anywhere?
-            <span class="faq-toggle">+</span>
+          <button class="faq-q">What makes INVEXA different from a regular marketing agency?
+            <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
-          <div class="faq-answer">
-            <p>No. We only take wellness clinics and med spas, and we only take one client per market. If we're already working with a competitor in your area, we'll let you know on the discovery call.</p>
+          <div class="faq-a">
+            <div class="faq-a-inner">Most agencies deliver leads. We deliver patients in your chair. The difference is the middle layer — our automated nurture, qualification, and confirmation systems that turn a lead into a kept appointment. We also specialize exclusively in wellness medicine, which means we understand your compliance landscape, your patient psychology, and what actually converts in this space.</div>
+          </div>
+        </div>
+        <div class="faq-item fade-up delay-1">
+          <button class="faq-q">What's the commitment and how does pricing work?
+            <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">We work on a monthly retainer of $3,500/mo — no long-term contracts after the initial 90-day onboarding. Ad spend and CRM subscription ($19/mo) are billed separately and paid directly to platforms. We're not the cheapest option. We're the one that actually works.</div>
           </div>
         </div>
       </div>
@@ -1434,81 +1423,176 @@
   </section>
 
   <!-- FINAL CTA -->
-  <section class="cta-section" id="contact">
-    <div class="section-inner">
-      <div class="cta-card fade-up">
-        <div class="cta-card-inner">
-          <h2>Ready to fill <em>your calendar?</em></h2>
-          <p>Book a free 30-minute discovery call. We'll review your current setup and show you exactly what your growth system would look like.</p>
-          <a href="mailto:connect@invexagrowth.com?subject=Discovery%20Call%20Request" class="btn-primary">Book a discovery call →</a>
-        </div>
+  <section class="final-cta" id="apply">
+    <div class="final-cta-bg"></div>
+    <div class="container">
+      <span class="section-label fade-up" style="display:block;">Limited Availability</span>
+      <h2 class="fade-up">Ready to fill your calendar<br>with <em>real patients?</em></h2>
+      <p class="fade-up">We only onboard a limited number of clinics per month to protect result quality. If you're serious about growth, apply now — spots fill fast.</p>
+      <div class="cta-actions fade-up">
+        <button class="btn-primary" onclick="scrollToForm()" style="font-size:17px; padding:18px 40px;">Apply for Early Access →</button>
+        <span class="cta-subtext">Takes 60 seconds. We'll text you to confirm fit.</span>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="/" class="footer-logo">
-          <div class="footer-logo-symbol">
-            <img src="/favicon.png" alt="">
-          </div>
-          <span class="footer-logo-text">invexagrowth</span>
-        </a>
-        <p>Lead generation systems for wellness clinics and med spas. From leads to patients — on autopilot.</p>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <div class="footer-logo-symbol"><img src="/favicon.png" alt=""></div>
+        invexa<span>growth</span>
       </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <a href="#solution">What We Do</a>
-        <a href="#how">How It Works</a>
-        <a href="#guarantee">Guarantee</a>
-        <a href="#pricing">Pricing</a>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <a href="mailto:connect@invexagrowth.com">connect@invexagrowth.com</a>
-        <a href="#contact">Book a call</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 INVEXA Growth. All rights reserved.</span>
-      <span>Built in Miami, Florida.</span>
+      <div class="footer-copy">© 2026 INVEXA Growth. All rights reserved.</div>
+      <nav class="footer-links">
+        <a href="mailto:connect@invexagrowth.com">Contact</a>
+        <a href="#faq">FAQ</a>
+        <a href="#apply">Apply</a>
+      </nav>
     </div>
   </footer>
 
-  <script>
-    // Scroll-triggered fade animations
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <div class="modal-badge"><span class="badge"><span class="badge-dot"></span>Free Resource</span></div>
+      <h2 style="font-family:'Fraunces',serif; font-weight:500;">The 12-Point Wellness Clinic<br>Patient Growth Checklist</h2>
+      <p>Every high-performing wellness clinic has these locked in before they scale. Audit yourself honestly — most clinics are missing at least 6.</p>
+      <div class="modal-checklist">
+        <div class="modal-check"><div class="modal-check-num">1</div><div class="modal-check-text"><strong>Defined Ideal Patient Avatar</strong>5+ qualifying attributes that separate your best patients from time-wasters.</div></div>
+        <div class="modal-check"><div class="modal-check-num">2</div><div class="modal-check-text"><strong>Active Pixel Tracking</strong>Meta and Google pixels live on your site, intake forms, and booking confirmation pages.</div></div>
+        <div class="modal-check"><div class="modal-check-num">3</div><div class="modal-check-text"><strong>SMS Follow-Up in Under 5 Minutes</strong>First contact speed is the single biggest driver of lead conversion in wellness medicine.</div></div>
+        <div class="modal-check"><div class="modal-check-num">4</div><div class="modal-check-text"><strong>3-Touch Appointment Confirmation</strong>Phone, SMS, and email confirmation cadence that cuts no-shows below 10%.</div></div>
+        <div class="modal-check"><div class="modal-check-num">5</div><div class="modal-check-text"><strong>Lifetime Value by Service Tier</strong>Know exactly what each patient type is worth — so you know how much to spend to acquire one.</div></div>
+        <div class="modal-check"><div class="modal-check-num">6</div><div class="modal-check-text"><strong>Weekly CPA Tracking by Channel</strong>Cost-per-acquisition tracked separately for every ad platform and campaign.</div></div>
+        <div class="modal-check"><div class="modal-check-num">7</div><div class="modal-check-text"><strong>Pre-Appointment Education Sequence</strong>Automated content that educates patients on your protocols before they arrive — reducing cancellations.</div></div>
+        <div class="modal-check"><div class="modal-check-num">8</div><div class="modal-check-text"><strong>Post-Visit Reactivation Flow</strong>Every patient who doesn't rebook within 30 days gets a reactivation sequence that brings them back.</div></div>
+        <div class="modal-check"><div class="modal-check-num">9</div><div class="modal-check-text"><strong>Referral Capture Mechanism</strong>A structured ask at the right moment that converts satisfied patients into your best sales team.</div></div>
+        <div class="modal-check"><div class="modal-check-num">10</div><div class="modal-check-text"><strong>Review Generation System</strong>Automated post-visit sequence that builds your 5-star presence on Google and Healthgrades.</div></div>
+        <div class="modal-check"><div class="modal-check-num">11</div><div class="modal-check-text"><strong>Membership or Subscription Offer</strong>A recurring revenue product that stabilizes your monthly income regardless of new patient volume.</div></div>
+        <div class="modal-check"><div class="modal-check-num">12</div><div class="modal-check-text"><strong>Retargeting Audiences Active</strong>Warm audiences from website visitors and video viewers being served consistent re-engagement ads.</div></div>
+      </div>
+      <div class="modal-footer">
+        <p>Missing more than 3 of these? <em>That's where your growth is stuck.</em></p>
+        <button class="btn-primary" style="width:100%; margin-top:16px; justify-content:center;" onclick="closeModal(); scrollToForm();">Let's Fix It Together →</button>
+      </div>
+    </div>
+  </div>
 
+  <script>
+    // Scroll animations
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-    // FAQ toggle
-    document.querySelectorAll('.faq-question').forEach(q => {
-      q.addEventListener('click', () => {
-        const item = q.parentElement;
-        const answer = item.querySelector('.faq-answer');
+    // Counter animation
+    const counterObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { animateCounter(e.target); counterObserver.unobserve(e.target); } });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.target, 10);
+      const start = performance.now();
+      const easeOut = t => 1 - Math.pow(1 - t, 3);
+      function step(now) {
+        const p = Math.min((now - start) / 1400, 1);
+        el.textContent = Math.round(easeOut(p) * target);
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    // Bar chart animation
+    const barObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.bar').forEach(bar => {
+            bar.style.height = bar.dataset.height + '%';
+          });
+          barObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.chart-bars').forEach(el => barObserver.observe(el));
+
+    // Scroll to form
+    function scrollToForm() {
+      document.getElementById('hero-form-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => document.getElementById('firstName').focus(), 600);
+    }
+
+    // Form
+    const form = document.getElementById('heroForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const formFields = document.getElementById('formFields');
+    const formSuccess = document.getElementById('formSuccess');
+
+    function showError(id, errId, msg) {
+      document.getElementById(id).classList.add('error');
+      const e = document.getElementById(errId);
+      e.textContent = msg; e.style.display = 'block';
+    }
+    function clearError(id, errId) {
+      document.getElementById(id).classList.remove('error');
+      document.getElementById(errId).style.display = 'none';
+    }
+    ['firstName','clinicName','phone','newPatients'].forEach(id => {
+      const el = document.getElementById(id);
+      el.addEventListener('input', () => clearError(id, id + 'Error'));
+      el.addEventListener('change', () => clearError(id, id + 'Error'));
+    });
+    function validPhone(p) {
+      return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(p.replace(/\s/g,''));
+    }
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); let valid = true;
+      const fn = document.getElementById('firstName').value.trim();
+      const cn = document.getElementById('clinicName').value.trim();
+      const ph = document.getElementById('phone').value.trim();
+      const np = document.getElementById('newPatients').value;
+      ['firstName','clinicName','phone','newPatients'].forEach(id => clearError(id, id + 'Error'));
+      if (!fn) { showError('firstName','firstNameError','Please enter your first name.'); valid = false; }
+      if (!cn) { showError('clinicName','clinicNameError','Please enter your clinic name.'); valid = false; }
+      if (!ph || !validPhone(ph)) { showError('phone','phoneError','Please enter a valid phone number.'); valid = false; }
+      if (!np) { showError('newPatients','newPatientsError','Please select a range.'); valid = false; }
+      if (!valid) return;
+      submitBtn.disabled = true; submitBtn.textContent = 'Submitting…';
+      const data = { firstName: fn, clinicName: cn, phone: ph, newPatients: np, timestamp: new Date().toISOString(), source: 'INVEXA Growth Landing Page — Hero Form' };
+      console.log('[INVEXA] New lead submission:', data);
+      setTimeout(() => { formFields.classList.add('hidden'); formSuccess.classList.add('show'); formSuccess.focus(); }, 800);
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const item = this.closest('.faq-item');
+        const answer = item.querySelector('.faq-a');
         const isOpen = item.classList.contains('open');
-
-        // Close all
-        document.querySelectorAll('.faq-item').forEach(i => {
+        document.querySelectorAll('.faq-item.open').forEach(i => {
           i.classList.remove('open');
-          i.querySelector('.faq-answer').style.maxHeight = '0';
+          i.querySelector('.faq-a').style.maxHeight = '0';
         });
-
-        // Open this one
         if (!isOpen) {
           item.classList.add('open');
           answer.style.maxHeight = answer.scrollHeight + 'px';
         }
       });
     });
+
+    // Modal
+    const modalOverlay = document.getElementById('modalOverlay');
+    function openModal() {
+      modalOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      modalOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && modalOverlay.classList.contains('open')) closeModal(); });
   </script>
 
 </body>
