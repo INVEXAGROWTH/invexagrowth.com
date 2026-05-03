@@ -1035,7 +1035,7 @@
         <a href="#results">Results</a>
         <a href="#faq">FAQ</a>
       </div>
-      <a href="#apply" class="nav-cta">Apply Now</a>
+      <a href="#apply" class="nav-cta" onclick="scrollToForm(); return false;">Free Audit</a>
     </div>
   </nav>
 
@@ -1055,10 +1055,10 @@
           From leads to patients <em>on autopilot.</em>
         </h1>
         <p class="hero-sub fade-up visible delay-2">
-          We build the entire patient acquisition machine for wellness clinics and med spas. <strong>40 qualified leads in 30 days, guaranteed</strong> — or we work for free.
+          We build the entire patient acquisition machine for wellness clinics and med spas. <strong>Get a free audit</strong> and we'll show you exactly where your patient pipeline is leaking.
         </p>
         <div class="fade-up visible delay-3" style="display:flex; gap:14px; flex-wrap:wrap;">
-          <a href="#apply" class="btn-primary">Apply for Early Access →</a>
+          <a href="#hero-form-card" class="btn-primary" onclick="scrollToForm(); return false;">Get My Free Audit →</a>
           <a href="#how" class="btn-secondary">See how it works</a>
         </div>
       </div>
@@ -1067,45 +1067,51 @@
       <div class="hero-form-card fade-up visible delay-2" id="hero-form-card">
         <div class="form-fields" id="formFields">
           <div class="hero-form-header">
-            <h3>Apply to work with INVEXA</h3>
-            <p>Limited slots. We'll text you within 24 hours to confirm fit.</p>
+            <h3>Get Your Free Audit</h3>
+            <p>We'll review your current setup and show you exactly where your patient pipeline is leaking. No cost. No commitment.</p>
           </div>
           <form id="heroForm" novalidate>
             <div class="form-group">
-              <label for="firstName">First name</label>
-              <input type="text" id="firstName" name="firstName" autocomplete="given-name" />
-              <div class="form-error" id="firstNameError"></div>
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" name="firstName" placeholder="Dr. Sarah" autocomplete="given-name" required />
+              <div class="form-error" id="firstNameError">Please enter your first name.</div>
             </div>
             <div class="form-group">
-              <label for="clinicName">Clinic name</label>
-              <input type="text" id="clinicName" name="clinicName" autocomplete="organization" />
-              <div class="form-error" id="clinicNameError"></div>
+              <label for="clinicName">Clinic Name</label>
+              <input type="text" id="clinicName" name="clinicName" placeholder="Peak Wellness Clinic" autocomplete="organization" required />
+              <div class="form-error" id="clinicNameError">Please enter your clinic name.</div>
             </div>
             <div class="form-group">
-              <label for="phone">Phone</label>
-              <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(555) 555-5555" />
-              <div class="form-error" id="phoneError"></div>
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" autocomplete="tel" required />
+              <div class="form-error" id="phoneError">Please enter a valid phone number.</div>
             </div>
             <div class="form-group">
-              <label for="newPatients">New patients per month</label>
-              <select id="newPatients" name="newPatients">
-                <option value="">Select range...</option>
-                <option value="0-10">0–10</option>
-                <option value="11-25">11–25</option>
-                <option value="26-50">26–50</option>
-                <option value="51-100">51–100</option>
-                <option value="100+">100+</option>
+              <label for="newPatients">Monthly New Patients (Current)</label>
+              <select id="newPatients" name="newPatients" required>
+                <option value="" disabled selected>Select range</option>
+                <option value="0-10">0 – 10 new patients</option>
+                <option value="11-25">11 – 25 new patients</option>
+                <option value="26-50">26 – 50 new patients</option>
+                <option value="51-100">51 – 100 new patients</option>
+                <option value="100+">100+ new patients</option>
               </select>
-              <div class="form-error" id="newPatientsError"></div>
+              <div class="form-error" id="newPatientsError">Please select a range.</div>
             </div>
-            <button type="submit" class="btn-primary form-submit" id="submitBtn">Apply Now →</button>
-            <p class="form-disclaimer">By submitting, you agree to receive a follow-up text. We never share your info.</p>
+            <button type="submit" class="btn-primary form-submit" id="submitBtn">Get My Free Audit →</button>
+            <p class="form-disclaimer">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline; vertical-align:middle; margin-right:4px;">
+                <path d="M6 1L1.5 3v3.5C1.5 9 3.5 11 6 11s4.5-2 4.5-4.5V3L6 1z" stroke="#888" stroke-width="1" fill="none"/>
+                <path d="M4 6l1.5 1.5L8 4.5" stroke="#888" stroke-width="1" stroke-linecap="round"/>
+              </svg>
+              No spam. We'll reach out by phone to confirm fit.
+            </p>
           </form>
         </div>
         <div class="form-success" id="formSuccess" tabindex="-1">
           <div class="form-success-icon">✓</div>
-          <h3 style="font-family:'Fraunces',serif; font-weight:500; font-size:24px;">Application received</h3>
-          <p style="margin-top:8px;">We'll review and text you within 24 hours.</p>
+          <h3 style="font-family:'Fraunces',serif; font-weight:500; font-size:24px;">You're on the list.</h3>
+          <p style="margin-top:8px;">We'll text first. Expect a message within 1 business day to confirm your clinic's fit.</p>
         </div>
       </div>
     </div>
@@ -1426,11 +1432,11 @@
   <section class="final-cta" id="apply">
     <div class="final-cta-bg"></div>
     <div class="container">
-      <span class="section-label fade-up" style="display:block;">Limited Availability</span>
+      <span class="section-label fade-up" style="display:block;">Free Audit — Limited Slots</span>
       <h2 class="fade-up">Ready to fill your calendar<br>with <em>real patients?</em></h2>
-      <p class="fade-up">We only onboard a limited number of clinics per month to protect result quality. If you're serious about growth, apply now — spots fill fast.</p>
+      <p class="fade-up">Start with a free audit. We'll review your current marketing setup, identify exactly where your patient pipeline is leaking, and show you what your growth system would look like — at no cost.</p>
       <div class="cta-actions fade-up">
-        <button class="btn-primary" onclick="scrollToForm()" style="font-size:17px; padding:18px 40px;">Apply for Early Access →</button>
+        <button class="btn-primary" onclick="scrollToForm()" style="font-size:17px; padding:18px 40px;">Get My Free Audit →</button>
         <span class="cta-subtext">Takes 60 seconds. We'll text you to confirm fit.</span>
       </div>
     </div>
