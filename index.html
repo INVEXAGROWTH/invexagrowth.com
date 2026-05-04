@@ -277,15 +277,14 @@
       position: relative;
       overflow: hidden;
     }
-    /* On shorter laptops (≤860px tall), let the hero size to its content
-       instead of forcing 100vh. Otherwise the form column overflows the fold. */
+    /* On shorter laptops (≤860px tall), keep generous breathing room above
+       the form (so it doesn't crowd the fixed nav) but tighten the form
+       internals so the column still fits. Allow slight scroll if needed —
+       balanced spacing matters more than zero-scroll on tiny viewports. */
     @media (max-height: 860px) and (min-width: 769px) {
-      .hero { min-height: auto; padding: 96px 32px 48px; }
-    }
-    @media (max-height: 800px) and (min-width: 769px) {
-      .hero { padding: 84px 32px 32px; }
-      .hero-form-card { padding: 22px 28px; }
-      .hero-form-header { margin-bottom: 14px; }
+      .hero { min-height: auto; padding: 110px 32px 56px; }
+      .hero-form-card { padding: 24px 28px; }
+      .hero-form-header { margin-bottom: 16px; }
     }
     @media (max-width: 768px) {
       /* Tighter top/bottom on mobile so hero content fits without overflowing the visible viewport */
