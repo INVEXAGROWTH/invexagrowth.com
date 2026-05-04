@@ -126,16 +126,16 @@
     }
     .section { padding: 100px 0; position: relative; }
 
-    /* NAV */
-    nav {
+    /* NAV — scope to direct child of body so footer's <nav class="footer-links"> isn't pinned to top */
+    body > nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
       padding: 18px 32px;
-      background: rgba(251, 250, 249, 0.75);
+      background: rgba(251, 250, 249, 0.92);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
-      border-bottom: 1px solid rgba(0,0,0,0.04);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
     }
     .nav-inner {
       max-width: var(--max-w);
@@ -144,23 +144,12 @@
       align-items: center;
       justify-content: space-between;
     }
-    .nav-logo { display: flex; align-items: center; gap: 10px; }
-    .nav-logo-symbol {
-      width: 38px; height: 38px;
-      background: var(--gradient-orb);
-      border-radius: 50%;
-      display: grid; place-items: center;
-      box-shadow: 0 4px 16px rgba(184, 197, 226, 0.4);
+    .nav-logo { display: flex; align-items: center; }
+    .nav-logo img.nav-logo-mark {
+      height: 32px;
+      width: auto;
+      display: block;
     }
-    .nav-logo-symbol img { width: 22px; height: 22px; }
-    .nav-logo-text {
-      font-family: 'Fraunces', serif;
-      font-size: 22px;
-      font-weight: 500;
-      letter-spacing: -0.02em;
-      color: var(--charcoal);
-    }
-    .nav-logo-text em { font-style: italic; color: var(--gray-700); font-weight: 400; margin-left: 2px; }
     .nav-links { display: flex; gap: 36px; align-items: center; }
     .nav-links a {
       font-size: 14px;
@@ -205,24 +194,49 @@
       transform: translateY(-2px);
       box-shadow: 0 12px 32px rgba(0,0,0,0.18);
     }
+    /* Brand-gradient secondary button — uses the same peach-2 → soft-blue-2 gradient
+       as the July chart accent bar. Subtle inner ring + soft shadow give it that
+       "cool" variant feel without competing with the dark primary CTA. */
     .btn-secondary {
+      position: relative;
       display: inline-flex;
       align-items: center;
       gap: 10px;
       padding: 16px 32px;
-      background: rgba(255,255,255,0.7);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(0,0,0,0.06);
+      background: linear-gradient(135deg, var(--peach-2) 0%, var(--soft-blue-2) 100%);
       color: var(--charcoal);
       border-radius: 100px;
       font-size: 15px;
-      font-weight: 500;
-      transition: all var(--transition);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      border: 1px solid rgba(255,255,255,0.6);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.45),
+        inset 0 -1px 0 rgba(0,0,0,0.05),
+        0 6px 20px rgba(168, 184, 216, 0.35);
+      transition: filter 200ms ease, transform 200ms ease, box-shadow 200ms ease;
       cursor: pointer;
+      overflow: hidden;
+    }
+    .btn-secondary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 50%);
+      pointer-events: none;
     }
     .btn-secondary:hover {
-      background: rgba(255,255,255,0.95);
+      filter: brightness(1.06);
       transform: translateY(-2px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.5),
+        inset 0 -1px 0 rgba(0,0,0,0.05),
+        0 10px 28px rgba(168, 184, 216, 0.5);
+    }
+    .btn-secondary:active {
+      filter: brightness(0.96);
+      transform: translateY(0);
     }
 
     /* HERO — split layout */
@@ -234,17 +248,22 @@
       position: relative;
       overflow: hidden;
     }
+    /* Shader canvas — sits at the back of the hero stack */
+    .hero-shader {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 0;
+    }
+    /* Cream wash behind the headline column — keeps copy crisp over the prism */
     .hero-bg {
       position: absolute; inset: 0;
-      background: var(--gradient-hero);
-      opacity: 0.55;
-      z-index: -1;
-    }
-    .hero-bg::after {
-      content: ''; position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse at 80% 20%, rgba(245, 212, 200, 0.6) 0%, transparent 50%),
-        radial-gradient(ellipse at 20% 80%, rgba(184, 197, 226, 0.5) 0%, transparent 50%);
+        radial-gradient(ellipse 45% 60% at 25% 50%, rgba(251,250,249,0.78) 0%, rgba(251,250,249,0.35) 55%, rgba(251,250,249,0) 100%);
+      z-index: 1;
+      pointer-events: none;
     }
     .hero-orb {
       position: absolute;
@@ -253,8 +272,8 @@
       background: var(--gradient-orb);
       border-radius: 50%;
       filter: blur(100px);
-      opacity: 0.5;
-      z-index: -1;
+      opacity: 0.18;
+      z-index: 1;
       animation: float 12s ease-in-out infinite;
     }
     @keyframes float {
@@ -265,10 +284,11 @@
       position: absolute;
       width: 500px; height: 500px;
       left: -150px; bottom: -150px;
-      background: radial-gradient(circle, rgba(245, 212, 200, 0.6) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(245, 212, 200, 0.35) 0%, transparent 70%);
       border-radius: 50%;
       filter: blur(80px);
-      z-index: -1;
+      opacity: 0.4;
+      z-index: 1;
       animation: float 10s ease-in-out infinite reverse;
     }
     .hero-grid {
@@ -394,16 +414,93 @@
       color: var(--charcoal);
       margin-bottom: 6px;
     }
-    .form-group input, .form-group select {
+    .form-group input {
       width: 100%;
       padding: 12px 16px;
       background: white;
       border: 1px solid var(--gray-100);
       border-radius: 12px;
-      font-size: 15px;
+      font-size: 14px;
       color: var(--charcoal);
       font-family: inherit;
       transition: all var(--transition);
+    }
+
+    /* CUSTOM DROPDOWN — replaces native <select> so popup is fully controllable */
+    .custom-select { position: relative; }
+    .custom-select-trigger {
+      width: 100%;
+      padding: 12px 40px 12px 16px;
+      background: white;
+      border: 1px solid var(--gray-100);
+      border-radius: 12px;
+      font-size: 14px;
+      color: var(--charcoal);
+      font-family: inherit;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all var(--transition);
+    }
+    .custom-select-trigger.is-placeholder { color: var(--gray-500); }
+    .custom-select-trigger:focus,
+    .custom-select.open .custom-select-trigger {
+      outline: none;
+      border-color: var(--soft-blue-2);
+      box-shadow: 0 0 0 3px rgba(184, 197, 226, 0.2);
+    }
+    .custom-select-trigger.error {
+      border-color: var(--red);
+    }
+    .custom-select-trigger svg {
+      flex-shrink: 0;
+      transition: transform 200ms ease;
+      color: var(--gray-500);
+    }
+    .custom-select.open .custom-select-trigger svg { transform: rotate(180deg); }
+    .custom-select-options {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      background: white;
+      border: 1px solid var(--gray-100);
+      border-radius: 12px;
+      list-style: none;
+      padding: 4px;
+      margin: 0;
+      z-index: 50;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.04);
+      max-height: 240px;
+      overflow-y: auto;
+      opacity: 0;
+      transform: translateY(-4px);
+      pointer-events: none;
+      transition: opacity 150ms ease, transform 150ms ease;
+    }
+    .custom-select.open .custom-select-options {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .custom-select-options li {
+      padding: 9px 12px;
+      font-size: 14px;
+      color: var(--charcoal);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 120ms ease;
+    }
+    .custom-select-options li:hover,
+    .custom-select-options li[aria-selected="true"] {
+      background: var(--gray-50);
+    }
+    .custom-select-options li.is-active {
+      background: rgba(184, 197, 226, 0.15);
+      color: var(--charcoal);
+      font-weight: 500;
     }
     .form-group input:focus, .form-group select:focus {
       outline: none;
@@ -602,17 +699,17 @@
     }
     .chart-bars {
       display: flex;
-      align-items: flex-end;
+      align-items: stretch;
       gap: 8px;
-      height: 180px;
-      padding: 16px 0;
+      height: 200px;
+      padding: 16px 0 0;
     }
     .bar-group {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      justify-content: flex-end; /* push bar+label cluster to bottom so labels align */
       height: 100%;
     }
     .bar {
@@ -620,6 +717,7 @@
       background: var(--soft-blue-3);
       border-radius: 6px 6px 0 0;
       transition: height 1.5s cubic-bezier(0.4,0,0.2,1);
+      margin-bottom: 8px;
     }
     .bar.accent {
       background: linear-gradient(180deg, var(--peach-2) 0%, var(--soft-blue-2) 100%);
@@ -628,6 +726,8 @@
       font-size: 11px;
       color: var(--gray-500);
       font-weight: 500;
+      flex-shrink: 0;
+      line-height: 1;
     }
     .chart-divider {
       height: 1px;
@@ -1071,11 +1171,8 @@
   <!-- NAV -->
   <nav>
     <div class="nav-inner">
-      <a href="/" class="nav-logo">
-        <div class="nav-logo-symbol">
-          <img src="/favicon.png" alt="">
-        </div>
-        <span class="nav-logo-text">invexa<em>growth</em></span>
+      <a href="/" class="nav-logo" aria-label="INVEXA — From leads to patients on autopilot">
+        <img class="nav-logo-mark" src="/logos/INVEXA logo sin fondo/INVEXA-07.png" alt="INVEXA">
       </a>
       <div class="nav-links">
         <a href="#solution">What We Do</a>
@@ -1089,6 +1186,7 @@
 
   <!-- HERO -->
   <section class="hero">
+    <canvas id="invexa-hero-shader" class="hero-shader" aria-hidden="true"></canvas>
     <div class="hero-bg"></div>
     <div class="hero-orb"></div>
     <div class="hero-orb-2"></div>
@@ -1142,14 +1240,25 @@
             </div>
             <div class="form-group">
               <label for="newPatients">Monthly New Patients (Current)</label>
-              <select id="newPatients" name="newPatients" required>
-                <option value="" disabled selected>Select range</option>
-                <option value="0-10">0 – 10 new patients</option>
-                <option value="11-25">11 – 25 new patients</option>
-                <option value="26-50">26 – 50 new patients</option>
-                <option value="51-100">51 – 100 new patients</option>
-                <option value="100+">100+ new patients</option>
-              </select>
+              <div class="custom-select" data-name="newPatients">
+                <button type="button" class="custom-select-trigger is-placeholder"
+                        aria-haspopup="listbox" aria-expanded="false"
+                        aria-labelledby="newPatientsLabel">
+                  <span class="custom-select-value">Select range</span>
+                  <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                    <path d="M1 1.5l5 5 5-5" stroke="currentColor" stroke-width="1.5"
+                          stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <ul class="custom-select-options" role="listbox" tabindex="-1">
+                  <li role="option" data-value="0-10">0 – 10 new patients</li>
+                  <li role="option" data-value="11-25">11 – 25 new patients</li>
+                  <li role="option" data-value="26-50">26 – 50 new patients</li>
+                  <li role="option" data-value="51-100">51 – 100 new patients</li>
+                  <li role="option" data-value="100+">100+ new patients</li>
+                </ul>
+                <input type="hidden" id="newPatients" name="newPatients" required>
+              </div>
               <div class="form-error" id="newPatientsError">Please select a range.</div>
             </div>
             <button type="submit" class="btn-primary form-submit" id="submitBtn">Get My Free Audit →</button>
@@ -1589,19 +1698,72 @@
     const formFields = document.getElementById('formFields');
     const formSuccess = document.getElementById('formSuccess');
 
+    // For custom-select fields, the visible target is the trigger button
+    function errorTarget(id) {
+      const el = document.getElementById(id);
+      const wrap = el.closest('.custom-select');
+      return wrap ? wrap.querySelector('.custom-select-trigger') : el;
+    }
     function showError(id, errId, msg) {
-      document.getElementById(id).classList.add('error');
+      errorTarget(id).classList.add('error');
       const e = document.getElementById(errId);
       e.textContent = msg; e.style.display = 'block';
     }
     function clearError(id, errId) {
-      document.getElementById(id).classList.remove('error');
+      errorTarget(id).classList.remove('error');
       document.getElementById(errId).style.display = 'none';
     }
     ['firstName','clinicName','phone','newPatients'].forEach(id => {
       const el = document.getElementById(id);
       el.addEventListener('input', () => clearError(id, id + 'Error'));
       el.addEventListener('change', () => clearError(id, id + 'Error'));
+    });
+
+    // Custom dropdown wiring
+    document.querySelectorAll('.custom-select').forEach(sel => {
+      const trigger = sel.querySelector('.custom-select-trigger');
+      const valueEl = sel.querySelector('.custom-select-value');
+      const options = sel.querySelectorAll('.custom-select-options li');
+      const hidden  = sel.querySelector('input[type="hidden"]');
+
+      const close = () => {
+        sel.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+      };
+      const open = () => {
+        document.querySelectorAll('.custom-select.open').forEach(o => {
+          if (o !== sel) o.classList.remove('open');
+        });
+        sel.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
+      };
+
+      trigger.addEventListener('click', e => {
+        e.stopPropagation();
+        sel.classList.contains('open') ? close() : open();
+      });
+
+      options.forEach(opt => {
+        opt.addEventListener('click', () => {
+          options.forEach(o => o.classList.remove('is-active'));
+          opt.classList.add('is-active');
+          hidden.value = opt.dataset.value;
+          valueEl.textContent = opt.textContent;
+          trigger.classList.remove('is-placeholder');
+          hidden.dispatchEvent(new Event('change', { bubbles: true }));
+          close();
+        });
+      });
+
+      // Click outside closes
+      document.addEventListener('click', e => {
+        if (!sel.contains(e.target)) close();
+      });
+
+      // Escape closes
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && sel.classList.contains('open')) close();
+      });
     });
     function validPhone(p) {
       return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(p.replace(/\s/g,''));
@@ -1701,6 +1863,127 @@
     }
     modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && modalOverlay.classList.contains('open')) closeModal(); });
+  </script>
+
+  <!-- INVEXA Light Shader Hero Background -->
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script>
+    (function () {
+      const canvas = document.getElementById('invexa-hero-shader');
+      const heroSection = document.querySelector('.hero');
+      if (!canvas || !heroSection || typeof THREE === 'undefined') return;
+
+      const vertexShader = `
+        void main() { gl_Position = vec4(position, 1.0); }
+      `;
+
+      // Light prism shader — chromatic ring arcs using ONLY the brand bar
+      // gradient colors (peach-2 ↔ soft-blue-2). 3 phase-shifted ring sets in
+      // peach / mauve / soft-blue so the chromatic-aberration motion stays,
+      // but every visible color is on-brand. Brightness floor prevents dark spots.
+      const fragmentShader = `
+        precision highp float;
+        uniform vec2 resolution;
+        uniform float time;
+
+        const vec3 CREAM = vec3(0.984, 0.980, 0.976); // #FBFAF9
+
+        // Ambient brand drift colors (background wash)
+        const vec3 BG_PEACH = vec3(0.961, 0.831, 0.784); // #F5D4C8
+        const vec3 BG_BLUE  = vec3(0.722, 0.773, 0.886); // #B8C5E2
+
+        // Ring hues — exactly the bar gradient stops + a soft mauve bridge
+        const vec3 RING_PEACH = vec3(0.941, 0.773, 0.710); // #F0C5B5  (--peach-2)
+        const vec3 RING_MAUVE = vec3(0.847, 0.812, 0.835); // gentle peach↔blue mid
+        const vec3 RING_BLUE  = vec3(0.659, 0.722, 0.847); // #A8B8D8  (--soft-blue-2)
+
+        // Brightness floor — overlapping rings can't compound into dark spots
+        const float BRIGHTNESS_FLOOR = 0.78;
+
+        void main(void) {
+          vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / min(resolution.x, resolution.y);
+          // Faster intervals (0.014 → 0.022) — peaks come more often
+          float t = time * 0.022;
+          float lineWidth = 0.0020;
+
+          // Per-channel intensity (chromatic aberration phase shift, matches original)
+          float ir = 0.0, ig = 0.0, ib = 0.0;
+          for (int i = 0; i < 5; i++) {
+            float fi = float(i);
+            float modVal = mod(uv.x + uv.y, 0.2);
+            float lenUV = length(uv);
+            ir += lineWidth * fi * fi / abs(fract(t - 0.00 + fi * 0.01) * 5.0 - lenUV + modVal);
+            ig += lineWidth * fi * fi / abs(fract(t - 0.01 + fi * 0.01) * 5.0 - lenUV + modVal);
+            ib += lineWidth * fi * fi / abs(fract(t - 0.02 + fi * 0.01) * 5.0 - lenUV + modVal);
+          }
+
+          // Ambient brand drift — soft peach↔blue wash always present
+          float wash  = 0.5 + 0.5 * sin(time * 0.06 + uv.x * 1.2);
+          float wash2 = 0.5 + 0.5 * cos(time * 0.045 - uv.y * 1.1);
+          vec3 brandWash = mix(BG_PEACH, BG_BLUE, wash);
+          brandWash = mix(brandWash, mix(BG_PEACH, BG_BLUE, wash2), 0.5);
+          vec3 ambient = mix(CREAM, brandWash, 0.22);
+
+          // Subtract each hue's COMPLEMENT — keeps the actual hue visible
+          float strength = 0.55;
+          vec3 dark = vec3(0.0);
+          dark += (vec3(1.0) - RING_PEACH) * ir * strength;
+          dark += (vec3(1.0) - RING_MAUVE) * ig * strength;
+          dark += (vec3(1.0) - RING_BLUE)  * ib * strength;
+
+          // Cap total darkening per channel so overlap can't compound into black
+          dark = min(dark, vec3(1.0 - BRIGHTNESS_FLOOR));
+
+          vec3 color = clamp(ambient - dark, 0.0, 1.0);
+          gl_FragColor = vec4(color, 1.0);
+        }
+      `;
+
+      const camera = new THREE.Camera();
+      camera.position.z = 1;
+
+      const scene = new THREE.Scene();
+      const geometry = new THREE.PlaneGeometry(2, 2);
+
+      const uniforms = {
+        time: { value: 1.0 },
+        resolution: { value: new THREE.Vector2() }
+      };
+
+      const material = new THREE.ShaderMaterial({ uniforms, vertexShader, fragmentShader });
+      const mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
+
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      function resize() {
+        const w = heroSection.clientWidth;
+        const h = heroSection.clientHeight;
+        renderer.setSize(w, h, false);
+        uniforms.resolution.value.x = renderer.domElement.width;
+        uniforms.resolution.value.y = renderer.domElement.height;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      // Pause when hero is offscreen (saves battery / GPU)
+      let isVisible = true;
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach(e => { isVisible = e.isIntersecting; }),
+        { threshold: 0 }
+      );
+      io.observe(heroSection);
+
+      let rafId;
+      function animate() {
+        rafId = requestAnimationFrame(animate);
+        if (!isVisible) return;
+        uniforms.time.value += 0.05;
+        renderer.render(scene, camera);
+      }
+      animate();
+    })();
   </script>
 
 </body>
