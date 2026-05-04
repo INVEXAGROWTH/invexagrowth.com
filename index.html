@@ -319,6 +319,13 @@
       color: var(--gray-700);
       margin-bottom: 28px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      white-space: nowrap;
+    }
+    .hero-badge .hb-mobile { display: none; }
+    @media (max-width: 600px) {
+      .hero-badge { font-size: 12px; padding: 7px 14px; gap: 8px; }
+      .hero-badge .hb-desktop { display: none; }
+      .hero-badge .hb-mobile { display: inline; }
     }
     .hero-badge-dot {
       width: 6px; height: 6px;
@@ -1204,7 +1211,8 @@
       <div>
         <div class="hero-badge fade-up visible">
           <span class="hero-badge-dot"></span>
-          Now booking <strong style="color:var(--charcoal); margin:0 4px;">May audits</strong> — <span id="spots-counter">12</span> of 20 spots claimed
+          <span class="hb-desktop">Now booking <strong style="color:var(--charcoal); margin:0 4px;">May audits</strong> — <span id="spots-counter">12</span> of 20 spots claimed</span>
+          <span class="hb-mobile"><strong style="color:var(--charcoal); margin-right:4px;">May audits</strong> · <span id="spots-counter-m">12</span>/20 spots</span>
         </div>
         <h1 class="fade-up visible delay-1">
           From leads to patients <em>on autopilot.</em>
@@ -1859,13 +1867,16 @@
 
     // Spots counter — slow incremental progression based on time
     function updateSpots() {
-      const counterEl = document.getElementById('spots-counter');
-      if (!counterEl) return;
+      const els = [
+        document.getElementById('spots-counter'),
+        document.getElementById('spots-counter-m')
+      ].filter(Boolean);
+      if (!els.length) return;
       // Base: 12. Increment slowly over time (1 every ~30 seconds, max 18)
       const base = 12;
       const increments = Math.min(Math.floor((Date.now() / 30000) % 6), 6);
       const current = base + increments;
-      counterEl.textContent = current;
+      els.forEach(el => el.textContent = current);
     }
     updateSpots();
     setInterval(updateSpots, 30000);
