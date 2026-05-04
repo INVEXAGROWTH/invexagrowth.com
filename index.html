@@ -269,12 +269,17 @@
 
     /* HERO — split layout */
     .hero {
-      min-height: 100vh;
+      min-height: 100vh;       /* fallback for older browsers */
+      min-height: 100dvh;      /* dynamic viewport — fits visible area on iOS even with URL bar showing */
       padding: 140px 32px 80px;
       display: flex;
       align-items: center;
       position: relative;
       overflow: hidden;
+    }
+    @media (max-width: 768px) {
+      /* Tighter top/bottom on mobile so hero content fits without overflowing the visible viewport */
+      .hero { padding: 96px 20px 48px; }
     }
     /* Shader canvas — sits at the back of the hero stack */
     .hero-shader {
