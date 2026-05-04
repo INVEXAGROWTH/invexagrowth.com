@@ -271,11 +271,21 @@
     .hero {
       min-height: 100vh;       /* fallback for older browsers */
       min-height: 100dvh;      /* dynamic viewport — fits visible area on iOS even with URL bar showing */
-      padding: 140px 32px 80px;
+      padding: 110px 32px 56px;
       display: flex;
       align-items: center;
       position: relative;
       overflow: hidden;
+    }
+    /* On shorter laptops (≤860px tall), let the hero size to its content
+       instead of forcing 100vh. Otherwise the form column overflows the fold. */
+    @media (max-height: 860px) and (min-width: 769px) {
+      .hero { min-height: auto; padding: 96px 32px 48px; }
+    }
+    @media (max-height: 800px) and (min-width: 769px) {
+      .hero { padding: 84px 32px 32px; }
+      .hero-form-card { padding: 22px 28px; }
+      .hero-form-header { margin-bottom: 14px; }
     }
     @media (max-width: 768px) {
       /* Tighter top/bottom on mobile so hero content fits without overflowing the visible viewport */
@@ -337,6 +347,24 @@
     }
     @media (max-width: 968px) {
       .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+    /* On phones, make the LEFT column fill the visible viewport so the form
+       sits cleanly below the fold (no awkward peek of the white form card). */
+    @media (max-width: 768px) {
+      .hero-grid {
+        gap: 24px;
+        align-content: start;
+      }
+      .hero-grid > div:first-child {
+        min-height: calc(100dvh - 144px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      /* Slightly tighter type so the left column fits comfortably on smaller phones */
+      .hero h1 { font-size: clamp(34px, 9vw, 44px); margin-bottom: 18px; }
+      .hero-sub { font-size: 15px; }
+      .hero-badge { margin-bottom: 22px; }
     }
     .hero-badge {
       display: inline-flex;
@@ -431,22 +459,22 @@
 
     /* HERO FORM CARD */
     .hero-form-card {
-      padding: 36px;
+      padding: 28px 32px;
       background: rgba(255,255,255,0.85);
       backdrop-filter: blur(24px);
       border: 1px solid rgba(255,255,255,0.95);
       border-radius: var(--radius-lg);
       box-shadow: 0 30px 60px rgba(0,0,0,0.08);
     }
-    .hero-form-header { margin-bottom: 24px; }
+    .hero-form-header { margin-bottom: 18px; }
     .hero-form-header h3 {
       font-family: 'Fraunces', serif;
       font-weight: 500;
-      font-size: 24px;
-      margin-bottom: 8px;
+      font-size: 22px;
+      margin-bottom: 6px;
     }
-    .hero-form-header p { font-size: 14px; }
-    .form-group { margin-bottom: 16px; }
+    .hero-form-header p { font-size: 13px; line-height: 1.5; }
+    .form-group { margin-bottom: 12px; }
     .form-group label {
       display: block;
       font-size: 13px;
