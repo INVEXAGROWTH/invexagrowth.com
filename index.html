@@ -33,7 +33,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 
   <style>
     /* RESET */
@@ -96,7 +96,7 @@
     /* TYPOGRAPHY */
     h1, h2, h3, h4 { line-height: 1.05; letter-spacing: -0.025em; text-wrap: balance; }
     h1 {
-      font-family: 'Fraunces', serif;
+      font-family: 'Instrument Serif', serif;
       font-weight: 400;
       font-size: clamp(40px, 5.5vw, 72px);
       letter-spacing: -0.035em;
@@ -104,7 +104,7 @@
     }
     h1 em { font-style: italic; font-weight: 500; }
     h2 {
-      font-family: 'Fraunces', serif;
+      font-family: 'Instrument Serif', serif;
       font-weight: 400;
       font-size: clamp(32px, 4.5vw, 56px);
       color: var(--charcoal);
@@ -152,7 +152,7 @@
       margin: 0 auto;
       padding: 0 32px;
     }
-    .section { padding: 100px 0; position: relative; }
+    .section { padding: 140px 0; position: relative; }
 
     /* NAV — scope to direct child of body so footer's <nav class="footer-links"> isn't pinned to top */
     body > nav {
@@ -290,21 +290,33 @@
       /* Tighter top/bottom on mobile so hero content fits without overflowing the visible viewport */
       .hero { padding: 96px 20px 48px; }
     }
-    /* Shader canvas — sits at the back of the hero stack */
+    /* Cinematic photo backdrop — premium wellness clinic interior (deepest layer) */
+    .hero-photo {
+      position: absolute; inset: 0;
+      background-image: url('generated/hero-bg.jpeg');
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+      opacity: 0.55;
+    }
+    /* Shader canvas — sits ON TOP of the photo with screen blend so the ring/prism reads */
     .hero-shader {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       display: block;
-      z-index: 0;
+      z-index: 1;
+      opacity: 0.95;
+      mix-blend-mode: screen;
     }
-    /* Cream wash behind the headline column — keeps copy crisp over the prism */
+    /* Cream wash overlay — keeps copy crisp over the photo + shader */
     .hero-bg {
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 45% 60% at 25% 50%, rgba(251,250,249,0.78) 0%, rgba(251,250,249,0.35) 55%, rgba(251,250,249,0) 100%);
-      z-index: 1;
+        linear-gradient(180deg, rgba(251,250,249,0.65) 0%, rgba(251,250,249,0.30) 35%, rgba(251,250,249,0.80) 100%),
+        radial-gradient(ellipse 55% 70% at 25% 50%, rgba(251,250,249,0.55) 0%, rgba(251,250,249,0.20) 60%, rgba(251,250,249,0) 100%);
+      z-index: 2;
       pointer-events: none;
     }
     .hero-orb {
@@ -334,11 +346,12 @@
       animation: float 10s ease-in-out infinite reverse;
     }
     .hero-grid {
-      max-width: var(--max-w);
+      max-width: 880px;
       width: 100%;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1.15fr 1fr;
+      grid-template-columns: 1fr;
+      text-align: center;
       gap: 64px;
       align-items: center;
       position: relative;
@@ -401,8 +414,8 @@
     .hero h1 { margin-bottom: 24px; }
     .hero-sub {
       font-size: clamp(17px, 1.8vw, 20px);
-      max-width: 520px;
-      margin-bottom: 36px;
+      max-width: 580px;
+      margin: 0 auto 36px;
       color: var(--gray-700);
       line-height: 1.55;
     }
@@ -455,8 +468,42 @@
     @media (max-width: 480px) {
       .hero-activity { font-size: 11px; padding: 8px 12px; }
     }
+    
 
-    /* HERO FORM CARD */
+    /* Free Audit widget section */
+    .audit-section {
+      background: var(--warm-white);
+      padding: 100px 0;
+    }
+    .audit-header {
+      max-width: 720px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+    .audit-header h2 {
+      margin: 16px 0 18px;
+    }
+    .audit-header p {
+      font-size: 17px;
+      color: var(--gray-700);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .audit-widget-card {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--gray-100);
+      box-shadow: 0 30px 60px rgba(184, 197, 226, 0.15);
+      padding: 48px 56px;
+    }
+    @media (max-width: 768px) {
+      .audit-section { padding: 64px 0; }
+      .audit-widget-card { padding: 24px; }
+    }
+
+    /* HERO FORM CARD (legacy - kept for fallback) */
     .hero-form-card {
       padding: 28px 32px;
       background: rgba(255,255,255,0.85);
@@ -467,7 +514,7 @@
     }
     .hero-form-header { margin-bottom: 18px; }
     .hero-form-header h3 {
-      font-family: 'Fraunces', serif;
+      font-family: 'Instrument Serif', serif;
       font-weight: 500;
       font-size: 22px;
       margin-bottom: 6px;
@@ -634,7 +681,7 @@
     }
     .trust-item { text-align: center; }
     .trust-num {
-      font-family: 'Fraunces', serif;
+      font-family: 'Instrument Serif', serif;
       font-size: clamp(36px, 4vw, 48px);
       font-weight: 500;
       background: linear-gradient(135deg, var(--soft-blue-2) 0%, var(--peach-2) 100%);
@@ -660,8 +707,47 @@
       display: none;
     }
 
-    /* PROBLEM */
-    .problem { background: var(--cream); }
+    /* PROBLEM — parallax photo band before cards */
+    .problem-band {
+      position: relative;
+      height: 56vh;
+      min-height: 380px;
+      max-height: 540px;
+      background-image: url('generated/problem-bg.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (max-width: 768px) {
+      .problem-band { background-attachment: scroll; height: 44vh; min-height: 320px; }
+    }
+    .problem-band::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(20, 26, 45, 0.45) 0%, rgba(20, 26, 45, 0.55) 50%, rgba(251, 250, 249, 0.92) 100%);
+      pointer-events: none;
+    }
+    .problem-band-copy {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 0 32px;
+      max-width: 880px;
+    }
+    .problem-band-copy .section-label {
+      color: rgba(255,255,255,0.85);
+      text-shadow: 0 2px 16px rgba(0,0,0,0.35);
+    }
+    .problem-band-copy h2 {
+      color: white;
+      text-shadow: 0 4px 28px rgba(0,0,0,0.4);
+      margin-top: 16px;
+    }
+    .problem { background: var(--cream); position: relative; z-index: 2; }
     .problem h2 { margin-bottom: 16px; }
     .problem-grid {
       display: grid;
@@ -672,79 +758,809 @@
     @media (max-width: 768px) { .problem-grid { grid-template-columns: 1fr; } }
     .problem-card {
       padding: 36px 32px;
-      background: white;
-      border: 1px solid var(--gray-100);
-      border-radius: var(--radius-md);
+      background: linear-gradient(180deg, #fff 0%, #FAF7F4 100%);
+      border: 1px solid rgba(40, 30, 25, 0.06);
+      border-radius: 22px;
       transition: all var(--transition);
-    }
-    .problem-card:hover {
-      border-color: var(--soft-blue);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(184, 197, 226, 0.15);
-    }
-    .problem-icon {
-      width: 48px; height: 48px;
-      background: var(--gradient-soft);
-      border-radius: 50%;
-      display: grid; place-items: center;
-      margin-bottom: 24px;
-    }
-    .problem-card h3 { margin-bottom: 12px; font-size: 19px; }
-    .problem-card p { font-size: 15px; }
-
-    /* SOLUTION — split with chart */
-    .solution {
-      background: var(--warm-white);
       position: relative;
       overflow: hidden;
+    }
+    .problem-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #F0C5B5 0%, #C9B4CC 50%, #A8B8D8 100%);
+      opacity: 0.5;
+    }
+    .problem-card:hover {
+      border-color: rgba(240, 197, 181, 0.4);
+      transform: translateY(-6px);
+      box-shadow: 0 30px 60px -20px rgba(40, 30, 25, 0.15), 0 12px 24px -8px rgba(40, 30, 25, 0.06);
+    }
+    .problem-card:hover::before { opacity: 1; }
+    .problem-icon {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, #FFE8DC 0%, #F2C8C0 100%);
+      border-radius: 14px;
+      display: grid; place-items: center;
+      margin-bottom: 24px;
+      color: #8a4a32;
+      box-shadow: 0 8px 16px -4px rgba(240, 197, 181, 0.35);
+    }
+    .problem-icon svg { width: 24px; height: 24px; }
+    .problem-card:nth-child(2) .problem-icon {
+      background: linear-gradient(135deg, #F2DCE2 0%, #D9B5C2 100%);
+      color: #7e4a5b;
+      box-shadow: 0 8px 16px -4px rgba(217, 181, 194, 0.35);
+    }
+    .problem-card:nth-child(3) .problem-icon {
+      background: linear-gradient(135deg, #E2E7F2 0%, #A8B8D8 100%);
+      color: #4a5670;
+      box-shadow: 0 8px 16px -4px rgba(168, 184, 216, 0.35);
+    }
+    .problem-card h3 { margin-bottom: 14px; margin-top: 4px; font-size: 24px; font-weight: 500; letter-spacing: -0.01em; font-family: 'Instrument Serif', serif; }
+    .problem-card p { font-size: 15px; line-height: 1.6; color: var(--gray-700); }
+
+    /* SOLUTION — refined card layout with eyebrow + 3 feature cards */
+    .solution {
+      background: linear-gradient(180deg, var(--warm-white) 0%, var(--cream) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .solution::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(240, 197, 181, 0.22) 0%, transparent 65%);
+      filter: blur(60px);
+      pointer-events: none;
     }
     .solution::after {
       content: '';
       position: absolute;
-      bottom: -200px;
-      left: -200px;
+      bottom: -150px;
+      left: -150px;
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, rgba(184, 197, 226, 0.3) 0%, transparent 70%);
-      border-radius: 50%;
+      background: radial-gradient(circle, rgba(184, 197, 226, 0.28) 0%, transparent 70%);
+      filter: blur(60px);
+      pointer-events: none;
     }
     .solution-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
       position: relative;
+      max-width: 1100px;
+      margin: 0 auto;
       z-index: 2;
     }
-    @media (max-width: 968px) {
-      .solution-inner { grid-template-columns: 1fr; gap: 48px; }
+    .solution-head {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 56px;
     }
-    .solution h2 { margin-bottom: 16px; margin-top: 8px; }
-    .solution-features { margin-top: 32px; }
+    .solution-head h2 { margin: 16px 0; }
+    .solution-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 56px;
+    }
+    @media (max-width: 900px) {
+      .solution-features { grid-template-columns: 1fr; }
+    }
     .feature-row {
-      display: flex;
-      gap: 16px;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--gray-100);
+      position: relative;
+      padding: 36px 28px;
+      background: linear-gradient(180deg, #fff 0%, #FAF7F4 100%);
+      border: 1px solid rgba(40, 30, 25, 0.06);
+      border-radius: 22px;
+      transition: all var(--transition);
+      overflow: hidden;
     }
-    .feature-row:last-child { border-bottom: none; }
+    .feature-row:hover {
+      transform: translateY(-6px);
+      border-color: rgba(168, 184, 216, 0.4);
+      box-shadow: 0 30px 60px -20px rgba(40, 30, 25, 0.14), 0 12px 24px -8px rgba(40, 30, 25, 0.06);
+    }
     .feature-icon-wrap {
-      width: 36px; height: 36px;
-      background: var(--gradient-soft);
-      border-radius: 50%;
+      width: 52px; height: 52px;
+      border-radius: 14px;
       display: grid; place-items: center;
       flex-shrink: 0;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #FFE8DC 0%, #F2C8C0 100%);
+      color: #8a4a32;
+      box-shadow: 0 8px 16px -4px rgba(240, 197, 181, 0.35);
     }
-    .feature-row h4 { font-size: 16px; margin-bottom: 4px; }
-    .feature-row p { font-size: 14px; line-height: 1.5; }
+    .feature-row:nth-child(2) .feature-icon-wrap {
+      background: linear-gradient(135deg, #F2DCE2 0%, #D9B5C2 100%);
+      color: #7e4a5b;
+      box-shadow: 0 8px 16px -4px rgba(217, 181, 194, 0.35);
+    }
+    .feature-row:nth-child(3) .feature-icon-wrap {
+      background: linear-gradient(135deg, #E2E7F2 0%, #A8B8D8 100%);
+      color: #4a5670;
+      box-shadow: 0 8px 16px -4px rgba(168, 184, 216, 0.35);
+    }
+    .feature-icon-wrap svg { width: 24px; height: 24px; }
+    .feature-row h4 { font-size: 22px; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 10px; font-family: 'Instrument Serif', serif; color: var(--charcoal); }
+    .feature-row p { font-size: 14.5px; line-height: 1.6; color: var(--gray-700); }
 
     /* SOLUTION CHART */
     .solution-visual {
-      padding: 32px;
-      background: white;
+      padding: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+    }
+    .device-shot {
+      width: 100%;
+      height: auto;
+      display: block;
       border-radius: var(--radius-lg);
-      border: 1px solid var(--gray-100);
-      box-shadow: 0 30px 60px rgba(184, 197, 226, 0.15);
+      box-shadow: 0 40px 80px rgba(40, 30, 25, 0.18);
+    }
+    /* ============================================================
+       HERO SHOWCASE — 3D scroll-tilt iPad frame holding CRM chat UI
+       ============================================================ */
+    .hero-showcase {
+      position: relative;
+      padding: 32px 0 96px;
+      perspective: 1400px;
+      perspective-origin: 50% 0%;
+      background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
+      overflow: hidden;
+    }
+    .hero-showcase-glow {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-showcase-glow::before {
+      content: '';
+      position: absolute;
+      width: 900px; height: 900px;
+      background: radial-gradient(circle, rgba(240, 197, 181, 0.55) 0%, transparent 60%);
+      left: -180px; top: -50px;
+      filter: blur(90px);
+    }
+    .hero-showcase-glow::after {
+      content: '';
+      position: absolute;
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(168, 184, 216, 0.55) 0%, transparent 60%);
+      right: -160px; bottom: -80px;
+      filter: blur(90px);
+    }
+    .hero-showcase-eyebrow {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 32px;
+      padding: 0 20px;
+    }
+    .hero-showcase-eyebrow-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 7px 14px 7px 12px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(40,30,25,0.06);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-700);
+      box-shadow: 0 8px 20px -8px rgba(40,30,25,0.10);
+    }
+    .hero-showcase-eyebrow-pulse {
+      position: relative;
+      width: 8px; height: 8px;
+      background: #2da471;
+      border-radius: 50%;
+    }
+    .hero-showcase-eyebrow-pulse::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(45, 164, 113, 0.55);
+      animation: hsPulse 2s infinite;
+    }
+    @keyframes hsPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(45, 164, 113, 0.55); }
+      70%  { box-shadow: 0 0 0 10px rgba(45, 164, 113, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(45, 164, 113, 0); }
+    }
+    .hero-showcase-stage {
+      position: relative;
+      z-index: 1;
+    }
+    .hero-stat-float {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 12px 16px;
+      border-radius: 14px;
+      box-shadow:
+        0 30px 60px -20px rgba(40, 30, 25, 0.22),
+        0 12px 24px -8px rgba(40, 30, 25, 0.08);
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 3;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      will-change: transform;
+    }
+    .hero-stat-float-icon {
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+    .hero-stat-float-icon svg { width: 16px; height: 16px; }
+    .hero-stat-float-1 {
+      top: 6%;
+      left: -2%;
+      animation: floatStat 7s ease-in-out infinite;
+    }
+    .hero-stat-float-2 {
+      top: 38%;
+      right: -3%;
+      animation: floatStat 7s ease-in-out infinite 2.3s;
+    }
+    .hero-stat-float-3 {
+      bottom: 18%;
+      left: -1%;
+      animation: floatStat 7s ease-in-out infinite 4.1s;
+    }
+    @keyframes floatStat {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+    .hero-stat-num {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 600;
+      font-size: 20px;
+      color: var(--charcoal);
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+    .hero-stat-label {
+      font-size: 10.5px;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-top: 3px;
+      font-weight: 600;
+    }
+    @media (max-width: 1100px) {
+      .hero-stat-float-1 { top: 2%; left: 2%; }
+      .hero-stat-float-2 { top: 38%; right: 2%; }
+      .hero-stat-float-3 { bottom: 8%; left: 2%; }
+    }
+    @media (max-width: 768px) {
+      .hero-stat-float { display: none; }
+    }
+    /* Pulse the AI label dot */
+    .crm-msg-agent-label::before {
+      animation: aiDotPulse 2s infinite;
+    }
+    @keyframes aiDotPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(240, 197, 181, 0.85); }
+      70%  { box-shadow: 0 0 0 6px rgba(240, 197, 181, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(240, 197, 181, 0); }
+    }
+    .scroll-reveal-card {
+      max-width: 1080px;
+      width: calc(100% - 32px);
+      margin: 0 auto;
+      border: 5px solid #1a1a1a;
+      background: #0c0c0c;
+      border-radius: 36px;
+      padding: 10px;
+      box-shadow:
+        0 9px 20px rgba(0, 0, 0, 0.22),
+        0 37px 37px rgba(0, 0, 0, 0.20),
+        0 84px 60px rgba(40, 30, 25, 0.16),
+        0 149px 70px rgba(40, 30, 25, 0.06);
+      transform-origin: 50% 0%;
+      will-change: transform;
+      transform: rotateX(20deg) scale(1.02);
+    }
+    @media (max-width: 768px) {
+      .hero-showcase { padding: 16px 0 48px; }
+      .scroll-reveal-card { border-radius: 22px; border-width: 3px; padding: 6px; }
+    }
+    .scroll-reveal-card-inner {
+      width: 100%;
+      border-radius: 26px;
+      overflow: hidden;
+      background: #fff;
+      position: relative;
+      aspect-ratio: 16 / 10;
+    }
+    @media (max-width: 768px) {
+      .scroll-reveal-card-inner { border-radius: 16px; aspect-ratio: 4 / 3; }
+    }
+
+    /* ============================================================
+       CRM CHAT UI — embedded inside the iPad screen
+       ============================================================ */
+    .crm-app {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-rows: 56px 1fr;
+      background: #fafafa;
+      font-family: 'Inter', -apple-system, system-ui, sans-serif;
+      color: #18181b;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    /* Top bar */
+    .crm-topbar {
+      display: grid;
+      grid-template-columns: 220px 1fr auto;
+      align-items: center;
+      gap: 16px;
+      padding: 0 20px;
+      background: #fff;
+      border-bottom: 1px solid #e4e4e7;
+    }
+    .crm-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .crm-logo-wrap img {
+      height: 28px;
+      width: auto;
+      object-fit: contain;
+    }
+    .crm-search {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      background: #f4f4f5;
+      border: 1px solid #e4e4e7;
+      border-radius: 8px;
+      max-width: 460px;
+      color: #71717a;
+      font-size: 13px;
+    }
+    .crm-search svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .crm-topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .crm-iconbtn {
+      width: 34px; height: 34px;
+      display: grid; place-items: center;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      color: #52525b;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.15s ease;
+    }
+    .crm-iconbtn:hover { background: #f4f4f5; border-color: #e4e4e7; }
+    .crm-iconbtn svg { width: 16px; height: 16px; }
+    .crm-iconbtn-dot {
+      position: absolute;
+      top: 6px; right: 6px;
+      width: 8px; height: 8px;
+      background: #F0C5B5;
+      border: 2px solid #fff;
+      border-radius: 50%;
+    }
+    .crm-user-avatar {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-left: 4px;
+      background: #e4e4e7;
+    }
+    .crm-user-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Body grid: sidebar + lead list + chat */
+    .crm-body {
+      display: grid;
+      grid-template-columns: 64px 320px 1fr;
+      overflow: hidden;
+      min-height: 0;
+    }
+    /* Sidebar */
+    .crm-sidebar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 16px 0;
+      background: #fff;
+      border-right: 1px solid #e4e4e7;
+    }
+    .crm-nav-btn {
+      width: 40px; height: 40px;
+      display: grid; place-items: center;
+      background: transparent;
+      border: none;
+      border-radius: 10px;
+      color: #71717a;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      position: relative;
+    }
+    .crm-nav-btn:hover { background: #f4f4f5; color: #18181b; }
+    .crm-nav-btn.active {
+      background: #18181b;
+      color: #fff;
+    }
+    .crm-nav-btn.active::before {
+      content: '';
+      position: absolute;
+      left: -16px; top: 50%;
+      transform: translateY(-50%);
+      width: 3px; height: 20px;
+      background: #18181b;
+      border-radius: 0 3px 3px 0;
+    }
+    .crm-nav-btn svg { width: 18px; height: 18px; }
+    .crm-nav-btn-badge {
+      position: absolute;
+      top: 4px; right: 4px;
+      min-width: 16px; height: 16px;
+      padding: 0 4px;
+      background: #F0C5B5;
+      color: #18181b;
+      font-size: 9px;
+      font-weight: 700;
+      border-radius: 8px;
+      display: grid; place-items: center;
+      border: 2px solid #fff;
+    }
+    .crm-sidebar-spacer { flex: 1; }
+
+    /* Lead list column */
+    .crm-leads {
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      border-right: 1px solid #e4e4e7;
+      overflow: hidden;
+      min-height: 0;
+    }
+    .crm-leads-head {
+      padding: 16px 16px 12px;
+      border-bottom: 1px solid #e4e4e7;
+    }
+    .crm-leads-title {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .crm-leads-title h3 {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+    .crm-leads-title small {
+      font-size: 11px;
+      color: #71717a;
+      font-weight: 500;
+    }
+    .crm-tabs {
+      display: flex;
+      gap: 4px;
+      font-size: 11px;
+    }
+    .crm-tab {
+      padding: 5px 10px;
+      background: transparent;
+      border: none;
+      border-radius: 6px;
+      color: #71717a;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .crm-tab.active { background: #f4f4f5; color: #18181b; font-weight: 600; }
+    .crm-tab-count {
+      background: #e4e4e7;
+      color: #52525b;
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+    .crm-tab.active .crm-tab-count { background: #18181b; color: #fff; }
+    .crm-lead-list { overflow-y: auto; }
+    .crm-lead-item {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 10px;
+      padding: 12px 16px;
+      border-bottom: 1px solid #f4f4f5;
+      cursor: pointer;
+      transition: background 0.12s ease;
+      align-items: flex-start;
+    }
+    .crm-lead-item:hover { background: #fafafa; }
+    .crm-lead-item.active {
+      background: linear-gradient(90deg, rgba(240,197,181,0.10) 0%, rgba(240,197,181,0.04) 100%);
+      box-shadow: inset 2px 0 0 #F0C5B5;
+    }
+    .crm-lead-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #e4e4e7;
+      flex-shrink: 0;
+    }
+    .crm-lead-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .crm-lead-body { min-width: 0; }
+    .crm-lead-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 3px;
+    }
+    .crm-lead-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #18181b;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .crm-lead-time {
+      font-size: 10px;
+      color: #a1a1aa;
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+    .crm-lead-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 3px;
+    }
+    .crm-badge {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .crm-badge-warm { background: rgba(240,197,181,0.30); color: #b56c54; }
+    .crm-badge-hot  { background: rgba(220, 80, 60, 0.16); color: #b94235; }
+    .crm-badge-new  { background: rgba(168,184,216,0.28); color: #5670a8; }
+    .crm-badge-cold { background: #e4e4e7; color: #71717a; }
+    .crm-badge-converted { background: rgba(56, 161, 105, 0.18); color: #2f7a52; }
+    .crm-lead-preview {
+      font-size: 11.5px;
+      color: #71717a;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.35;
+    }
+
+    /* Chat panel */
+    .crm-chat {
+      display: flex;
+      flex-direction: column;
+      background: #fafafa;
+      overflow: hidden;
+      min-height: 0;
+    }
+    .crm-chat-head {
+      display: grid;
+      grid-template-columns: 40px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 14px 22px;
+      background: #fff;
+      border-bottom: 1px solid #e4e4e7;
+    }
+    .crm-chat-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #e4e4e7;
+    }
+    .crm-chat-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .crm-chat-info-name {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .crm-chat-info-meta {
+      font-size: 11px;
+      color: #71717a;
+      margin-top: 2px;
+    }
+    .crm-chat-actions {
+      display: flex;
+      gap: 6px;
+    }
+    .crm-chat-action {
+      padding: 7px 12px;
+      background: #fff;
+      border: 1px solid #e4e4e7;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #52525b;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+    .crm-chat-action svg { width: 13px; height: 13px; }
+    .crm-chat-action:hover { background: #f4f4f5; }
+    .crm-chat-action.primary {
+      background: #18181b;
+      color: #fff;
+      border-color: #18181b;
+    }
+    .crm-chat-action.primary:hover { background: #27272a; }
+
+    .crm-chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .crm-msg {
+      max-width: 78%;
+      padding: 9px 14px;
+      border-radius: 14px;
+      font-size: 13px;
+      line-height: 1.45;
+      position: relative;
+    }
+    .crm-msg p { margin: 0; }
+    .crm-msg-time {
+      display: block;
+      font-size: 10px;
+      color: #a1a1aa;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+    .crm-msg-in {
+      align-self: flex-start;
+      background: #fff;
+      border: 1px solid #e4e4e7;
+      border-bottom-left-radius: 4px;
+      color: #18181b;
+    }
+    .crm-msg-in .crm-msg-time { color: #a1a1aa; }
+    .crm-msg-out {
+      align-self: flex-end;
+      background: linear-gradient(135deg, #F0C5B5 0%, #E8B5A1 60%, #D9A48C 100%);
+      color: #3a2a22;
+      border-bottom-right-radius: 4px;
+      box-shadow: 0 2px 8px -2px rgba(217, 164, 140, 0.35);
+    }
+    .crm-msg-out .crm-msg-time { color: rgba(58, 42, 34, 0.55); }
+    .crm-msg-agent-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #8a4a32;
+      margin-bottom: 4px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .crm-msg-agent-label::before {
+      content: '';
+      width: 5px; height: 5px;
+      background: #8a4a32;
+      border-radius: 50%;
+    }
+
+    .crm-typing {
+      align-self: flex-start;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 14px;
+      background: #fff;
+      border: 1px solid #e4e4e7;
+      border-radius: 14px;
+      border-bottom-left-radius: 4px;
+    }
+    .crm-typing-dot {
+      width: 5px; height: 5px;
+      background: #a1a1aa;
+      border-radius: 50%;
+      animation: crmTypingDot 1.2s infinite;
+    }
+    .crm-typing-dot:nth-child(2) { animation-delay: 0.15s; }
+    .crm-typing-dot:nth-child(3) { animation-delay: 0.30s; }
+    @keyframes crmTypingDot {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-3px); opacity: 1; }
+    }
+    .crm-typing-label {
+      font-size: 11px;
+      color: #71717a;
+      margin-left: 4px;
+    }
+
+    .crm-ai-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      background: linear-gradient(135deg, #F0C5B5 0%, #A8B8D8 100%);
+      color: #fff;
+      border-radius: 4px;
+    }
+
+    /* Scale down for mobile so it still reads */
+    @media (max-width: 900px) {
+      .crm-app { font-size: 11px; }
+      .crm-topbar { grid-template-columns: 1fr auto; padding: 0 12px; }
+      .crm-search { display: none; }
+      .crm-body { grid-template-columns: 50px 240px 1fr; }
+      .crm-sidebar { padding: 12px 0; }
+      .crm-nav-btn { width: 34px; height: 34px; }
+      .crm-leads-head { padding: 12px; }
+      .crm-leads-title h3 { font-size: 13px; }
+      .crm-lead-item { padding: 10px 12px; gap: 8px; }
+      .crm-chat-head { padding: 10px 14px; }
+      .crm-chat-action span { display: none; }
+      .crm-chat-messages { padding: 14px 16px; gap: 8px; }
+      .crm-msg { font-size: 11px; padding: 7px 10px; max-width: 85%; }
+    }
+    @media (max-width: 600px) {
+      .crm-body { grid-template-columns: 44px 1fr; }
+      .crm-leads { display: none; }
+    }
+    .how-visual {
+      margin-top: 80px;
+      max-width: 880px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @media (max-width: 768px) {
+      .how-visual { margin-top: 56px; }
     }
     .visual-chart-header {
       display: flex;
@@ -812,7 +1628,7 @@
       color: var(--gray-500);
     }
     .chart-metric-value {
-      font-family: 'Fraunces', serif;
+      font-family: 'Instrument Serif', serif;
       font-weight: 500;
       font-size: 22px;
       color: var(--charcoal);
@@ -825,7 +1641,640 @@
       margin-left: 6px;
     }
 
-    /* HOW IT WORKS */
+    /* ============================================================
+       PIPELINE — CleanMyMac-style hover-expand strip
+       Soft pastel gradient header + white card body + refined detail
+       ============================================================ */
+    .expand-section {
+      background: #FAF7F4;
+      padding: 120px 0 140px;
+      position: relative;
+      overflow: hidden;
+    }
+    .expand-section::before {
+      content: '';
+      position: absolute;
+      top: -120px; left: -8%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(240,197,181,0.18) 0%, transparent 65%);
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .expand-section::after {
+      content: '';
+      position: absolute;
+      bottom: -120px; right: -8%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(168,184,216,0.18) 0%, transparent 65%);
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .expand-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 56px;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .expand-strip {
+      display: flex;
+      gap: 12px;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 560px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Panel = a card with header (gradient) + body (white) */
+    .expand-panel {
+      flex: 0 0 92px;
+      height: 100%;
+      border-radius: 22px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid rgba(40, 30, 25, 0.05);
+      padding: 0;
+      background: #FFFFFF;
+      transition:
+        flex-basis 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.4s ease,
+        border-color 0.3s ease;
+      box-shadow:
+        0 2px 6px rgba(40, 30, 25, 0.05),
+        0 1px 2px rgba(40, 30, 25, 0.04);
+      will-change: flex-basis;
+      outline: none;
+      text-align: left;
+    }
+    .expand-panel:hover {
+      box-shadow:
+        0 8px 24px rgba(40, 30, 25, 0.08),
+        0 2px 6px rgba(40, 30, 25, 0.05);
+    }
+    .expand-panel[data-active="true"] {
+      flex: 1 1 0;
+      box-shadow:
+        0 30px 60px -22px rgba(40, 30, 25, 0.18),
+        0 12px 24px -10px rgba(40, 30, 25, 0.08);
+      border-color: rgba(40, 30, 25, 0.08);
+    }
+    .expand-panel:focus-visible {
+      box-shadow:
+        0 0 0 3px rgba(168, 184, 216, 0.5),
+        0 8px 24px rgba(40, 30, 25, 0.08);
+    }
+
+    /* HEADER — pastel gradient, holds the illustration */
+    .expand-panel-header {
+      position: relative;
+      height: 62%;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+    }
+    .expand-panel-header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.55) 0%, transparent 55%),
+        radial-gradient(circle at 80% 80%, rgba(0,0,0,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    /* Per-step Higgsfield product image fills the header */
+    .expand-panel[data-i="0"] .expand-panel-header { background: url('generated/panel-1-reach.png')   center/cover #F2C2AC; }
+    .expand-panel[data-i="1"] .expand-panel-header { background: url('generated/panel-2-connect.png') center/cover #E5B5B6; }
+    .expand-panel[data-i="2"] .expand-panel-header { background: url('generated/panel-3-qualify.png') center/cover #CBB5D2; }
+    .expand-panel[data-i="3"] .expand-panel-header { background: url('generated/panel-4-book.png')    center/cover #B8C0DE; }
+    .expand-panel[data-i="4"] .expand-panel-header { background: url('generated/panel-5-confirm.png') center/cover #9CB1D6; }
+    /* Hide the SVG illustration since the image IS the visual now */
+    .expand-panel-illu { display: none; }
+    /* Bump step number / label contrast for legibility over photos */
+    .expand-panel-num {
+      color: #fff;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    }
+    .expand-panel-label {
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+    }
+    .expand-panel-pip {
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.85), 0 2px 4px rgba(0,0,0,0.15);
+    }
+
+    /* Step number stamp (top-left of header) */
+    .expand-panel-num {
+      position: absolute;
+      top: 20px;
+      left: 22px;
+      z-index: 3;
+      font-family: 'Instrument Serif', serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      color: rgba(40, 30, 25, 0.55);
+      text-transform: uppercase;
+    }
+    /* Color-pip accent on step number, top right */
+    .expand-panel-pip {
+      position: absolute;
+      top: 24px;
+      right: 22px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.7);
+      z-index: 3;
+    }
+    .expand-panel[data-i="0"] .expand-panel-pip { background: #E29B7E; }
+    .expand-panel[data-i="1"] .expand-panel-pip { background: #D38085; }
+    .expand-panel[data-i="2"] .expand-panel-pip { background: #A788B5; }
+    .expand-panel[data-i="3"] .expand-panel-pip { background: #8A9DC5; }
+    .expand-panel[data-i="4"] .expand-panel-pip { background: #7188B8; }
+
+    /* Vertical title visible when COLLAPSED */
+    .expand-panel-label {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-90deg);
+      transform-origin: 50% 50%;
+      white-space: nowrap;
+      font-family: 'Instrument Serif', serif;
+      font-size: 18px;
+      letter-spacing: 0.02em;
+      font-weight: 500;
+      color: rgba(40, 30, 25, 0.85);
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+      z-index: 3;
+    }
+    .expand-panel[data-active="true"] .expand-panel-label { opacity: 0; }
+
+    /* Illustration container — refined 2-color line art */
+    .expand-panel-illu {
+      position: relative;
+      width: 50%;
+      max-width: 200px;
+      opacity: 0;
+      transform: translateY(12px) scale(0.94);
+      transition: opacity 0.5s ease 0.18s, transform 0.55s cubic-bezier(0.22,1,0.36,1) 0.18s;
+      filter: drop-shadow(0 16px 28px rgba(40, 30, 25, 0.16));
+      z-index: 2;
+    }
+    .expand-panel-illu svg { width: 100%; height: auto; }
+    .expand-panel[data-active="true"] .expand-panel-illu {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* BODY — white card content */
+    .expand-panel-body {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 38%;
+      padding: 24px 28px 28px;
+      background: #fff;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.4s ease 0.22s, transform 0.45s cubic-bezier(0.22,1,0.36,1) 0.22s;
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      border-top: 1px solid rgba(40, 30, 25, 0.04);
+    }
+    .expand-panel[data-active="true"] .expand-panel-body {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .expand-panel-body h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(20px, 2.4vw, 28px);
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      line-height: 1.1;
+      margin: 0 0 10px;
+      color: var(--charcoal);
+    }
+    .expand-panel-body p {
+      font-size: 14px;
+      line-height: 1.55;
+      max-width: 520px;
+      color: var(--gray-700);
+      margin: 0 0 14px;
+    }
+    .expand-panel-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: auto;
+    }
+    .expand-panel-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px 4px 8px;
+      background: rgba(40, 30, 25, 0.04);
+      border: 1px solid rgba(40, 30, 25, 0.05);
+      border-radius: 100px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+    .expand-panel-chip-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.6;
+    }
+
+    @media (max-width: 900px) {
+      .expand-section { padding: 64px 0 80px; }
+      .expand-header { margin-bottom: 36px; }
+      .expand-strip {
+        flex-direction: column;
+        height: auto;
+        gap: 14px;
+      }
+      .expand-panel {
+        flex: 1 1 auto;
+        height: 360px;
+      }
+      .expand-panel[data-active="true"] { flex: 1 1 auto; }
+      .expand-panel-label { display: none; }
+      .expand-panel-illu { opacity: 1; transform: none; width: 36%; max-width: 160px; }
+      .expand-panel-body { opacity: 1; transform: none; padding: 16px 22px 22px; }
+      .expand-panel-body p { font-size: 13.5px; }
+    }
+
+    /* ============================================================
+       PIPELINE — sticky stacking cards (LEGACY — superseded by expand-strip)
+       ============================================================ */
+    .stack-section {
+      background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
+      position: relative;
+      padding: 96px 0 0;
+    }
+    .stack-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -8%;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(240,197,181,0.25) 0%, transparent 60%);
+      filter: blur(70px);
+      pointer-events: none;
+    }
+    .stack-section::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: -8%;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(168,184,216,0.25) 0%, transparent 60%);
+      filter: blur(70px);
+      pointer-events: none;
+    }
+    .stack-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 64px;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .stack-cards {
+      position: relative;
+      z-index: 1;
+      padding-bottom: 120px;
+    }
+    .stack-card {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px;
+    }
+    .stack-card-inner {
+      width: 100%;
+      max-width: 1100px;
+      min-height: 480px;
+      padding: 48px;
+      border-radius: 28px;
+      box-shadow:
+        0 40px 80px -20px rgba(40, 30, 25, 0.25),
+        0 16px 32px -10px rgba(40, 30, 25, 0.10);
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 48px;
+      align-items: center;
+      transform-origin: 50% 0%;
+      will-change: transform;
+      border: 1px solid rgba(255,255,255,0.6);
+    }
+    .stack-card-content { padding: 16px 0; }
+    .stack-card-num {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px 5px 8px;
+      background: rgba(40, 30, 25, 0.06);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+    }
+    .stack-card-num-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+    .stack-card h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(30px, 4.6vw, 48px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.04;
+      color: var(--charcoal);
+      margin: 0 0 20px;
+    }
+    .stack-card-desc {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--gray-700);
+      max-width: 420px;
+    }
+    .stack-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 24px;
+      font-size: 13px;
+      color: var(--gray-500);
+      font-weight: 500;
+    }
+    .stack-card-meta-arrow {
+      display: inline-grid;
+      place-items: center;
+      width: 26px; height: 26px;
+      background: rgba(40,30,25,0.06);
+      border-radius: 50%;
+    }
+    .stack-card-meta-arrow svg { width: 12px; height: 12px; }
+    .stack-card-visual {
+      position: relative;
+      height: 380px;
+      border-radius: 18px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+    }
+    .stack-card-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0) 60%);
+      pointer-events: none;
+    }
+    .stack-card-visual svg.stack-illu {
+      width: 60%;
+      height: auto;
+      max-height: 70%;
+      filter: drop-shadow(0 14px 30px rgba(40,30,25,0.18));
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Per-card branded palette — peach → soft-blue progression */
+    .stack-card[data-i="0"] .stack-card-inner   { background: linear-gradient(135deg, #FFF6F0 0%, #FBE8DC 100%); }
+    .stack-card[data-i="0"] .stack-card-visual  { background: linear-gradient(135deg, #F0C5B5 0%, #E29B7E 100%); }
+
+    .stack-card[data-i="1"] .stack-card-inner   { background: linear-gradient(135deg, #FCEFE9 0%, #F1E3E1 100%); }
+    .stack-card[data-i="1"] .stack-card-visual  { background: linear-gradient(135deg, #E2A89B 0%, #C99FA7 100%); }
+
+    .stack-card[data-i="2"] .stack-card-inner   { background: linear-gradient(135deg, #F4E9EA 0%, #E8E2EA 100%); }
+    .stack-card[data-i="2"] .stack-card-visual  { background: linear-gradient(135deg, #BFA9C5 0%, #B0A9C9 100%); }
+
+    .stack-card[data-i="3"] .stack-card-inner   { background: linear-gradient(135deg, #EBE7EE 0%, #E4E6EE 100%); }
+    .stack-card[data-i="3"] .stack-card-visual  { background: linear-gradient(135deg, #ADA9CB 0%, #9FAACD 100%); }
+
+    .stack-card[data-i="4"] .stack-card-inner   { background: linear-gradient(135deg, #E6EAF1 0%, #DEE3EE 100%); }
+    .stack-card[data-i="4"] .stack-card-visual  { background: linear-gradient(135deg, #9DAFD2 0%, #7E97C4 100%); }
+
+    @media (max-width: 900px) {
+      .stack-section { padding-top: 64px; }
+      .stack-header { margin-bottom: 40px; }
+      .stack-cards { padding-bottom: 60px; }
+      .stack-card { height: auto; padding: 24px 16px; }
+      .stack-card-inner {
+        grid-template-columns: 1fr;
+        padding: 32px 28px;
+        gap: 28px;
+        min-height: auto;
+      }
+      .stack-card-visual { height: 220px; order: -1; }
+      .stack-card-visual svg.stack-illu { width: 45%; max-height: 65%; }
+      .stack-card h3 { font-size: 28px; }
+      .stack-card-desc { font-size: 15px; }
+    }
+
+    /* ============================================================
+       PIPELINE FLOW — horizontal SVG line with milestone stops (LEGACY)
+       ============================================================ */
+    .flow {
+      background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
+      padding: 120px 0 140px;
+      position: relative;
+      overflow: hidden;
+    }
+    .flow::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: -10%;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(240,197,181,0.25) 0%, transparent 65%);
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .flow::after {
+      content: '';
+      position: absolute;
+      bottom: -120px; right: -8%;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(168,184,216,0.25) 0%, transparent 65%);
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .flow-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; position: relative; }
+    .flow-header { text-align: center; max-width: 720px; margin: 0 auto 96px; }
+    .flow-track { position: relative; padding: 0 32px; }
+
+    /* Horizontal SVG line */
+    .flow-line {
+      position: absolute;
+      left: 0; right: 0;
+      top: 50%;
+      height: 4px;
+      transform: translateY(-50%);
+      z-index: 0;
+    }
+    .flow-line svg { display: block; width: 100%; height: 100%; overflow: visible; }
+    .flow-line-path {
+      stroke-width: 3;
+      fill: none;
+      stroke-linecap: round;
+      stroke-dasharray: 1600;
+      stroke-dashoffset: 1600;
+      transition: stroke-dashoffset 2.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .flow-line.in-view .flow-line-path { stroke-dashoffset: 0; }
+
+    /* Stops grid — 5 columns across with content above + below the line */
+    .flow-stops {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .flow-stop {
+      position: relative;
+      display: grid;
+      grid-template-rows: 1fr auto 1fr;
+      align-items: center;
+      justify-items: center;
+      min-height: 480px;
+      text-align: center;
+    }
+    .flow-stop-above {
+      align-self: end;
+      padding-bottom: 32px;
+    }
+    .flow-stop-num {
+      font-family: 'Instrument Serif', serif;
+      font-size: 13px;
+      color: var(--gray-500);
+      letter-spacing: 0.18em;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .flow-stop-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--charcoal);
+      letter-spacing: -0.015em;
+      line-height: 1.1;
+    }
+    /* The node sits ON the line */
+    .flow-node {
+      width: 18px; height: 18px;
+      background: #fff;
+      border: 3px solid;
+      border-radius: 50%;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 6px 16px rgba(40,30,25,0.15);
+    }
+    .flow-node::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 2px solid currentColor;
+      opacity: 0.20;
+    }
+    .flow-stop-1 .flow-node { border-color: #F0C5B5; color: #F0C5B5; }
+    .flow-stop-2 .flow-node { border-color: #D9B5C2; color: #D9B5C2; }
+    .flow-stop-3 .flow-node { border-color: #BFB5D2; color: #BFB5D2; }
+    .flow-stop-4 .flow-node { border-color: #B0B7D5; color: #B0B7D5; }
+    .flow-stop-5 .flow-node { border-color: #A8B8D8; color: #A8B8D8; }
+
+    .flow-stop-below {
+      align-self: start;
+      padding-top: 32px;
+      max-width: 220px;
+    }
+    .flow-stop-visual {
+      margin: 0 auto 16px;
+      width: 96px;
+      height: 96px;
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 18px 40px -10px rgba(40,30,25,0.18), 0 6px 12px -4px rgba(40,30,25,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+    .flow-stop-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 60%);
+      pointer-events: none;
+    }
+    .flow-stop-visual svg { position: relative; width: 56px; height: 56px; }
+    .flow-stop-1 .flow-stop-visual { background: linear-gradient(135deg, #F0C5B5 0%, #E8B5A1 100%); }
+    .flow-stop-2 .flow-stop-visual { background: linear-gradient(135deg, #E8B5A1 0%, #D2B0C0 100%); }
+    .flow-stop-3 .flow-stop-visual { background: linear-gradient(135deg, #D2B0C0 0%, #BAB1D3 100%); }
+    .flow-stop-4 .flow-stop-visual { background: linear-gradient(135deg, #BAB1D3 0%, #ABB6D8 100%); }
+    .flow-stop-5 .flow-stop-visual { background: linear-gradient(135deg, #ABB6D8 0%, #A8B8D8 100%); }
+    .flow-stop-desc {
+      font-size: 14px;
+      color: var(--gray-700);
+      line-height: 1.55;
+    }
+    /* Alternate stop position: even stops have visual ABOVE / title BELOW for visual rhythm */
+    .flow-stop:nth-child(even) {
+      grid-template-rows: 1fr auto 1fr;
+    }
+    .flow-stop:nth-child(even) .flow-stop-above { order: 3; padding-bottom: 0; padding-top: 32px; align-self: start; }
+    .flow-stop:nth-child(even) .flow-stop-below { order: 1; padding-top: 0; padding-bottom: 32px; align-self: end; }
+
+    @media (max-width: 968px) {
+      .flow { padding: 80px 0 96px; }
+      .flow-header { margin-bottom: 56px; }
+      .flow-track { padding: 0; }
+      .flow-line { display: none; }
+      .flow-stops {
+        grid-template-columns: 1fr;
+        gap: 56px;
+      }
+      .flow-stop { min-height: auto; grid-template-rows: auto auto auto; padding-left: 64px; text-align: left; justify-items: start; }
+      .flow-stop:nth-child(even) { grid-template-rows: auto auto auto; }
+      .flow-stop:nth-child(even) .flow-stop-above { order: 0; padding-top: 0; align-self: start; }
+      .flow-stop:nth-child(even) .flow-stop-below { order: 0; padding-bottom: 0; align-self: start; }
+      .flow-stop-above { padding-bottom: 0; align-self: start; text-align: left; }
+      .flow-stop-below { padding-top: 16px; align-self: start; text-align: left; max-width: 100%; }
+      .flow-stop-visual { margin: 0 0 16px; }
+      /* Vertical spine on the left for mobile */
+      .flow-stop::before {
+        content: '';
+        position: absolute;
+        left: 24px; top: 0; bottom: -56px;
+        width: 2px;
+        background: linear-gradient(180deg, currentColor, transparent);
+        opacity: 0.35;
+      }
+      .flow-stop:last-child::before { display: none; }
+      .flow-node {
+        position: absolute;
+        left: 18px;
+        top: 14px;
+      }
+    }
+
+    /* HOW IT WORKS (legacy, retained for trust bar/lead-magnet spacing if needed) */
     .how { background: var(--cream); }
     .how-header { text-align: center; max-width: 580px; margin: 0 auto 56px; }
     .how-header h2 { margin: 16px 0; }
@@ -854,13 +2303,13 @@
       background: var(--gradient-orb);
       border-radius: 50%;
       display: grid; place-items: center;
-      font-family: 'Fraunces', serif;
+      font-family: 'Instrument Serif', serif;
       font-size: 22px;
       color: var(--charcoal);
       font-weight: 500;
       box-shadow: 0 12px 28px rgba(184, 197, 226, 0.3);
     }
-    .step-card h3 { margin-bottom: 12px; font-size: 20px; font-family: 'Fraunces', serif; font-weight: 500; }
+    .step-card h3 { margin-bottom: 12px; font-size: 20px; font-family: 'Instrument Serif', serif; font-weight: 500; }
     .step-card p { font-size: 15px; }
 
     /* RESULTS */
@@ -887,7 +2336,7 @@
       box-shadow: 0 20px 40px rgba(184, 197, 226, 0.15);
     }
     .result-stat {
-      font-family: 'Fraunces', serif;
+      font-family: 'Instrument Serif', serif;
       font-size: 56px;
       font-weight: 500;
       background: linear-gradient(135deg, var(--soft-blue-2) 0%, var(--peach-2) 100%);
@@ -916,7 +2365,7 @@
       background: var(--gradient-soft);
       border-radius: 50%;
       display: grid; place-items: center;
-      font-family: 'Fraunces', serif;
+      font-family: 'Instrument Serif', serif;
       font-weight: 600;
       font-size: 16px;
       color: var(--charcoal);
@@ -933,13 +2382,24 @@
 
     /* LEAD MAGNET */
     .lead-magnet {
-      background: var(--cream);
+      background:
+        linear-gradient(180deg, rgba(251,250,249,0.92) 0%, rgba(251,250,249,0.78) 100%),
+        url('generated/leadmagnet-paper.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      position: relative;
+    }
+    @media (max-width: 768px) {
+      .lead-magnet { background-attachment: scroll; }
     }
     .lead-magnet-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 64px;
       align-items: center;
+      position: relative;
+      z-index: 1;
     }
     @media (max-width: 968px) { .lead-magnet-inner { grid-template-columns: 1fr; } }
     .lead-magnet-copy h2 { margin: 16px 0; }
@@ -1011,7 +2471,7 @@
       align-items: center;
       gap: 24px;
       text-align: left;
-      font-family: 'Fraunces', serif;
+      font-family: 'Instrument Serif', serif;
       font-weight: 500;
       font-size: 20px;
       color: var(--charcoal);
@@ -1053,16 +2513,16 @@
     }
     .final-cta-bg {
       position: absolute; inset: 0;
-      background: var(--gradient-hero);
-      opacity: 0.55;
+      background-image: url('generated/cta-bg.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.85;
       z-index: -1;
     }
     .final-cta-bg::after {
       content: '';
       position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse at 80% 20%, rgba(245, 212, 200, 0.6) 0%, transparent 50%),
-        radial-gradient(ellipse at 20% 80%, rgba(184, 197, 226, 0.5) 0%, transparent 50%);
+      background: linear-gradient(180deg, rgba(255,250,245,0.55) 0%, rgba(255,250,245,0.35) 100%);
     }
     .final-cta .container { max-width: 800px; }
     .final-cta h2 { margin: 16px 0 24px; color: var(--charcoal); }
@@ -1208,7 +2668,7 @@
       border-radius: 50%;
       display: grid; place-items: center;
       flex-shrink: 0;
-      font-family: 'Fraunces', serif;
+      font-family: 'Instrument Serif', serif;
       font-weight: 500;
       font-size: 14px;
       color: var(--charcoal);
@@ -1236,7 +2696,7 @@
       .modal-footer { padding: 16px 20px 20px; }
     }
     .modal-footer p {
-      font-family: 'Fraunces', serif;
+      font-family: 'Instrument Serif', serif;
       font-size: 18px;
       color: var(--charcoal);
       margin-bottom: 0;
@@ -1249,12 +2709,11 @@
   <nav>
     <div class="nav-inner">
       <a href="/" class="nav-logo" aria-label="INVEXA — From leads to patients on autopilot">
-        <img class="nav-logo-mark" src="/logos/INVEXA logo sin fondo/INVEXA-07.png" alt="INVEXA">
+        <img class="nav-logo-mark" src="logos/INVEXA%20logo%20sin%20fondo/INVEXA-07.png" alt="INVEXA">
       </a>
       <div class="nav-links">
         <a href="#solution">What We Do</a>
         <a href="#how">How It Works</a>
-        <a href="#results">Results</a>
         <a href="#faq">FAQ</a>
       </div>
       <a href="#apply" class="nav-cta" onclick="scrollToForm(); return false;">Free Audit</a>
@@ -1264,6 +2723,7 @@
   <!-- HERO -->
   <section class="hero">
     <canvas id="invexa-hero-shader" class="hero-shader" aria-hidden="true"></canvas>
+    <div class="hero-photo" aria-hidden="true"></div>
     <div class="hero-bg"></div>
     <div class="hero-orb"></div>
     <div class="hero-orb-2"></div>
@@ -1276,89 +2736,245 @@
           <span class="hb-mobile"><strong style="color:var(--charcoal); margin-right:4px;">May audits</strong> · <span id="spots-counter-m">12</span>/20 spots</span>
         </div>
         <h1 class="fade-up visible delay-1">
-          From leads to patients <em>on autopilot.</em>
+          From leads to patients on autopilot.
         </h1>
         <p class="hero-sub fade-up visible delay-2">
           We build the entire patient acquisition machine for wellness clinics and med spas. <strong>Get a free audit</strong> and we'll show you exactly where your patient pipeline is leaking.
         </p>
-        <div class="fade-up visible delay-3" style="display:flex; gap:14px; flex-wrap:wrap;">
+        <div class="fade-up visible delay-3" style="display:flex; gap:14px; flex-wrap:wrap; justify-content:center;">
           <a href="#hero-form-card" class="btn-primary" onclick="scrollToForm(); return false;">Get My Free Audit →</a>
           <a href="#how" class="btn-secondary">See how it works</a>
         </div>
 
         <!-- LIVE ACTIVITY -->
-        <div class="hero-activity fade-up visible delay-4">
+        <div class="hero-activity fade-up visible delay-4" style="margin-left:auto; margin-right:auto;">
           <div class="activity-pulse"></div>
-          <span class="activity-text"><strong id="activity-clinic">Peak Wellness</strong> just booked an audit · <span id="activity-time">2 min ago</span></span>
+          <span class="activity-text"><strong id="activity-clinic">Peak Wellness</strong> booked an audit · <span id="activity-time">2 min ago</span></span>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- RIGHT: Form -->
-      <div class="hero-form-card fade-up visible delay-2" id="hero-form-card">
-        <div class="form-fields" id="formFields">
-          <div class="hero-form-header">
-            <h3>Get Your Free Audit</h3>
-            <p>We'll review your current setup and show you exactly where your patient pipeline is leaking. No cost. No commitment.</p>
-          </div>
-          <form id="heroForm" novalidate>
-            <div class="form-group">
-              <label for="firstName">First Name</label>
-              <input type="text" id="firstName" name="firstName" placeholder="Dr. Sarah" autocomplete="given-name" required />
-              <div class="form-error" id="firstNameError">Please enter your first name.</div>
+  <!-- HERO SHOWCASE — iPad-framed CRM with AI agent conversation -->
+  <section class="hero-showcase">
+    <div class="hero-showcase-glow" aria-hidden="true"></div>
+
+
+    <div class="hero-showcase-stage">
+      <div class="scroll-reveal-card" data-scroll-tilt>
+      <div class="scroll-reveal-card-inner">
+        <div class="crm-app" aria-label="Invexa CRM — AI agent conversation with a wellness clinic lead">
+          <!-- Top bar -->
+          <header class="crm-topbar">
+            <div class="crm-logo-wrap">
+              <img src="logos/INVEXA%20logo%20sin%20fondo/INVEXA-07.png" alt="Invexa">
             </div>
-            <div class="form-group">
-              <label for="clinicName">Clinic Name</label>
-              <input type="text" id="clinicName" name="clinicName" placeholder="Peak Wellness Clinic" autocomplete="organization" required />
-              <div class="form-error" id="clinicNameError">Please enter your clinic name.</div>
+            <div class="crm-search" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+              <span>Search patients, conversations…</span>
             </div>
-            <div class="form-group">
-              <label for="phone">Phone Number</label>
-              <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" autocomplete="tel" required />
-              <div class="form-error" id="phoneError">Please enter a valid phone number.</div>
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="you@clinic.com" autocomplete="email" required />
-              <div class="form-error" id="emailError">Please enter a valid email address.</div>
-            </div>
-            <div class="form-group">
-              <label for="newPatients">Monthly New Patients (Current)</label>
-              <div class="custom-select" data-name="newPatients">
-                <button type="button" class="custom-select-trigger is-placeholder"
-                        aria-haspopup="listbox" aria-expanded="false"
-                        aria-labelledby="newPatientsLabel">
-                  <span class="custom-select-value">Select range</span>
-                  <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                    <path d="M1 1.5l5 5 5-5" stroke="currentColor" stroke-width="1.5"
-                          stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </button>
-                <ul class="custom-select-options" role="listbox" tabindex="-1">
-                  <li role="option" data-value="0-10">0 – 10 new patients</li>
-                  <li role="option" data-value="11-25">11 – 25 new patients</li>
-                  <li role="option" data-value="26-50">26 – 50 new patients</li>
-                  <li role="option" data-value="51-100">51 – 100 new patients</li>
-                  <li role="option" data-value="100+">100+ new patients</li>
-                </ul>
-                <input type="hidden" id="newPatients" name="newPatients" required>
+            <div class="crm-topbar-right">
+              <button class="crm-iconbtn" aria-label="Filters">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="10" y1="18" x2="14" y2="18"/></svg>
+              </button>
+              <button class="crm-iconbtn" aria-label="Notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                <span class="crm-iconbtn-dot"></span>
+              </button>
+              <div class="crm-user-avatar" aria-label="Account">
+                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="">
               </div>
-              <div class="form-error" id="newPatientsError">Please select a range.</div>
             </div>
-            <button type="submit" class="btn-primary form-submit" id="submitBtn">Get My Free Audit →</button>
-            <p class="form-disclaimer">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline; vertical-align:middle; margin-right:4px;">
-                <path d="M6 1L1.5 3v3.5C1.5 9 3.5 11 6 11s4.5-2 4.5-4.5V3L6 1z" stroke="#888" stroke-width="1" fill="none"/>
-                <path d="M4 6l1.5 1.5L8 4.5" stroke="#888" stroke-width="1" stroke-linecap="round"/>
-              </svg>
-              No spam. We'll reach out by phone to confirm fit.
-            </p>
-          </form>
+          </header>
+
+          <div class="crm-body">
+            <!-- Sidebar -->
+            <nav class="crm-sidebar" aria-label="Primary">
+              <button class="crm-nav-btn" aria-label="Calendar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+              </button>
+              <button class="crm-nav-btn active" aria-label="Inbox" aria-current="page">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                <span class="crm-nav-btn-badge">7</span>
+              </button>
+              <button class="crm-nav-btn" aria-label="Patients">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </button>
+              <button class="crm-nav-btn" aria-label="Analytics">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6"  y1="20" x2="6"  y2="14"/><line x1="3"  y1="20" x2="21" y2="20"/></svg>
+              </button>
+              <button class="crm-nav-btn" aria-label="Campaigns">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-8-8 18-2-8-8-2z"/></svg>
+              </button>
+              <div class="crm-sidebar-spacer"></div>
+              <button class="crm-nav-btn" aria-label="Settings">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              </button>
+            </nav>
+
+            <!-- Lead list -->
+            <section class="crm-leads" aria-label="Leads">
+              <div class="crm-leads-head">
+                <div class="crm-leads-title">
+                  <h3>Inbox</h3>
+                  <small>Auto-qualifying · 14 active</small>
+                </div>
+                <div class="crm-tabs" role="tablist">
+                  <button class="crm-tab active">All <span class="crm-tab-count">147</span></button>
+                  <button class="crm-tab">Hot <span class="crm-tab-count">14</span></button>
+                  <button class="crm-tab">Warm <span class="crm-tab-count">23</span></button>
+                </div>
+              </div>
+              <div class="crm-lead-list">
+                <div class="crm-lead-item active">
+                  <div class="crm-lead-avatar"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt=""></div>
+                  <div class="crm-lead-body">
+                    <div class="crm-lead-top"><span class="crm-lead-name">Sarah Mitchell</span><span class="crm-lead-time">2m</span></div>
+                    <div class="crm-lead-meta"><span class="crm-badge crm-badge-hot">Hot</span></div>
+                    <div class="crm-lead-preview">Thursday 9 AM works! Looking forward…</div>
+                  </div>
+                </div>
+                <div class="crm-lead-item">
+                  <div class="crm-lead-avatar"><img src="https://randomuser.me/api/portraits/men/52.jpg" alt=""></div>
+                  <div class="crm-lead-body">
+                    <div class="crm-lead-top"><span class="crm-lead-name">James Foster</span><span class="crm-lead-time">14m</span></div>
+                    <div class="crm-lead-meta"><span class="crm-badge crm-badge-warm">Warm</span></div>
+                    <div class="crm-lead-preview">Yes, weekday mornings are best for me</div>
+                  </div>
+                </div>
+                <div class="crm-lead-item">
+                  <div class="crm-lead-avatar"><img src="https://randomuser.me/api/portraits/women/79.jpg" alt=""></div>
+                  <div class="crm-lead-body">
+                    <div class="crm-lead-top"><span class="crm-lead-name">Amanda Chen</span><span class="crm-lead-time">38m</span></div>
+                    <div class="crm-lead-meta"><span class="crm-badge crm-badge-converted">Booked</span></div>
+                    <div class="crm-lead-preview">Confirmed for Friday 11:30 AM 🎉</div>
+                  </div>
+                </div>
+                <div class="crm-lead-item">
+                  <div class="crm-lead-avatar"><img src="https://randomuser.me/api/portraits/men/22.jpg" alt=""></div>
+                  <div class="crm-lead-body">
+                    <div class="crm-lead-top"><span class="crm-lead-name">David Park</span><span class="crm-lead-time">1h</span></div>
+                    <div class="crm-lead-meta"><span class="crm-badge crm-badge-warm">Warm</span></div>
+                    <div class="crm-lead-preview">What's the difference between NAD+ and…</div>
+                  </div>
+                </div>
+                <div class="crm-lead-item">
+                  <div class="crm-lead-avatar"><img src="https://randomuser.me/api/portraits/women/24.jpg" alt=""></div>
+                  <div class="crm-lead-body">
+                    <div class="crm-lead-top"><span class="crm-lead-name">Aisha Patel</span><span class="crm-lead-time">2h</span></div>
+                    <div class="crm-lead-meta"><span class="crm-badge crm-badge-new">New</span></div>
+                    <div class="crm-lead-preview">Hi! I saw your Instagram post about…</div>
+                  </div>
+                </div>
+                <div class="crm-lead-item">
+                  <div class="crm-lead-avatar"><img src="https://randomuser.me/api/portraits/men/41.jpg" alt=""></div>
+                  <div class="crm-lead-body">
+                    <div class="crm-lead-top"><span class="crm-lead-name">Michael Brennan</span><span class="crm-lead-time">3h</span></div>
+                    <div class="crm-lead-meta"><span class="crm-badge crm-badge-converted">Booked</span></div>
+                    <div class="crm-lead-preview">See you Monday at 10 — thanks!</div>
+                  </div>
+                </div>
+                <div class="crm-lead-item">
+                  <div class="crm-lead-avatar"><img src="https://randomuser.me/api/portraits/women/55.jpg" alt=""></div>
+                  <div class="crm-lead-body">
+                    <div class="crm-lead-top"><span class="crm-lead-name">Olivia Reyes</span><span class="crm-lead-time">5h</span></div>
+                    <div class="crm-lead-meta"><span class="crm-badge crm-badge-cold">Cold</span></div>
+                    <div class="crm-lead-preview">Just browsing for now, thanks</div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Chat panel — selected lead's AI conversation -->
+            <section class="crm-chat" aria-label="Conversation with Sarah Mitchell">
+              <div class="crm-chat-head">
+                <div class="crm-chat-avatar"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt=""></div>
+                <div>
+                  <div class="crm-chat-info-name">Sarah Mitchell <span class="crm-ai-pill">AI Qualified</span></div>
+                  <div class="crm-chat-info-meta">From Meta ad · Interest: IV Therapy · Pre-qualified by Invexa AI</div>
+                </div>
+                <div class="crm-chat-actions">
+                  <button class="crm-chat-action">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+                    <span>Add note</span>
+                  </button>
+                  <button class="crm-chat-action">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <span>Call now</span>
+                  </button>
+                  <button class="crm-chat-action primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                    <span>View booking</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="crm-chat-messages">
+                <div class="crm-msg crm-msg-in">
+                  <p>Hi, I saw your ad about IV therapy. Do you take insurance?</p>
+                  <span class="crm-msg-time">11:42 AM</span>
+                </div>
+                <div class="crm-msg crm-msg-out">
+                  <div class="crm-msg-agent-label">Invexa AI</div>
+                  <p>Hi Sarah, so glad you reached out 🌿 Yes — we accept most major plans and have cash-pay options too. What's been going on that made you look into IV therapy?</p>
+                  <span class="crm-msg-time">11:42 AM</span>
+                </div>
+                <div class="crm-msg crm-msg-in">
+                  <p>I've been dealing with chronic fatigue and brain fog for the last few months. It's really affecting my work</p>
+                  <span class="crm-msg-time">11:43 AM</span>
+                </div>
+                <div class="crm-msg crm-msg-out">
+                  <div class="crm-msg-agent-label">Invexa AI</div>
+                  <p>I'm really sorry you've been carrying that. This is exactly what we help patients with — want to book a quick consult so we can build a plan around you?</p>
+                  <span class="crm-msg-time">11:43 AM</span>
+                </div>
+                <div class="crm-msg crm-msg-in">
+                  <p>Yes please. Mornings are best for me</p>
+                  <span class="crm-msg-time">11:44 AM</span>
+                </div>
+                <div class="crm-msg crm-msg-out">
+                  <div class="crm-msg-agent-label">Invexa AI</div>
+                  <p>Perfect — let's get you in soon. I have Thursday 9:00 AM or Friday 10:30 AM open. Which feels easier for you?</p>
+                  <span class="crm-msg-time">11:44 AM</span>
+                </div>
+                <div class="crm-msg crm-msg-in">
+                  <p>Thursday 9 AM works! Looking forward to feeling better 😊</p>
+                  <span class="crm-msg-time">Just now</span>
+                </div>
+                <div class="crm-typing" aria-label="Invexa AI is typing">
+                  <span class="crm-typing-dot"></span>
+                  <span class="crm-typing-dot"></span>
+                  <span class="crm-typing-dot"></span>
+                  <span class="crm-typing-label">Invexa AI is replying…</span>
+                </div>
+              </div>
+            </section>
+          </div>
         </div>
-        <div class="form-success" id="formSuccess" tabindex="-1">
-          <div class="form-success-icon">✓</div>
-          <h3 style="font-family:'Fraunces',serif; font-weight:500; font-size:24px;">You're on the list.</h3>
-          <p style="margin-top:8px;">We'll text first. Expect a message within 1 business day to confirm your clinic's fit.</p>
-        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- FREE AUDIT WIDGET SECTION -->
+  <section class="section audit-section" id="hero-form-card">
+    <div class="container">
+      <div class="audit-header">
+        <span class="section-label fade-up">Free Audit · No Commitment</span>
+        <h2 class="fade-up">Get your free patient pipeline audit.</h2>
+        <p class="fade-up">We'll review your current setup and show you exactly where your patient pipeline is leaking. Takes 15 minutes. No cost.</p>
+      </div>
+      <div class="audit-widget-card fade-up">
+        <!-- HoneyBook Lead Form Widget -->
+        <div class="hb-p-6a2249b6c7de2265104d1f55-1"></div>
+        <img height="1" width="1" style="display:none" src="https://www.honeybook.com/p.png?pid=6a2249b6c7de2265104d1f55">
+        <script>
+          (function(h,b,s,n,i,p,e,t) {
+            h._HB_ = h._HB_ || {};h._HB_.pid = i;;;;
+            t=b.createElement(s);t.type="text/javascript";t.async=!0;t.src=n;
+            e=b.getElementsByTagName(s)[0];e.parentNode.insertBefore(t,e);
+          })(window,document,"script","https://widget.honeybook.com/assets_users_production/websiteplacements/placement-controller.min.js","6a2249b6c7de2265104d1f55");
+        </script>
       </div>
     </div>
   </section>
@@ -1367,7 +2983,7 @@
   <div class="trust-bar">
     <div class="trust-inner">
       <div class="trust-item fade-up">
-        <div class="trust-num"><span class="counter" data-target="40">0</span>+</div>
+        <div class="trust-num"><span class="counter" data-target="30">0</span>+</div>
         <div class="trust-label">Leads in 30 days, guaranteed</div>
       </div>
       <div class="trust-item fade-up">
@@ -1385,38 +3001,38 @@
     </div>
   </div>
 
+  <!-- PROBLEM PARALLAX BAND -->
+  <div class="problem-band" aria-hidden="true">
+    <div class="problem-band-copy">
+      <span class="section-label fade-up">The Problem</span>
+      <h2 class="fade-up">Empty chairs.<br>Quiet weeks.<br>You've felt this before.</h2>
+    </div>
+  </div>
+
   <!-- PROBLEM -->
   <section class="section problem">
     <div class="container">
-      <span class="section-label fade-up">The Problem</span>
-      <h2 class="fade-up">Every wellness clinic hits<br><em>the same wall.</em></h2>
+      <span class="section-label fade-up">Where the leak happens</span>
+      <h2 class="fade-up">Every wellness clinic hits<br>the same wall.</h2>
       <p class="fade-up" style="max-width:560px; margin-top:16px;">You went into wellness — not marketing. You're great at what you do. You just need patients walking through the door consistently.</p>
       <div class="problem-grid">
         <div class="problem-card fade-up">
           <div class="problem-icon">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-              <circle cx="11" cy="11" r="9" stroke="#A8B8D8" stroke-width="1.5"/>
-              <path d="M11 6v6M11 15h.01" stroke="#A8B8D8" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
           </div>
           <h3>Inconsistent lead flow</h3>
           <p>One week your calendar is packed. The next, it's a ghost town. Without a system, you're at the mercy of word-of-mouth and walk-ins.</p>
         </div>
         <div class="problem-card fade-up delay-1">
           <div class="problem-icon">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-              <path d="M5 11h12M11 5v12" stroke="#A8B8D8" stroke-width="1.5" stroke-linecap="round"/>
-              <circle cx="11" cy="11" r="9" stroke="#A8B8D8" stroke-width="1.5"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
           </div>
           <h3>Wasted ad spend</h3>
           <p>You've tried Facebook ads or hired an agency. Reports show "impressions" and "clicks" — but actual patients never show up.</p>
         </div>
         <div class="problem-card fade-up delay-2">
           <div class="problem-icon">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-              <path d="M5 17L17 5M5 5l12 12" stroke="#A8B8D8" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
           </div>
           <h3>High no-show rates</h3>
           <p>When leads do come in, half ghost before the appointment. You spend as much time chasing patients as treating them.</p>
@@ -1429,154 +3045,231 @@
   <section class="section solution" id="solution">
     <div class="container">
       <div class="solution-inner">
-        <div>
-          <span class="section-label fade-up">The INVEXA Method</span>
-          <h2 class="fade-up">A growth system —<br><em>not another agency.</em></h2>
-          <p class="fade-up">INVEXA is a full-stack patient acquisition and retention system — from first ad impression to confirmed appointment, to long-term loyalty.</p>
-          <div class="solution-features">
-            <div class="feature-row fade-up">
-              <div class="feature-icon-wrap">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <path d="M3 9l4 4 8-8" stroke="#A8B8D8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div>
-                <h4>Precision patient targeting</h4>
-                <p>We build audience profiles from your best existing patients and find more of them using multi-platform paid media.</p>
-              </div>
-            </div>
-            <div class="feature-row fade-up">
-              <div class="feature-icon-wrap">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <path d="M3 9l4 4 8-8" stroke="#A8B8D8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div>
-                <h4>Automated nurture sequences</h4>
-                <p>AI-powered SMS and email follow-up that converts leads into booked appointments — without your team lifting a finger.</p>
-              </div>
-            </div>
-            <div class="feature-row fade-up">
-              <div class="feature-icon-wrap">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <path d="M3 9l4 4 8-8" stroke="#A8B8D8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div>
-                <h4>Show-rate guarantee system</h4>
-                <p>Multi-touch confirmation cadences that keep your chairs full and your no-show rate below 10%.</p>
-              </div>
-            </div>
-          </div>
+        <div class="solution-head">
+          <span class="section-label fade-up">The Invexa Method</span>
+          <h2 class="fade-up">A growth system —<br>not another agency.</h2>
+          <p class="fade-up" style="max-width:580px;margin:16px auto 0;">Invexa Growth runs the entire pipeline — ad campaigns, creative production, lead qualification, booking — and hands you patients who are already warmed up and ready to confirm.</p>
         </div>
-        <div class="solution-visual fade-up">
-          <div class="visual-chart-header">
-            <div class="visual-chart-title">Patient Bookings / Month</div>
-            <div class="visual-chart-badge">↑ 214% avg</div>
+        <div class="solution-features">
+          <div class="feature-row fade-up">
+            <div class="feature-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+            </div>
+            <h4>Creative built for your patient</h4>
+            <p>We write the scripts, shoot or source the footage, and edit the ads. Every creative is built around the patient profile your clinic actually wants — not generic templates.</p>
           </div>
-          <div class="chart-bars">
-            <div class="bar-group"><div class="bar" data-height="28"></div><div class="bar-label">Jan</div></div>
-            <div class="bar-group"><div class="bar" data-height="35"></div><div class="bar-label">Feb</div></div>
-            <div class="bar-group"><div class="bar" data-height="42"></div><div class="bar-label">Mar</div></div>
-            <div class="bar-group"><div class="bar accent" data-height="58"></div><div class="bar-label">Apr</div></div>
-            <div class="bar-group"><div class="bar accent" data-height="72"></div><div class="bar-label">May</div></div>
-            <div class="bar-group"><div class="bar accent" data-height="88"></div><div class="bar-label">Jun</div></div>
-            <div class="bar-group"><div class="bar accent" data-height="100"></div><div class="bar-label">Jul</div></div>
+          <div class="feature-row fade-up delay-1">
+            <div class="feature-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </div>
+            <h4>Smart conversations that qualify</h4>
+            <p>Every lead is routed into a private, two-way conversation that warms them up and confirms fit before they ever touch your calendar. No more chasing cold leads.</p>
           </div>
-          <div class="chart-divider"></div>
-          <div class="chart-metric">
-            <div class="chart-metric-label">New Patients This Month</div>
-            <div class="chart-metric-value">38 <small>↑ from 12</small></div>
+          <div class="feature-row fade-up delay-2">
+            <div class="feature-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8"  y1="2" x2="8"  y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M9 16l2 2 4-4"/></svg>
+            </div>
+            <h4>Bookings handed off ready</h4>
+            <p>Qualified patients book themselves on your landing page. Your team only makes the final confirmation call — the real human touch, on a lead that's already raised their hand twice.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section class="section how" id="how">
-    <div class="container">
-      <div class="how-header">
-        <span class="section-label fade-up">How It Works</span>
-        <h2 class="fade-up">Three steps.<br><em>One full calendar.</em></h2>
-        <p class="fade-up">You focus on delivering results. We handle everything that happens before a patient walks through your door.</p>
-      </div>
-      <div class="steps-grid">
-        <div class="step-card fade-up">
-          <div class="step-num">01</div>
-          <h3>We build your pipeline</h3>
-          <p>Week one — we audit your patient flow, set up tracking, and launch precision ad campaigns across Meta and Google targeting your ideal patient.</p>
+  <!-- PIPELINE — CleanMyMac-style hover-expand strip (5 steps) -->
+  <section class="expand-section" id="how">
+    <div class="expand-header">
+      <span class="section-label fade-up">The Pipeline</span>
+      <h2 class="fade-up">From the first scroll<br>to the first visit.</h2>
+      <p class="fade-up" style="margin-top:16px;">Hover any step to see what happens. Five stops, every patient — and you only step in at the end.</p>
+    </div>
+
+    <div class="expand-strip" data-expand-strip role="tablist" aria-label="Patient acquisition pipeline">
+
+      <!-- 01 Reach -->
+      <button class="expand-panel" data-i="0" data-active="true" role="tab" aria-label="Step 01 — Reach" aria-selected="true">
+        <div class="expand-panel-header">
+          <span class="expand-panel-num">Step 01</span>
+          <span class="expand-panel-pip"></span>
+          <span class="expand-panel-label">Reach</span>
+          <div class="expand-panel-illu">
+            <svg viewBox="0 0 200 200" fill="none" aria-hidden="true">
+              <!-- Phone -->
+              <rect x="62" y="20" width="76" height="158" rx="14" fill="#fff" stroke="#3a2a22" stroke-width="2.5"/>
+              <rect x="74" y="38" width="52" height="98" rx="6" fill="#FFF3EC"/>
+              <!-- Ad video frame -->
+              <rect x="74" y="38" width="52" height="58" rx="6" fill="#E29B7E"/>
+              <circle cx="100" cy="67" r="11" fill="#fff"/>
+              <path d="M96 61v12l10-6z" fill="#E29B7E"/>
+              <!-- Caption lines -->
+              <rect x="80" y="102" width="40" height="3" rx="1.5" fill="#3a2a22" opacity="0.65"/>
+              <rect x="80" y="110" width="28" height="3" rx="1.5" fill="#3a2a22" opacity="0.4"/>
+              <!-- Like/comment chips -->
+              <path d="M80 124c0-3 4-4 5-1c1-3 5-2 5 1c0 4-5 7-5 7s-5-3-5-7z" fill="#3a2a22" opacity="0.55"/>
+              <circle cx="100" cy="128" r="3" fill="#3a2a22" opacity="0.4"/>
+              <circle cx="112" cy="128" r="3" fill="#3a2a22" opacity="0.4"/>
+              <!-- Home indicator -->
+              <rect x="92" y="167" width="16" height="3" rx="1.5" fill="#3a2a22" opacity="0.4"/>
+              <!-- Signal rings -->
+              <path d="M38 100q-12 0-22-10" stroke="#E29B7E" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+              <path d="M28 100q-6 0-10-4" stroke="#E29B7E" stroke-width="2.5" stroke-linecap="round" opacity="0.45"/>
+              <path d="M162 100q12 0 22 10" stroke="#E29B7E" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+              <path d="M172 100q6 0 10 4" stroke="#E29B7E" stroke-width="2.5" stroke-linecap="round" opacity="0.45"/>
+            </svg>
+          </div>
         </div>
-        <div class="step-card fade-up delay-1">
-          <div class="step-num">02</div>
-          <h3>We nurture every lead</h3>
-          <p>Our automated SMS and email system follows up the moment someone raises their hand — qualifying, educating, and booking them.</p>
+        <div class="expand-panel-body">
+          <h3>The right patient sees your ad.</h3>
+          <p>Precision Meta campaigns built around your ideal patient. We write the scripts, produce the creative, and place it where they'll see it.</p>
+          <div class="expand-panel-meta">
+            <span class="expand-panel-chip"><span class="expand-panel-chip-dot"></span>Targeted audiences</span>
+            <span class="expand-panel-chip"><span class="expand-panel-chip-dot"></span>Custom creative</span>
+          </div>
         </div>
-        <div class="step-card fade-up delay-2">
-          <div class="step-num">03</div>
-          <h3>You see patients. We scale.</h3>
-          <p>We monitor weekly, kill what doesn't convert, double down on what does, and send a Friday performance report — no agency jargon, just numbers.</p>
+      </button>
+
+      <!-- 02 Connect -->
+      <button class="expand-panel" data-i="1" data-active="false" role="tab" aria-label="Step 02 — Connect">
+        <div class="expand-panel-header">
+          <span class="expand-panel-num">Step 02</span>
+          <span class="expand-panel-pip"></span>
+          <span class="expand-panel-label">Connect</span>
+          <div class="expand-panel-illu">
+            <svg viewBox="0 0 200 200" fill="none" aria-hidden="true">
+              <!-- Incoming bubble (left) -->
+              <path d="M24 50c0-5 4-9 9-9h66c5 0 9 4 9 9v22c0 5-4 9-9 9H54l-16 14V50z" fill="#fff" stroke="#3a2a22" stroke-width="2.5"/>
+              <rect x="40" y="56" width="50" height="3" rx="1.5" fill="#3a2a22" opacity="0.7"/>
+              <rect x="40" y="64" width="36" height="3" rx="1.5" fill="#3a2a22" opacity="0.45"/>
+              <!-- Outgoing bubble (right, brand) -->
+              <path d="M96 108c0-5 4-9 9-9h62c5 0 9 4 9 9v22c0 5-4 9-9 9l14 14v-14h-76c-5 0-9-4-9-9v-22z" fill="#D38085" stroke="#3a2a22" stroke-width="2.5"/>
+              <rect x="112" y="114" width="46" height="3" rx="1.5" fill="#fff"/>
+              <rect x="112" y="122" width="32" height="3" rx="1.5" fill="#fff" opacity="0.85"/>
+              <!-- Mini reply bubble bottom-left with dots -->
+              <rect x="22" y="146" width="50" height="22" rx="9" fill="#fff" stroke="#3a2a22" stroke-width="2"/>
+              <circle cx="36" cy="157" r="2.5" fill="#3a2a22"/>
+              <circle cx="46" cy="157" r="2.5" fill="#3a2a22" opacity="0.7"/>
+              <circle cx="56" cy="157" r="2.5" fill="#3a2a22" opacity="0.4"/>
+            </svg>
+          </div>
         </div>
-      </div>
+        <div class="expand-panel-body">
+          <h3>A real conversation starts — instantly.</h3>
+          <p>The moment they tap your ad, they're in a warm, two-way conversation. Their first questions get answered within seconds.</p>
+          <div class="expand-panel-meta">
+            <span class="expand-panel-chip"><span class="expand-panel-chip-dot"></span>Sub-60 second reply</span>
+            <span class="expand-panel-chip"><span class="expand-panel-chip-dot"></span>On-brand voice</span>
+          </div>
+        </div>
+      </button>
+
+      <!-- 03 Qualify -->
+      <button class="expand-panel" data-i="2" data-active="false" role="tab" aria-label="Step 03 — Qualify">
+        <div class="expand-panel-header">
+          <span class="expand-panel-num">Step 03</span>
+          <span class="expand-panel-pip"></span>
+          <span class="expand-panel-label">Qualify</span>
+          <div class="expand-panel-illu">
+            <svg viewBox="0 0 200 200" fill="none" aria-hidden="true">
+              <!-- Shield -->
+              <path d="M100 24l54 22v40c0 36-24 60-54 74-30-14-54-38-54-74V46l54-22z" fill="#fff" stroke="#3a2a22" stroke-width="2.5"/>
+              <path d="M100 24l54 22v40c0 36-24 60-54 74V24z" fill="#A788B5" opacity="0.45"/>
+              <!-- Big check -->
+              <path d="M74 102l18 18 36-36" stroke="#3a2a22" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <!-- Sparkles -->
+              <path d="M156 36l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" fill="#A788B5"/>
+              <path d="M44 144l1.6 4.8L50 150l-4.4 1.4L44 156l-1.6-4.6L38 150l4.4-1.6z" fill="#3a2a22" opacity="0.55"/>
+              <circle cx="168" cy="84" r="3" fill="#A788B5"/>
+              <circle cx="32" cy="68" r="2.5" fill="#3a2a22" opacity="0.5"/>
+            </svg>
+          </div>
+        </div>
+        <div class="expand-panel-body">
+          <h3>We confirm they're a fit for you.</h3>
+          <p>A few thoughtful questions and we know whether this person is right for your service. Only the warm, ready ones move forward.</p>
+          <div class="expand-panel-meta">
+            <span class="expand-panel-chip"><span class="expand-panel-chip-dot"></span>92% qualification rate</span>
+            <span class="expand-panel-chip"><span class="expand-panel-chip-dot"></span>No cold leads</span>
+          </div>
+        </div>
+      </button>
+
+      <!-- 04 Book -->
+      <button class="expand-panel" data-i="3" data-active="false" role="tab" aria-label="Step 04 — Book">
+        <div class="expand-panel-header">
+          <span class="expand-panel-num">Step 04</span>
+          <span class="expand-panel-pip"></span>
+          <span class="expand-panel-label">Book</span>
+          <div class="expand-panel-illu">
+            <svg viewBox="0 0 200 200" fill="none" aria-hidden="true">
+              <!-- Calendar body -->
+              <rect x="26" y="38" width="148" height="138" rx="12" fill="#fff" stroke="#3a2a22" stroke-width="2.5"/>
+              <!-- Calendar header -->
+              <rect x="26" y="38" width="148" height="32" rx="12" fill="#8A9DC5"/>
+              <rect x="26" y="58" width="148" height="12" fill="#8A9DC5"/>
+              <!-- Calendar rings -->
+              <rect x="56" y="26" width="6" height="22" rx="3" fill="#3a2a22"/>
+              <rect x="138" y="26" width="6" height="22" rx="3" fill="#3a2a22"/>
+              <!-- Grid dots -->
+              <g fill="#3a2a22" opacity="0.45">
+                <circle cx="52" cy="92" r="3"/><circle cx="80" cy="92" r="3"/>
+                <circle cx="108" cy="92" r="3"/><circle cx="136" cy="92" r="3"/><circle cx="164" cy="92" r="3"/>
+                <circle cx="52" cy="118" r="3"/><circle cx="80" cy="118" r="3"/>
+                <circle cx="136" cy="118" r="3"/><circle cx="164" cy="118" r="3"/>
+                <circle cx="52" cy="144" r="3"/><circle cx="80" cy="144" r="3"/>
+                <circle cx="108" cy="144" r="3"/><circle cx="164" cy="144" r="3"/>
+              </g>
+              <!-- Highlighted booked slot -->
+              <rect x="98" y="108" width="22" height="22" rx="6" fill="#E29B7E"/>
+              <path d="M104 119l4 4 8-8" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <!-- Today pill -->
+              <rect x="38" y="50" width="44" height="8" rx="4" fill="#fff" opacity="0.7"/>
+            </svg>
+          </div>
+        </div>
+        <div class="expand-panel-body">
+          <h3>They reserve a spot — on their own.</h3>
+          <p>Qualified patients land on your booking page and pick the time that works for them. Your calendar fills itself.</p>
+          <div class="expand-panel-meta">
+            <span class="expand-panel-chip"><span class="expand-panel-chip-dot"></span>Self-serve, 24/7</span>
+            <span class="expand-panel-chip"><span class="expand-panel-chip-dot"></span>Synced to your calendar</span>
+          </div>
+        </div>
+      </button>
+
+      <!-- 05 Confirm -->
+      <button class="expand-panel" data-i="4" data-active="false" role="tab" aria-label="Step 05 — Confirm">
+        <div class="expand-panel-header">
+          <span class="expand-panel-num">Step 05</span>
+          <span class="expand-panel-pip"></span>
+          <span class="expand-panel-label">Confirm</span>
+          <div class="expand-panel-illu">
+            <svg viewBox="0 0 200 200" fill="none" aria-hidden="true">
+              <!-- Phone handset -->
+              <path d="M152 124v18c0 7-6 13-13 12a112 112 0 0 1-47-17 110 110 0 0 1-33-33 112 112 0 0 1-17-47c-1-7 5-13 12-13h18c6 0 12 5 12 11a70 70 0 0 0 4 14c1 4 0 8-3 11l-8 8a96 96 0 0 0 36 36l8-8c3-3 7-4 11-3a70 70 0 0 0 14 4c6 0 11 6 11 12z" fill="#7188B8" stroke="#3a2a22" stroke-width="2.5"/>
+              <!-- Pulse rings on top right -->
+              <circle cx="148" cy="56" r="7" fill="#fff" stroke="#3a2a22" stroke-width="2.5"/>
+              <circle cx="148" cy="56" r="16" stroke="#7188B8" stroke-width="2" opacity="0.65"/>
+              <circle cx="148" cy="56" r="26" stroke="#7188B8" stroke-width="2" opacity="0.35"/>
+              <circle cx="148" cy="56" r="36" stroke="#7188B8" stroke-width="2" opacity="0.18"/>
+              <!-- Small notification dot top-left -->
+              <circle cx="44" cy="50" r="4" fill="#E29B7E"/>
+            </svg>
+          </div>
+        </div>
+        <div class="expand-panel-body">
+          <h3>You make the final human call.</h3>
+          <p>Your team's only job is the warm handoff — a quick call to a patient who's already raised their hand, qualified, and booked.</p>
+          <div class="expand-panel-meta">
+            <span class="expand-panel-chip"><span class="expand-panel-chip-dot"></span>Warm patients only</span>
+            <span class="expand-panel-chip"><span class="expand-panel-chip-dot"></span>Real human moment</span>
+          </div>
+        </div>
+      </button>
+
     </div>
   </section>
 
-  <!-- RESULTS -->
-  <section class="section results" id="results">
-    <div class="container">
-      <div class="results-header">
-        <span class="section-label fade-up">Real Results</span>
-        <h2 class="fade-up">What clinics see<br><em>in their first 90 days.</em></h2>
-        <p class="fade-up">These aren't projections. These are results from clinics who made the same decision you're considering right now.</p>
-      </div>
-      <div class="results-grid">
-        <div class="result-card fade-up">
-          <div class="result-stat">3.2x</div>
-          <div class="result-desc">Increase in new patient bookings within the first 60 days of going live. From 14 monthly to 45+ — without adding staff or changing pricing.</div>
-          <div class="result-attribution">
-            <div class="result-avatar">M</div>
-            <div>
-              <div class="result-name">Dr. M., MD</div>
-              <div class="result-clinic">Integrative Wellness Center — Austin, TX</div>
-            </div>
-          </div>
-        </div>
-        <div class="result-card fade-up delay-1">
-          <div class="result-stat">91%</div>
-          <div class="result-desc">Show rate after implementing our confirmation system. Previously at 58% — now nearly every booked patient arrives, prepared and ready to commit.</div>
-          <div class="result-attribution">
-            <div class="result-avatar">K</div>
-            <div>
-              <div class="result-name">Dr. K., DO</div>
-              <div class="result-clinic">Peptide &amp; Hormone Clinic — Miami, FL</div>
-            </div>
-          </div>
-        </div>
-        <div class="result-card fade-up">
-          <div class="result-stat">47</div>
-          <div class="result-desc">New qualified patients added per month on average — without expanding hours, hiring, or changing service mix. The system books, the team treats.</div>
-          <div class="result-attribution">
-            <div class="result-avatar">R</div>
-            <div>
-              <div class="result-name">Dr. R., NP</div>
-              <div class="result-clinic">Longevity &amp; IV Therapy — Denver, CO</div>
-            </div>
-          </div>
-        </div>
-        <div class="result-card fade-up delay-1">
-          <div class="result-stat">30d</div>
-          <div class="result-desc">From sign-off to first qualified patient in the chair. We run fast. Most agencies spend the first two months in "discovery." We spend them in market.</div>
-          <div class="result-attribution">
-            <div class="result-avatar">P</div>
-            <div>
-              <div class="result-name">Dr. P., MD</div>
-              <div class="result-clinic">Anti-Aging &amp; Aesthetics — Dallas, TX</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- LEAD MAGNET -->
   <section class="section lead-magnet">
@@ -1584,7 +3277,7 @@
       <div class="lead-magnet-inner">
         <div class="lead-magnet-copy">
           <span class="section-label fade-up">Free Resource</span>
-          <h2 class="fade-up">The Wellness Clinic<br><em>Patient Growth Checklist.</em></h2>
+          <h2 class="fade-up">The Wellness Clinic<br>Patient Growth Checklist.</h2>
           <p class="fade-up">12 things every high-growth wellness clinic has locked in before they scale. Most clinics are missing at least 6. This checklist has helped clinics identify exactly where their patient pipeline is leaking — and plug it.</p>
           <div class="lead-magnet-cta fade-up">
             <button class="btn-primary" onclick="openModal()">View the Checklist →</button>
@@ -1627,7 +3320,7 @@
     <div class="container">
       <div class="faq-header">
         <span class="section-label fade-up">FAQ</span>
-        <h2 class="fade-up">Questions we hear<br><em>before clinics sign on.</em></h2>
+        <h2 class="fade-up">Questions we hear<br>before clinics sign on.</h2>
       </div>
       <div class="faq-list">
         <div class="faq-item fade-up">
@@ -1635,7 +3328,7 @@
             <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
           <div class="faq-a">
-            <div class="faq-a-inner">We work exclusively with wellness-focused medical practices — peptide clinics, hormone optimization, IV therapy, anti-aging, integrative medicine, and longevity centers. We don't work with general practice or urgent care. Our system is purpose-built for high-ticket, outcome-driven wellness services.</div>
+            <div class="faq-a-inner">We work with wellness-focused practices — peptide clinics, hormone optimization, IV therapy, anti-aging, integrative medicine, longevity centers, med spas, and most cash-pay wellness services. If your clinic helps people feel and live better, there's a good chance we can build a pipeline for you.</div>
           </div>
         </div>
         <div class="faq-item fade-up delay-1">
@@ -1659,7 +3352,7 @@
             <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
           <div class="faq-a">
-            <div class="faq-a-inner">Most agencies deliver leads. We deliver patients in your chair. The difference is the middle layer — our automated nurture, qualification, and confirmation systems that turn a lead into a kept appointment. We also specialize exclusively in wellness medicine, which means we understand your compliance landscape, your patient psychology, and what actually converts in this space.</div>
+            <div class="faq-a-inner">Most agencies deliver leads. We deliver patients in your chair. The difference is the middle layer — our automated nurture, qualification, and confirmation systems that turn a lead into a kept appointment. We focus on wellness medicine, so we understand your compliance landscape, your patient psychology, and what actually converts in this space.</div>
           </div>
         </div>
         <div class="faq-item fade-up delay-1">
@@ -1667,7 +3360,7 @@
             <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
           <div class="faq-a">
-            <div class="faq-a-inner">A 90-day onboarding to get your system live and producing — after that, no long-term contracts. We share specific terms on the audit call once we've reviewed your setup and confirmed fit. We're not the cheapest option. We're the one that actually works.</div>
+            <div class="faq-a-inner">About three weeks to get your system live and producing — after that, no long-term contracts. We share specific terms on the audit call once we've reviewed your setup and confirmed fit. We're not the cheapest option. We're the one that actually works.</div>
           </div>
         </div>
       </div>
@@ -1679,7 +3372,7 @@
     <div class="final-cta-bg"></div>
     <div class="container">
       <span class="section-label fade-up" style="display:block;">Free Audit — Limited Slots</span>
-      <h2 class="fade-up">Ready to fill your calendar<br>with <em>real patients?</em></h2>
+      <h2 class="fade-up">Ready to fill your calendar<br>with real patients?</h2>
       <p class="fade-up">Start with a free audit. We'll review your current marketing setup, identify exactly where your patient pipeline is leaking, and show you what your growth system would look like — at no cost.</p>
       <div class="cta-actions fade-up">
         <button class="btn-primary" onclick="scrollToForm()" style="font-size:17px; padding:18px 40px;">Get My Free Audit →</button>
@@ -1708,7 +3401,7 @@
       <button class="modal-close" onclick="closeModal()">&times;</button>
       <div class="modal-body">
       <div class="modal-badge"><span class="badge"><span class="badge-dot"></span>Free Resource</span></div>
-      <h2 style="font-family:'Fraunces',serif; font-weight:500;">The 12-Point Wellness Clinic<br>Patient Growth Checklist</h2>
+      <h2 style="font-family:'Instrument Serif',serif; font-weight:400;">The 12-Point Wellness Clinic<br>Patient Growth Checklist</h2>
       <p>Every high-performing wellness clinic has these locked in before they scale. Audit yourself honestly — most clinics are missing at least 6.</p>
       <div class="modal-checklist">
         <div class="modal-check"><div class="modal-check-num">1</div><div class="modal-check-text"><strong>Defined Ideal Patient Avatar</strong>5+ qualifying attributes that separate your best patients from time-wasters.</div></div>
@@ -1726,7 +3419,7 @@
       </div>
       </div><!-- /.modal-body -->
       <div class="modal-footer">
-        <p>Missing more than 3 of these? <em>That's where your growth is stuck.</em></p>
+        <p>Missing more than 3 of these? That's where your growth is stuck.</p>
         <button class="btn-primary" style="width:100%; margin-top:16px; justify-content:center;" onclick="closeModal(); scrollToForm();">Let's Fix It Together →</button>
       </div>
     </div>
@@ -1769,110 +3462,10 @@
     }, { threshold: 0.3 });
     document.querySelectorAll('.chart-bars').forEach(el => barObserver.observe(el));
 
-    // Scroll to form
+    // Scroll to form (HoneyBook widget)
     function scrollToForm() {
       document.getElementById('hero-form-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
-      setTimeout(() => document.getElementById('firstName').focus(), 600);
     }
-
-    // Form
-    const form = document.getElementById('heroForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const formFields = document.getElementById('formFields');
-    const formSuccess = document.getElementById('formSuccess');
-
-    // For custom-select fields, the visible target is the trigger button
-    function errorTarget(id) {
-      const el = document.getElementById(id);
-      const wrap = el.closest('.custom-select');
-      return wrap ? wrap.querySelector('.custom-select-trigger') : el;
-    }
-    function showError(id, errId, msg) {
-      errorTarget(id).classList.add('error');
-      const e = document.getElementById(errId);
-      e.textContent = msg; e.style.display = 'block';
-    }
-    function clearError(id, errId) {
-      errorTarget(id).classList.remove('error');
-      document.getElementById(errId).style.display = 'none';
-    }
-    ['firstName','clinicName','phone','email','newPatients'].forEach(id => {
-      const el = document.getElementById(id);
-      el.addEventListener('input', () => clearError(id, id + 'Error'));
-      el.addEventListener('change', () => clearError(id, id + 'Error'));
-    });
-
-    // Custom dropdown wiring
-    document.querySelectorAll('.custom-select').forEach(sel => {
-      const trigger = sel.querySelector('.custom-select-trigger');
-      const valueEl = sel.querySelector('.custom-select-value');
-      const options = sel.querySelectorAll('.custom-select-options li');
-      const hidden  = sel.querySelector('input[type="hidden"]');
-
-      const close = () => {
-        sel.classList.remove('open');
-        trigger.setAttribute('aria-expanded', 'false');
-      };
-      const open = () => {
-        document.querySelectorAll('.custom-select.open').forEach(o => {
-          if (o !== sel) o.classList.remove('open');
-        });
-        sel.classList.add('open');
-        trigger.setAttribute('aria-expanded', 'true');
-      };
-
-      trigger.addEventListener('click', e => {
-        e.stopPropagation();
-        sel.classList.contains('open') ? close() : open();
-      });
-
-      options.forEach(opt => {
-        opt.addEventListener('click', () => {
-          options.forEach(o => o.classList.remove('is-active'));
-          opt.classList.add('is-active');
-          hidden.value = opt.dataset.value;
-          valueEl.textContent = opt.textContent;
-          trigger.classList.remove('is-placeholder');
-          hidden.dispatchEvent(new Event('change', { bubbles: true }));
-          close();
-        });
-      });
-
-      // Click outside closes
-      document.addEventListener('click', e => {
-        if (!sel.contains(e.target)) close();
-      });
-
-      // Escape closes
-      document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && sel.classList.contains('open')) close();
-      });
-    });
-    function validPhone(p) {
-      return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(p.replace(/\s/g,''));
-    }
-    function validEmail(e) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
-    }
-    form.addEventListener('submit', function(e) {
-      e.preventDefault(); let valid = true;
-      const fn = document.getElementById('firstName').value.trim();
-      const cn = document.getElementById('clinicName').value.trim();
-      const ph = document.getElementById('phone').value.trim();
-      const em = document.getElementById('email').value.trim();
-      const np = document.getElementById('newPatients').value;
-      ['firstName','clinicName','phone','email','newPatients'].forEach(id => clearError(id, id + 'Error'));
-      if (!fn) { showError('firstName','firstNameError','Please enter your first name.'); valid = false; }
-      if (!cn) { showError('clinicName','clinicNameError','Please enter your clinic name.'); valid = false; }
-      if (!ph || !validPhone(ph)) { showError('phone','phoneError','Please enter a valid phone number.'); valid = false; }
-      if (!em || !validEmail(em)) { showError('email','emailError','Please enter a valid email address.'); valid = false; }
-      if (!np) { showError('newPatients','newPatientsError','Please select a range.'); valid = false; }
-      if (!valid) return;
-      submitBtn.disabled = true; submitBtn.textContent = 'Submitting…';
-      const data = { firstName: fn, clinicName: cn, phone: ph, email: em, newPatients: np, timestamp: new Date().toISOString(), source: 'INVEXA Growth Landing Page — Hero Form' };
-      console.log('[INVEXA] New lead submission:', data);
-      setTimeout(() => { formFields.classList.add('hidden'); formSuccess.classList.add('show'); formSuccess.focus(); }, 800);
-    });
 
     // FAQ accordion
     document.querySelectorAll('.faq-q').forEach(btn => {
@@ -1954,6 +3547,144 @@
     }
     modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && modalOverlay.classList.contains('open')) closeModal(); });
+
+    /* ===== Scroll-driven 3D tilt reveal (Aceternity ContainerScroll vanilla port) ===== */
+    (function initScrollTilt(){
+      const tiltCards = document.querySelectorAll('[data-scroll-tilt]');
+      if (!tiltCards.length) return;
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) {
+        tiltCards.forEach(c => { c.style.transform = 'none'; });
+        return;
+      }
+
+      function update() {
+        const vh = window.innerHeight;
+        const isMobile = window.innerWidth <= 768;
+        const startRotate = isMobile ? 14 : 20;
+        const startScale = isMobile ? 0.86 : 1.05;
+        const endScale = isMobile ? 0.96 : 1.0;
+
+        tiltCards.forEach(card => {
+          const rect = card.getBoundingClientRect();
+          // progress 0 -> when card top is at bottom of viewport
+          //          1 -> when card top has scrolled past 30% of viewport from top
+          const startY = vh;
+          const endY = vh * 0.25;
+          let progress = (startY - rect.top) / (startY - endY);
+          progress = Math.max(0, Math.min(1, progress));
+
+          const rotate = startRotate * (1 - progress);
+          const scale = startScale + (endScale - startScale) * progress;
+          card.style.transform = `rotateX(${rotate.toFixed(2)}deg) scale(${scale.toFixed(3)})`;
+        });
+      }
+
+      let ticking = false;
+      function onScroll() {
+        if (!ticking) {
+          requestAnimationFrame(() => { update(); ticking = false; });
+          ticking = true;
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      update();
+    })();
+
+    /* ===== Pipeline line draw-on-scroll (legacy) ===== */
+    (function initFlowLine(){
+      const line = document.getElementById('flowLine');
+      if (!line) return;
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            line.classList.add('in-view');
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+      io.observe(line);
+    })();
+
+    /* ===== Hover-expand pipeline strip ===== */
+    (function initExpandStrip(){
+      const strip = document.querySelector('[data-expand-strip]');
+      if (!strip) return;
+      const panels = Array.from(strip.querySelectorAll('.expand-panel'));
+      if (!panels.length) return;
+
+      function setActive(idx) {
+        panels.forEach((p, i) => {
+          const active = i === idx;
+          p.dataset.active = active ? 'true' : 'false';
+          p.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+      }
+      panels.forEach((p, i) => {
+        p.addEventListener('mouseenter', () => setActive(i));
+        p.addEventListener('focus', () => setActive(i));
+        p.addEventListener('click', () => setActive(i));
+      });
+      strip.addEventListener('keydown', (e) => {
+        const current = panels.findIndex(p => p.dataset.active === 'true');
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          const next = (current + 1) % panels.length;
+          setActive(next);
+          panels[next].focus();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          const prev = (current - 1 + panels.length) % panels.length;
+          setActive(prev);
+          panels[prev].focus();
+        }
+      });
+    })();
+
+    /* ===== Stacking cards — sticky-scroll (legacy, harmless if markup absent) ===== */
+    (function initStackCards(){
+      const section = document.querySelector('.stack-cards');
+      if (!section) return;
+      const cards = Array.from(section.querySelectorAll('.stack-card'));
+      const inners = cards.map(c => c.querySelector('.stack-card-inner'));
+      if (!cards.length) return;
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) return;
+
+      const total = cards.length;
+
+      function update() {
+        const rect = section.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const sectionScroll = rect.height - vh;
+        if (sectionScroll <= 0) return;
+        const scrolled = Math.max(0, -rect.top);
+        const progress = Math.max(0, Math.min(1, scrolled / sectionScroll));
+
+        cards.forEach((card, i) => {
+          // Each card scales from 1 down to (1 - (total-i)*0.04) across its scroll range
+          const targetScale = 1 - (total - i) * 0.04;
+          const rangeStart = i / total;
+          const rangeEnd = 1;
+          const local = Math.max(0, Math.min(1, (progress - rangeStart) / (rangeEnd - rangeStart)));
+          const scale = 1 + (targetScale - 1) * local;
+          const offsetY = i * 14;
+          inners[i].style.transform = `translateY(${offsetY}px) scale(${scale.toFixed(3)})`;
+        });
+      }
+
+      let ticking = false;
+      function onScroll() {
+        if (!ticking) {
+          requestAnimationFrame(() => { update(); ticking = false; });
+          ticking = true;
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      update();
+    })();
   </script>
 
   <!-- INVEXA Light Shader Hero Background -->
