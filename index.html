@@ -886,10 +886,19 @@
     }
     .problem-slide:active { cursor: grabbing; }
     @media (max-width: 768px) {
-      .problem-slide { flex-basis: 280px; }
-      .problem-track { gap: 16px; padding: 8px 20px; }
-      .problem-carousel-head { padding: 0 20px; flex-direction: column; align-items: flex-start; margin-bottom: 28px; }
+      .problem-slide {
+        flex-basis: 78vw;
+        max-width: 320px;
+        aspect-ratio: 4 / 5;  /* taller on mobile so content fits without clipping */
+      }
+      .problem-track { gap: 14px; padding: 8px 24px; }
+      .problem-carousel-head { padding: 0 24px; flex-direction: column; align-items: flex-start; margin-bottom: 28px; }
       .problem-carousel-nav { align-self: flex-end; }
+      /* Slide content — tighter type, ensures chip + title + desc all fit */
+      .problem-slide-content { padding: 24px 22px; }
+      .problem-slide-tag { margin-bottom: 12px; font-size: 10px; letter-spacing: 0.12em; padding: 3px 8px 3px 6px; }
+      .problem-slide h3 { font-size: 22px; margin-bottom: 8px; line-height: 1.1; }
+      .problem-slide p { font-size: 12.5px; line-height: 1.45; }
     }
     .problem-slide-img {
       position: absolute;
@@ -987,6 +996,11 @@
       padding: 0;
       /* match the image's dominant tone so any peek-through blends */
       background: #1a1410;
+    }
+    /* Block browser-native pan/scroll on this section while the JS lock is engaged */
+    .solution-scroll[data-locked="true"] {
+      touch-action: none;
+      overscroll-behavior: contain;
     }
     /* Wrap is barely taller than sticky — minimal post-lock runway so no gray strip */
     .scroll-expand-wrap {
@@ -1492,6 +1506,9 @@
       perspective-origin: 50% 0%;
       background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
       overflow: hidden;
+    }
+    @media (max-width: 768px) {
+      .hero-showcase { padding: 8px 0 48px; }
     }
     .hero-showcase-glow {
       position: absolute;
@@ -2131,6 +2148,24 @@
     @media (max-width: 600px) {
       .crm-body { grid-template-columns: 44px 1fr; }
       .crm-leads { display: none; }
+      /* Scale the whole CRM down on small screens so it fits properly inside the iPad frame */
+      .crm-app {
+        zoom: 0.82;
+        font-size: 11px;
+      }
+      .crm-msg { font-size: 10.5px; padding: 6px 9px; }
+      .crm-chat-info-name { font-size: 12px; }
+      .crm-chat-info-meta { font-size: 10px; }
+      .crm-chat-messages { padding: 10px 12px; gap: 6px; }
+      .crm-chat-head { padding: 8px 10px; gap: 8px; }
+      .crm-chat-avatar { width: 30px; height: 30px; }
+      .crm-chat-action { padding: 5px 8px; font-size: 10.5px; }
+      .crm-topbar { padding: 0 10px; grid-template-columns: 1fr auto; }
+      .crm-logo-wrap img { height: 22px; }
+      .crm-iconbtn { width: 28px; height: 28px; }
+      .crm-iconbtn svg { width: 13px; height: 13px; }
+      .crm-user-avatar { width: 26px; height: 26px; }
+      .crm-ai-pill { font-size: 8px; padding: 1px 5px; }
     }
     .how-visual {
       margin-top: 80px;
@@ -2773,13 +2808,25 @@
       }
       .expand-panel {
         flex: 1 1 auto;
-        height: 360px;
+        height: auto;
       }
       .expand-panel[data-active="true"] { flex: 1 1 auto; }
       .expand-panel-label { display: none; }
+      .expand-panel-header { height: 220px; }
       .expand-panel-illu { opacity: 1; transform: none; width: 36%; max-width: 160px; }
-      .expand-panel-body { opacity: 1; transform: none; padding: 16px 22px 22px; }
-      .expand-panel-body p { font-size: 13.5px; }
+      /* Body flows naturally below header — no cut-off chips */
+      .expand-panel-body {
+        position: relative;
+        inset: auto;
+        opacity: 1;
+        transform: none;
+        height: auto;
+        padding: 18px 22px 22px;
+      }
+      .expand-panel-body h3 { font-size: 19px; margin-bottom: 8px; }
+      .expand-panel-body p { font-size: 13px; margin-bottom: 10px; }
+      .expand-panel-meta { margin-top: 4px; gap: 5px; }
+      .expand-panel-chip { font-size: 10.5px; padding: 3px 8px 3px 7px; }
     }
 
     /* ============================================================
@@ -3614,11 +3661,6 @@
           <a href="#how" class="btn-secondary">See how it works</a>
         </div>
 
-        <!-- LIVE ACTIVITY -->
-        <div class="hero-activity fade-up visible delay-4" style="margin-left:auto; margin-right:auto;">
-          <div class="activity-pulse"></div>
-          <span class="activity-text"><strong id="activity-clinic">Peak Wellness</strong> booked an audit · <span id="activity-time">2 min ago</span></span>
-        </div>
       </div>
     </div>
   </section>
@@ -4479,41 +4521,6 @@
       });
     });
 
-    // LIVE ACTIVITY — rotating clinics + spots counter
-    const activityClinics = [
-      { name: 'Peak Wellness', time: '2 min ago' },
-      { name: 'Vitality MD', time: '7 min ago' },
-      { name: 'Thrive Med Spa', time: '14 min ago' },
-      { name: 'Pure Aesthetics', time: '23 min ago' },
-      { name: 'Lumina Clinic', time: '38 min ago' },
-      { name: 'Renew Wellness', time: '52 min ago' },
-      { name: 'Aspire Med', time: '1 hour ago' },
-      { name: 'Glow Aesthetics', time: '1 hour ago' },
-      { name: 'Bloom Hormone Clinic', time: '2 hours ago' },
-      { name: 'Vitality Health', time: '2 hours ago' },
-      { name: 'Refine Med Spa', time: '3 hours ago' },
-      { name: 'Apex Wellness', time: '4 hours ago' },
-    ];
-    let activityIdx = 0;
-    const activityClinicEl = document.getElementById('activity-clinic');
-    const activityTimeEl = document.getElementById('activity-time');
-    function rotateActivity() {
-      activityIdx = (activityIdx + 1) % activityClinics.length;
-      const next = activityClinics[activityIdx];
-      activityClinicEl.style.opacity = '0';
-      activityTimeEl.style.opacity = '0';
-      setTimeout(() => {
-        activityClinicEl.textContent = next.name;
-        activityTimeEl.textContent = next.time;
-        activityClinicEl.style.opacity = '1';
-        activityTimeEl.style.opacity = '1';
-      }, 300);
-    }
-    setInterval(rotateActivity, 5000);
-    // Add transition
-    activityClinicEl.style.transition = 'opacity 0.3s ease';
-    activityTimeEl.style.transition = 'opacity 0.3s ease';
-
     // Spots counter — slow incremental progression based on time
     function updateSpots() {
       const els = [
@@ -4602,7 +4609,7 @@
       io.observe(line);
     })();
 
-    /* ===== Solution scroll-LOCK crossfade: wheel/touch drives the empty→full transition. Scroll is intercepted until progress = 1. ===== */
+    /* ===== Solution scroll-LOCK crossfade: engage flag + snap-back failsafe ===== */
     (function initSolutionScroll(){
       const section = document.querySelector('[data-scroll-expand]');
       if (!section) return;
@@ -4616,6 +4623,8 @@
 
       let progress = 0;
       let touchStartY = 0;
+      let isEngaged = false;
+      let lockedScrollY = 0;
 
       function setProgress(p) {
         progress = Math.max(0, Math.min(1, p));
@@ -4623,40 +4632,72 @@
         if (hint) hint.style.setProperty('--hint-opacity', Math.max(0, 1 - progress * 1.5).toFixed(2));
       }
 
-      function stickyActive() {
-        // Sticky is engaged when wrap.top has reached 0 AND wrap.bottom is still below the sticky inner's full height (viewport height)
+      function engageIfNeeded() {
+        if (isEngaged) return;
         const rect = wrap.getBoundingClientRect();
-        return rect.top <= 0 && rect.bottom > window.innerHeight;
+        // Engage when the wrap's top hits the viewport top (within a small threshold)
+        if (rect.top <= 4 && rect.bottom > 100) {
+          isEngaged = true;
+          lockedScrollY = window.scrollY + rect.top;
+          document.documentElement.style.overscrollBehaviorY = 'none';
+          document.body.style.overscrollBehaviorY = 'none';
+          section.setAttribute('data-locked', 'true');
+        }
       }
 
-      function shouldLock(deltaY) {
-        if (!stickyActive()) return false;
-        if (deltaY > 0 && progress < 1) return true;   // scrolling down — keep locked until done
-        if (deltaY < 0 && progress > 0) return true;   // scrolling up — let user rewind
+      function tryRelease(direction) {
+        if (!isEngaged) return true;
+        if (direction === 'down' && progress >= 0.995) {
+          isEngaged = false;
+          section.removeAttribute('data-locked');
+          document.documentElement.style.overscrollBehaviorY = '';
+          document.body.style.overscrollBehaviorY = '';
+          return true;
+        }
+        if (direction === 'up' && progress <= 0.005) {
+          isEngaged = false;
+          section.removeAttribute('data-locked');
+          document.documentElement.style.overscrollBehaviorY = '';
+          document.body.style.overscrollBehaviorY = '';
+          return true;
+        }
         return false;
       }
 
       function onWheel(e) {
-        if (shouldLock(e.deltaY)) {
-          e.preventDefault();
-          setProgress(progress + e.deltaY * 0.0014);
-        }
+        engageIfNeeded();
+        if (!isEngaged) return;
+        const direction = e.deltaY > 0 ? 'down' : 'up';
+        if (tryRelease(direction)) return;
+        e.preventDefault();
+        setProgress(progress + e.deltaY * 0.0014);
       }
 
       function onTouchStart(e) { touchStartY = e.touches[0].clientY; }
       function onTouchMove(e) {
         const touchY = e.touches[0].clientY;
         const deltaY = touchStartY - touchY;
-        if (shouldLock(deltaY)) {
-          e.preventDefault();
-          setProgress(progress + deltaY * 0.0055);
-          touchStartY = touchY;
+        engageIfNeeded();
+        if (!isEngaged) return;
+        const direction = deltaY > 0 ? 'down' : 'up';
+        if (tryRelease(direction)) return;
+        if (Math.abs(deltaY) < 2) return;
+        e.preventDefault();
+        setProgress(progress + deltaY * 0.0055);
+        touchStartY = touchY;
+      }
+
+      // Failsafe: while engaged, force window scroll to stay at the locked Y
+      function onScroll() {
+        if (isEngaged && window.scrollY !== lockedScrollY) {
+          window.scrollTo({ top: lockedScrollY, behavior: 'instant' });
         }
       }
 
       window.addEventListener('wheel', onWheel, { passive: false });
       window.addEventListener('touchstart', onTouchStart, { passive: true });
       window.addEventListener('touchmove', onTouchMove, { passive: false });
+      window.addEventListener('scroll', onScroll, { passive: true });
 
       setProgress(0);
     })();
