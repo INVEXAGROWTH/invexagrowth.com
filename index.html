@@ -999,24 +999,6 @@
       /* match the image's dominant tone so any peek-through blends */
       background: #1a1410;
     }
-    /* Gradient fades at the top and bottom of the charcoal section so the transition into cream sections is soft, not a hard cut */
-    .solution-scroll::before,
-    .solution-scroll::after {
-      content: '';
-      position: absolute;
-      left: 0; right: 0;
-      height: 120px;
-      z-index: 3;
-      pointer-events: none;
-    }
-    .solution-scroll::before {
-      top: 0;
-      background: linear-gradient(to bottom, #FBFAF9 0%, rgba(251,250,249,0.55) 35%, rgba(26,20,16,0) 100%);
-    }
-    .solution-scroll::after {
-      bottom: 0;
-      background: linear-gradient(to top, #FBFAF9 0%, rgba(251,250,249,0.55) 35%, rgba(26,20,16,0) 100%);
-    }
     /* Block browser-native pan/scroll on this section while the JS lock is engaged */
     .solution-scroll[data-locked="true"] {
       touch-action: none;
