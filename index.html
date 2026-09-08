@@ -3459,40 +3459,475 @@
     }
 
     /* FOOTER */
-    .footer {
-      padding: 40px 32px;
+    /* ==================== MASSIVE-TYPE SERVICES STACK ==================== */
+    .mega-services {
       background: var(--cream);
-      border-top: 1px solid var(--gray-100);
+      padding: 96px 0 72px;
+      position: relative;
+      overflow: hidden;
+    }
+    .mega-services-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    .mega-services-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 32px;
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(40, 30, 25, 0.10);
+    }
+    @media (max-width: 768px) {
+      .mega-services-head { grid-template-columns: 1fr; align-items: start; gap: 20px; margin-bottom: 28px; }
+    }
+    .mega-services-head h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(36px, 5vw, 60px);
+      line-height: 1.02;
+      letter-spacing: -0.015em;
+      color: var(--charcoal);
+      font-weight: 400;
+      margin: 0;
+      max-width: 22ch;
+    }
+    .mega-services-head h2 em { color: #D9744D; font-style: italic; }
+    .mega-services-head .kicker {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #D9744D;
+      margin-bottom: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .mega-services-head .kicker::before {
+      content: '';
+      width: 28px; height: 1px;
+      background: #D9744D;
+    }
+    .mega-services-head-right { text-align: right; }
+    @media (max-width: 768px) { .mega-services-head-right { text-align: left; } }
+    .mega-services-head-right p {
+      font-size: 14.5px;
+      color: var(--gray-700);
+      line-height: 1.5;
+      max-width: 36ch;
+      margin: 0;
+    }
+    .mega-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .mega-item {
+      display: grid;
+      grid-template-columns: 60px 1fr auto;
+      gap: 32px;
+      align-items: center;
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(40, 30, 25, 0.10);
+      transition: padding-left 0.5s cubic-bezier(0.22, 1, 0.36, 1), color 0.5s ease;
+    }
+    .mega-item:last-child { border-bottom: none; }
+    @media (max-width: 768px) {
+      .mega-item { grid-template-columns: 40px 1fr; padding: 20px 0; gap: 18px; }
+      .mega-item-arrow { display: none; }
+    }
+    .mega-item-num {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      color: var(--gray-500);
+      font-variant-numeric: tabular-nums;
+    }
+    .mega-item-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(48px, 8vw, 108px);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: var(--charcoal);
+      transition: color 0.4s ease, letter-spacing 0.4s ease;
+      cursor: default;
+    }
+    .mega-item-title em {
+      font-style: italic;
+      color: #D9744D;
+    }
+    .mega-item:hover .mega-item-title {
+      color: #D9744D;
+    }
+    .mega-item:hover { padding-left: 24px; }
+    @media (max-width: 768px) { .mega-item:hover { padding-left: 0; } }
+    .mega-item-arrow {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1px solid rgba(40, 30, 25, 0.15);
+      display: grid;
+      place-items: center;
+      color: var(--charcoal);
+      transition: background 0.3s ease, color 0.3s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .mega-item:hover .mega-item-arrow {
+      background: #D9744D;
+      color: #fff;
+      border-color: #D9744D;
+      transform: translateX(8px);
+    }
+    .mega-item-arrow svg { width: 16px; height: 16px; }
+
+    /* ==================== INDUSTRIES — real names, no fake logos ==================== */
+    .industries-served {
+      background: var(--warm-white);
+      padding: 88px 32px 88px;
+      position: relative;
+      overflow: hidden;
+    }
+    .industries-served-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 72px;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .industries-served { padding: 64px 24px; }
+      .industries-served-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+    .industries-copy .kicker {
+      font-size: 10.5px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      color: #D9744D; margin-bottom: 16px; display: inline-flex; align-items: center; gap: 12px;
+    }
+    .industries-copy .kicker::before { content: ''; width: 28px; height: 1px; background: #D9744D; }
+    .industries-copy h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(32px, 4.4vw, 52px);
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+      color: var(--charcoal);
+      font-weight: 400;
+      margin: 0 0 18px;
+    }
+    .industries-copy h2 em { color: #D9744D; font-style: italic; }
+    .industries-copy p {
+      font-size: 15.5px;
+      line-height: 1.6;
+      color: var(--gray-700);
+      max-width: 38ch;
+      margin: 0 0 16px;
+    }
+    .industries-copy .footnote {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: var(--gray-700);
+      margin-top: 8px;
+      max-width: 40ch;
+    }
+    .industries-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .industries-pill {
+      padding: 10px 18px;
+      background: #fff;
+      border: 1px solid rgba(40, 30, 25, 0.08);
+      border-radius: 100px;
+      font-size: 14px;
+      color: var(--charcoal);
+      font-weight: 500;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px -2px rgba(40, 30, 25, 0.05);
+    }
+    .industries-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px -4px rgba(40, 30, 25, 0.10);
+      border-color: rgba(226, 155, 126, 0.4);
+    }
+    .industries-pill.hot {
+      background: linear-gradient(135deg, #F0C5B5 0%, #E29B7E 100%);
+      border-color: transparent;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* ==================== TEAM — monogram avatars, real names ==================== */
+    .team-section {
+      background: var(--cream);
+      padding: 96px 32px 88px;
+      position: relative;
+      overflow: hidden;
+    }
+    .team-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .team-head {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 56px;
+    }
+    .team-head .kicker {
+      font-size: 10.5px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      color: #D9744D; margin-bottom: 16px; justify-content: center;
+      display: inline-flex; align-items: center; gap: 12px;
+    }
+    .team-head .kicker::before,
+    .team-head .kicker::after { content: ''; width: 28px; height: 1px; background: #D9744D; }
+    .team-head h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(34px, 4.6vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+      color: var(--charcoal);
+      font-weight: 400;
+      margin: 0 0 16px;
+    }
+    .team-head h2 em { color: #D9744D; font-style: italic; }
+    .team-head p {
+      font-size: 15.5px;
+      line-height: 1.6;
+      color: var(--gray-700);
+      max-width: 52ch;
+      margin: 0 auto;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+    @media (max-width: 720px) {
+      .team-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .team-card {
+      background: #fff;
+      border: 1px solid rgba(40, 30, 25, 0.06);
+      border-radius: 20px;
+      padding: 40px 36px 36px;
+      box-shadow: 0 20px 40px -20px rgba(40, 30, 25, 0.10);
+      text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .team-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 30px 60px -22px rgba(40, 30, 25, 0.16);
+    }
+    .team-mono {
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #F0C5B5 0%, #E29B7E 100%);
+      display: grid; place-items: center;
+      font-family: 'Instrument Serif', serif;
+      font-size: 40px;
+      color: #fff;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+      box-shadow: 0 10px 24px -8px rgba(226, 155, 126, 0.5);
+    }
+    .team-card:nth-child(2) .team-mono {
+      background: linear-gradient(135deg, #A8B8D8 0%, #7E97C4 100%);
+      box-shadow: 0 10px 24px -8px rgba(168, 184, 216, 0.5);
+    }
+    .team-name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--charcoal);
+      margin: 0 0 4px;
+    }
+    .team-role {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #D9744D;
+      margin-bottom: 18px;
+    }
+    .team-bio {
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: var(--gray-700);
+      margin: 0;
+    }
+
+    /* ==================== FOOTER — full compliance ==================== */
+    .footer {
+      padding: 64px 32px 32px;
+      background: var(--charcoal);
+      color: rgba(251, 250, 249, 0.75);
     }
     .footer-inner {
       max-width: var(--max-w);
       margin: 0 auto;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    @media (max-width: 900px) { .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; } }
+    @media (max-width: 560px) { .footer-top { grid-template-columns: 1fr; gap: 28px; } }
+
+    .footer-brand-block .footer-logo-mark {
+      height: 34px;
+      width: auto;
+      display: block;
+      margin-bottom: 20px;
+      filter: brightness(0) invert(1);
+      opacity: 0.95;
+    }
+    .footer-tagline {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 20px;
+      line-height: 1.3;
+      color: rgba(251, 250, 249, 0.85);
+      margin-bottom: 22px;
+      max-width: 28ch;
+    }
+    .footer-tagline em { color: #F0C5B5; }
+    .footer-address {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: rgba(251, 250, 249, 0.60);
+      font-style: normal;
+      max-width: 30ch;
+    }
+    .footer-address strong { color: rgba(251, 250, 249, 0.85); font-weight: 500; display: block; margin-bottom: 4px; }
+
+    .footer-col-title {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(240, 197, 181, 0.85);
+      margin-bottom: 18px;
+    }
+    .footer-col-list {
+      list-style: none;
+      padding: 0; margin: 0;
+      display: flex; flex-direction: column;
+      gap: 11px;
+    }
+    .footer-col-list a {
+      font-size: 13.5px;
+      color: rgba(251, 250, 249, 0.72);
+      transition: color 0.15s ease;
+      line-height: 1.4;
+    }
+    .footer-col-list a:hover { color: #F0C5B5; }
+
+    .footer-disclaimer {
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 12px;
+      line-height: 1.55;
+      color: rgba(251, 250, 249, 0.50);
+      max-width: 90ch;
+    }
+    .footer-disclaimer strong { color: rgba(251, 250, 249, 0.72); font-weight: 500; }
+
+    .footer-bottom {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 16px;
+      padding-top: 28px;
+      font-size: 11.5px;
+      color: rgba(251, 250, 249, 0.45);
     }
-    .footer-logo {
-      display: inline-flex;
+    .footer-legal-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+    .footer-legal-links a {
+      color: rgba(251, 250, 249, 0.60);
+      font-size: 11.5px;
+      transition: color 0.15s ease;
+    }
+    .footer-legal-links a:hover { color: #F0C5B5; }
+
+    /* ==================== COOKIE CONSENT BANNER ==================== */
+    .cookie-banner {
+      position: fixed;
+      bottom: 20px; left: 20px; right: 20px;
+      max-width: 620px;
+      margin: 0 auto;
+      background: var(--charcoal);
+      color: rgba(251, 250, 249, 0.90);
+      border-radius: 14px;
+      padding: 22px 24px;
+      box-shadow: 0 30px 60px -20px rgba(0,0,0,0.35), 0 12px 28px -12px rgba(0,0,0,0.20);
+      z-index: 1000;
+      display: none;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
       align-items: center;
+      border: 1px solid rgba(255,255,255,0.10);
     }
-    .footer-logo-mark {
-      height: 28px;
-      width: auto;
-      display: block;
+    .cookie-banner.show { display: grid; animation: cookieRise 0.4s cubic-bezier(0.22,1,0.36,1) both; }
+    @keyframes cookieRise {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-    .footer-copy {
-      font-size: 13px;
-      color: var(--gray-500);
+    .cookie-banner-copy {
+      font-size: 13.5px;
+      line-height: 1.5;
     }
-    .footer-links { display: flex; gap: 24px; }
-    .footer-links a {
-      font-size: 13px;
-      color: var(--gray-500);
-      transition: color var(--transition);
+    .cookie-banner-copy strong { color: #F0C5B5; font-weight: 600; }
+    .cookie-banner-copy a {
+      color: #F0C5B5;
+      text-decoration: underline;
+      text-underline-offset: 2px;
     }
-    .footer-links a:hover { color: var(--charcoal); }
+    .cookie-banner-actions {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .cookie-btn {
+      padding: 9px 16px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+    .cookie-btn-decline {
+      background: transparent;
+      color: rgba(251, 250, 249, 0.70);
+      border-color: rgba(255,255,255,0.18);
+    }
+    .cookie-btn-decline:hover { color: #fff; border-color: rgba(255,255,255,0.35); }
+    .cookie-btn-accept {
+      background: #F0C5B5;
+      color: var(--charcoal);
+    }
+    .cookie-btn-accept:hover { background: #E29B7E; color: #fff; }
+    @media (max-width: 560px) {
+      .cookie-banner { grid-template-columns: 1fr; text-align: left; }
+      .cookie-banner-actions { justify-content: flex-end; }
+    }
 
     /* MODAL */
     .modal-overlay {
@@ -4008,6 +4443,51 @@
 
   </section>
 
+  <!-- MASSIVE-TYPE SERVICES STACK (transition into pipeline overview) -->
+  <section class="mega-services">
+    <div class="mega-services-inner">
+      <div class="mega-services-head">
+        <div>
+          <div class="kicker">What we build</div>
+          <h2>Four pieces. <em>One system.</em></h2>
+        </div>
+        <div class="mega-services-head-right">
+          <p>Designed, built, and wired together by us — so you never stitch anything yourself. Live in about seven days.</p>
+        </div>
+      </div>
+      <ul class="mega-list">
+        <li class="mega-item">
+          <span class="mega-item-num">01</span>
+          <span class="mega-item-title">Custom <em>ad</em> campaigns.</span>
+          <span class="mega-item-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </li>
+        <li class="mega-item">
+          <span class="mega-item-num">02</span>
+          <span class="mega-item-title">Branded <em>landing</em> page.</span>
+          <span class="mega-item-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </li>
+        <li class="mega-item">
+          <span class="mega-item-num">03</span>
+          <span class="mega-item-title"><em>AI</em> virtual assistant.</span>
+          <span class="mega-item-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </li>
+        <li class="mega-item">
+          <span class="mega-item-num">04</span>
+          <span class="mega-item-title">Booking <em>system</em>.</span>
+          <span class="mega-item-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
   <!-- PIPELINE OVERVIEW — premium vertical timeline (4 deliverables) -->
   <section class="pipeline-overview">
     <div class="pipeline-overview-head">
@@ -4308,6 +4788,60 @@
   </section>
 
 
+  <!-- INDUSTRIES SERVED — real names, no fake logos -->
+  <section class="industries-served" id="who">
+    <div class="industries-served-inner">
+      <div class="industries-copy">
+        <div class="kicker">Who we serve</div>
+        <h2>Built for wellness practices that <em>want to grow.</em></h2>
+        <p>If your clinic helps people feel and live better, there's a good chance we can build a pipeline for you. We work with practices across cash-pay wellness and insurance-billing specialties.</p>
+        <div class="footnote">Based in South Florida — serving practices across the United States.</div>
+      </div>
+      <div class="industries-cloud">
+        <span class="industries-pill hot">Med spas</span>
+        <span class="industries-pill hot">IV therapy</span>
+        <span class="industries-pill hot">Hormone optimization</span>
+        <span class="industries-pill hot">Aesthetic surgery</span>
+        <span class="industries-pill">Longevity clinics</span>
+        <span class="industries-pill">Integrative medicine</span>
+        <span class="industries-pill">Functional medicine</span>
+        <span class="industries-pill">Peptide therapy</span>
+        <span class="industries-pill">Wellness centers</span>
+        <span class="industries-pill">Chiropractic</span>
+        <span class="industries-pill">Mental health</span>
+        <span class="industries-pill">Nutrition</span>
+        <span class="industries-pill">Dermatology</span>
+        <span class="industries-pill">Dental &amp; orthodontics</span>
+        <span class="industries-pill">Physical therapy</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM — real names, real bios, monogram avatars (swap for real photos when ready) -->
+  <section class="team-section" id="team">
+    <div class="team-inner">
+      <div class="team-head">
+        <div class="kicker">The team</div>
+        <h2>Built from <em>inside</em> the wellness sector.</h2>
+        <p>Invexa didn't come from an agency looking in from the outside. It came from operators. Both founders spent years working inside wellness clinics and med spas — managing patients, watching what closes, seeing where the funnel breaks in daily practice.</p>
+      </div>
+      <div class="team-grid">
+        <article class="team-card">
+          <div class="team-mono" aria-hidden="true">AB</div>
+          <h3 class="team-name">Alejandro Blanco</h3>
+          <div class="team-role">Co-Founder · Growth &amp; Creative</div>
+          <p class="team-bio">Alejandro leads campaign strategy, creative direction, and brand for every Invexa client. Years of hands-on operating inside wellness clinics shape how the team designs pipelines that actually convert — not just campaigns that look good.</p>
+        </article>
+        <article class="team-card">
+          <div class="team-mono" aria-hidden="true">EM</div>
+          <h3 class="team-name">Elias Martinez</h3>
+          <div class="team-role">Co-Founder · Systems &amp; Operations</div>
+          <p class="team-bio">Elias builds the technical backbone — the AI assistants, CRM logic, and booking flows that keep every lead moving. His background running clinic operations means every system is built for the reality of how a busy front desk actually works.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- LEAD MAGNET -->
   <section class="section lead-magnet">
     <div class="container">
@@ -4421,16 +4955,115 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
-      <a href="#top" class="footer-logo" aria-label="INVEXA — From leads to patients on autopilot">
-        <img src="/logos/INVEXA logo sin fondo/INVEXA-07.png" alt="INVEXA" class="footer-logo-mark">
-      </a>
-      <div class="footer-copy">© 2026 INVEXA Growth. All rights reserved.</div>
-      <nav class="footer-links">
-        <a href="mailto:connect@invexagrowth.com">Contact</a>
-        <a href="#faq">FAQ</a>
-      </nav>
+
+      <div class="footer-top">
+        <!-- Brand + address -->
+        <div class="footer-brand-block">
+          <img src="logos/INVEXA%20logo%20sin%20fondo/INVEXA-07.png" alt="Invexa Growth" class="footer-logo-mark">
+          <div class="footer-tagline">Where wellness clinics <em>go to grow.</em></div>
+          <address class="footer-address">
+            <strong>Invexa Growth</strong>
+            A division of E&amp;A Creative Studios LLC<br>
+            Miami, Florida · United States<br>
+            <a href="mailto:connect@invexagrowth.com" style="color:inherit;">connect@invexagrowth.com</a>
+          </address>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-col-list">
+            <li><a href="#solution">What we do</a></li>
+            <li><a href="#how">How it works</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="mailto:connect@invexagrowth.com">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-col-list">
+            <li><a href="#solution">Ad campaigns</a></li>
+            <li><a href="#solution">Landing pages</a></li>
+            <li><a href="#solution">AI virtual assistant</a></li>
+            <li><a href="#solution">Booking system</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal -->
+        <div>
+          <div class="footer-col-title">Legal</div>
+          <ul class="footer-col-list">
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/terms.html">Terms of Service</a></li>
+            <li><a href="/cookies.html">Cookie Policy</a></li>
+            <li><a href="/accessibility.html">Accessibility</a></li>
+            <li><a href="#" onclick="event.preventDefault();window.__invexaCookies&&window.__invexaCookies.open();">Do Not Sell or Share My Info</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Disclaimer -->
+      <div class="footer-disclaimer">
+        <strong>Disclaimer.</strong> Invexa Growth is a marketing and technology agency. We do not provide medical services, medical advice, diagnosis, or treatment. All examples, illustrations, and hypothetical results shown on this site are for demonstration purposes and are not guarantees of performance. Individual results vary by clinic, market, service offering, and engagement level. Any references to industry statistics are drawn from cited third-party research and reflect the broader market, not specific Invexa Growth client outcomes.
+      </div>
+
+      <!-- Bottom line: copyright + legal links -->
+      <div class="footer-bottom">
+        <div>© 2026 E&amp;A Creative Studios LLC. All rights reserved. · Invexa Growth is a DBA of E&amp;A Creative Studios LLC.</div>
+        <div class="footer-legal-links">
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+          <a href="/cookies.html">Cookies</a>
+          <a href="#" onclick="event.preventDefault();window.__invexaCookies&&window.__invexaCookies.open();">Cookie preferences</a>
+        </div>
+      </div>
+
     </div>
   </footer>
+
+  <!-- COOKIE CONSENT BANNER -->
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Cookie consent" aria-live="polite">
+    <div class="cookie-banner-copy">
+      <strong>Cookies &amp; privacy.</strong> We use essential cookies to make this site work, plus optional analytics cookies to understand how visitors use it. See our <a href="/cookies.html">Cookie Policy</a>. Choose what's OK with you.
+    </div>
+    <div class="cookie-banner-actions">
+      <button class="cookie-btn cookie-btn-decline" type="button" onclick="window.__invexaCookies.deny()">Essential only</button>
+      <button class="cookie-btn cookie-btn-accept" type="button" onclick="window.__invexaCookies.accept()">Accept all</button>
+    </div>
+  </div>
+
+  <!-- Cookie consent logic (minimal, brand-styled; swap in Termly/CookieYes anytime) -->
+  <script>
+    (function(){
+      var KEY = 'invexa.cookieConsent.v1';
+      var banner = document.getElementById('cookieBanner');
+      function show(){ banner && banner.classList.add('show'); }
+      function hide(){ banner && banner.classList.remove('show'); }
+      function save(val){
+        try { localStorage.setItem(KEY, JSON.stringify({ choice: val, at: Date.now() })); } catch(e){}
+      }
+      function loadNonEssential(){
+        // Hook: when consented, this is where you'd load GA / Meta Pixel / etc.
+        // Left intentionally empty until analytics is chosen.
+      }
+      window.__invexaCookies = {
+        open:   function(){ show(); },
+        accept: function(){ save('all'); loadNonEssential(); hide(); },
+        deny:   function(){ save('essential'); hide(); }
+      };
+      // Show banner only if no choice recorded yet
+      try {
+        var existing = localStorage.getItem(KEY);
+        if (!existing) { setTimeout(show, 800); }
+        else {
+          var parsed = JSON.parse(existing);
+          if (parsed && parsed.choice === 'all') { loadNonEssential(); }
+        }
+      } catch(e) { setTimeout(show, 800); }
+    })();
+  </script>
 
   <!-- MODAL -->
   <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true">
