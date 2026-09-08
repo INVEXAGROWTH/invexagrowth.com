@@ -8,26 +8,26 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>INVEXA Growth — From leads to patients, on autopilot.</title>
-  <meta name="description" content="The full-stack patient acquisition system for wellness clinics and med spas — from first ad impression to confirmed appointment to long-term loyalty." />
+  <title>INVEXA Growth · From leads to patients, on autopilot.</title>
+  <meta name="description" content="The full-stack patient acquisition system for wellness clinics and med spas, from first ad impression to confirmed appointment to long-term loyalty." />
 
   <!-- Open Graph / Social link preview (WhatsApp, iMessage, Slack, Facebook, LinkedIn) -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="INVEXA Growth" />
   <meta property="og:url" content="https://invexagrowth.com/" />
-  <meta property="og:title" content="INVEXA Growth — From leads to patients, on autopilot" />
-  <meta property="og:description" content="The full-stack patient acquisition system for wellness clinics and med spas. Get a free audit and we'll show you exactly where your patient pipeline is leaking." />
+  <meta property="og:title" content="INVEXA Growth · From leads to patients, on autopilot" />
+  <meta property="og:description" content="The full-stack patient acquisition system for wellness clinics, med spas, and therapy practices. Book a free demo, we'll walk you through the CRM live and show you exactly how the system works." />
   <meta property="og:image" content="https://invexagrowth.com/og-isotype.png" />
   <meta property="og:image:secure_url" content="https://invexagrowth.com/og-isotype.png" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="2250" />
   <meta property="og:image:height" content="2250" />
-  <meta property="og:image:alt" content="INVEXA Growth — From leads to patients, on autopilot" />
+  <meta property="og:image:alt" content="INVEXA Growth · From leads to patients, on autopilot" />
 
   <!-- Twitter / X card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://invexagrowth.com/" />
-  <meta name="twitter:title" content="INVEXA Growth — From leads to patients, on autopilot" />
+  <meta name="twitter:title" content="INVEXA Growth · From leads to patients, on autopilot" />
   <meta name="twitter:description" content="The full-stack patient acquisition system for wellness clinics and med spas." />
   <meta name="twitter:image" content="https://invexagrowth.com/og-isotype.png" />
 
@@ -40,10 +40,12 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 88px;
       font-size: 16px;
       overflow-x: hidden;
       width: 100%;
     }
+    #campaigns, #landing, #assistant, #booking { scroll-margin-top: 96px; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: #FBFAF9;
@@ -58,7 +60,7 @@
     img { max-width: 100%; display: block; }
     button { font-family: inherit; }
 
-    /* TOKENS — INVEXA pastel palette */
+    /* TOKENS, INVEXA pastel palette */
     :root {
       --soft-blue:    #B8C5E2;
       --soft-blue-2:  #A8B8D8;
@@ -154,7 +156,7 @@
     }
     .section { padding: 80px 0; position: relative; }
 
-    /* NAV — scope to direct child of body so footer's <nav class="footer-links"> isn't pinned to top */
+    /* NAV, scope to direct child of body so footer's <nav class="footer-links"> isn't pinned to top */
     body > nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -222,7 +224,7 @@
       transform: translateY(-2px);
       box-shadow: 0 12px 32px rgba(0,0,0,0.18);
     }
-    /* Brand-gradient secondary button — uses the same peach-2 → soft-blue-2 gradient
+    /* Brand-gradient secondary button, uses the same peach-2 → soft-blue-2 gradient
        as the July chart accent bar. Subtle inner ring + soft shadow give it that
        "cool" variant feel without competing with the dark primary CTA. */
     .btn-secondary {
@@ -267,10 +269,10 @@
       transform: translateY(0);
     }
 
-    /* HERO — split layout */
+    /* HERO, split layout */
     .hero {
       min-height: 100vh;       /* fallback for older browsers */
-      min-height: 100dvh;      /* dynamic viewport — fits visible area on iOS even with URL bar showing */
+      min-height: 100dvh;      /* dynamic viewport, fits visible area on iOS even with URL bar showing */
       padding: 110px 32px 56px;
       display: flex;
       align-items: center;
@@ -279,7 +281,7 @@
     }
     /* On shorter laptops (≤860px tall), keep generous breathing room above
        the form (so it doesn't crowd the fixed nav) but tighten the form
-       internals so the column still fits. Allow slight scroll if needed —
+       internals so the column still fits. Allow slight scroll if needed -
        balanced spacing matters more than zero-scroll on tiny viewports. */
     @media (max-height: 860px) and (min-width: 769px) {
       .hero { min-height: auto; padding: 110px 32px 56px; }
@@ -290,7 +292,7 @@
       /* Tighter top/bottom on mobile so hero content fits without overflowing the visible viewport */
       .hero { padding: 96px 20px 48px; }
     }
-    /* Cinematic photo backdrop — premium wellness clinic interior (deepest layer) */
+    /* Cinematic photo backdrop, premium wellness clinic interior (deepest layer) */
     .hero-photo {
       position: absolute; inset: 0;
       background-image: url('generated/hero-bg.jpeg');
@@ -299,7 +301,7 @@
       z-index: 0;
       opacity: 0.55;
     }
-    /* Shader canvas — sits ON TOP of the photo with screen blend so the ring/prism reads */
+    /* Shader canvas, sits ON TOP of the photo with screen blend so the ring/prism reads */
     .hero-shader {
       position: absolute;
       inset: 0;
@@ -310,7 +312,7 @@
       opacity: 0.95;
       mix-blend-mode: screen;
     }
-    /* Cream wash overlay — keeps copy crisp over the photo + shader */
+    /* Cream wash overlay, keeps copy crisp over the photo + shader */
     .hero-bg {
       position: absolute; inset: 0;
       background:
@@ -495,7 +497,7 @@
       filter: blur(70px);
       pointer-events: none;
     }
-    .audit-section .container { position: relative; z-index: 1; }
+    .audit-section .container { position: relative; z-index: 1; max-width: 1320px; }
     .audit-header {
       max-width: 680px;
       margin: 0 auto 36px;
@@ -509,10 +511,10 @@
       margin: 0 auto;
       line-height: 1.55;
     }
-    /* Card wrapper that frames the HoneyBook widget — wider to feel less vertical */
+    /* Card wrapper that frames the HoneyBook widget, wider to prevent "Next session in" cutoff */
     .audit-widget-card {
       position: relative;
-      max-width: 1100px;
+      max-width: 1240px;
       margin: 0 auto;
       background: #fff;
       border-radius: 24px;
@@ -520,7 +522,7 @@
       box-shadow:
         0 30px 60px -20px rgba(40, 30, 25, 0.15),
         0 12px 24px -8px rgba(40, 30, 25, 0.06);
-      padding: 8px;
+      padding: 12px;
       overflow: hidden;
     }
     .audit-widget-card::before {
@@ -591,7 +593,7 @@
       transition: all var(--transition);
     }
 
-    /* CUSTOM DROPDOWN — replaces native <select> so popup is fully controllable */
+    /* CUSTOM DROPDOWN, replaces native <select> so popup is fully controllable */
     .custom-select { position: relative; }
     .custom-select-trigger {
       width: 100%;
@@ -757,7 +759,7 @@
       display: none;
     }
 
-    /* PROBLEM — parallax photo band before cards */
+    /* PROBLEM, parallax photo band before cards */
     .problem-band {
       position: relative;
       height: 56vh;
@@ -799,7 +801,7 @@
     }
     .problem { background: var(--cream); position: relative; z-index: 2; }
     .problem h2 { margin-bottom: 16px; }
-    /* PROBLEM CAROUSEL — Gallery4-style horizontal scroll */
+    /* PROBLEM CAROUSEL, Gallery4-style horizontal scroll */
     .problem-carousel {
       position: relative;
       margin-top: 56px;
@@ -894,7 +896,7 @@
       .problem-track { gap: 14px; padding: 8px 24px; }
       .problem-carousel-head { padding: 0 24px; flex-direction: column; align-items: flex-start; margin-bottom: 28px; }
       .problem-carousel-nav { align-self: flex-end; }
-      /* Slide content — tighter type, ensures chip + title + desc all fit */
+      /* Slide content, tighter type, ensures chip + title + desc all fit */
       .problem-slide-content { padding: 24px 22px; }
       .problem-slide-tag { margin-bottom: 12px; font-size: 10px; letter-spacing: 0.12em; padding: 3px 8px 3px 6px; }
       .problem-slide h3 { font-size: 22px; margin-bottom: 8px; line-height: 1.1; }
@@ -985,7 +987,7 @@
     }
 
     /* ============================================================
-       SOLUTION — Full-bleed sticky crossfade: empty clinic → full clinic
+       SOLUTION, Full-bleed sticky crossfade: empty clinic → full clinic
        One image fills the viewport. Scroll fades empty → full.
        Section stays glued until the crossfade completes, then releases.
        ============================================================ */
@@ -997,12 +999,30 @@
       /* match the image's dominant tone so any peek-through blends */
       background: #1a1410;
     }
+    /* Gradient fades at the top and bottom of the charcoal section so the transition into cream sections is soft, not a hard cut */
+    .solution-scroll::before,
+    .solution-scroll::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      height: 120px;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .solution-scroll::before {
+      top: 0;
+      background: linear-gradient(to bottom, #FBFAF9 0%, rgba(251,250,249,0.55) 35%, rgba(26,20,16,0) 100%);
+    }
+    .solution-scroll::after {
+      bottom: 0;
+      background: linear-gradient(to top, #FBFAF9 0%, rgba(251,250,249,0.55) 35%, rgba(26,20,16,0) 100%);
+    }
     /* Block browser-native pan/scroll on this section while the JS lock is engaged */
     .solution-scroll[data-locked="true"] {
       touch-action: none;
       overscroll-behavior: contain;
     }
-    /* Wrap is barely taller than sticky — minimal post-lock runway so no gray strip */
+    /* Wrap is barely taller than sticky, minimal post-lock runway so no gray strip */
     .scroll-expand-wrap {
       position: relative;
       height: 101vh;
@@ -1046,7 +1066,7 @@
       z-index: 1;
       pointer-events: none;
     }
-    /* Centered overlay — title + copy + hint */
+    /* Centered overlay, title + copy + hint */
     .scroll-expand-overlay {
       position: absolute;
       inset: 0;
@@ -1119,7 +1139,7 @@
       .scroll-expand-img-full { opacity: 1; }
     }
 
-    /* SOLUTION (legacy) — 2-column with tilted system-dashboard card */
+    /* SOLUTION (legacy), 2-column with tilted system-dashboard card */
     .solution {
       background: linear-gradient(180deg, var(--warm-white) 0%, var(--cream) 100%);
       position: relative;
@@ -1288,7 +1308,7 @@
       color: rgba(255,255,255,0.4);
       margin-top: 3px;
     }
-    /* Solution visual card — full-booked calendar shot */
+    /* Solution visual card, full-booked calendar shot */
     .solution-visual-card {
       position: relative;
       width: 100%;
@@ -1338,7 +1358,7 @@
       .solution-visual-card { max-width: 360px; }
     }
 
-    /* Timeline Spline bot — replaces the deliv-3-ai image */
+    /* Timeline Spline bot, replaces the deliv-3-ai image */
     .timeline-image-bot {
       background:
         radial-gradient(circle at 30% 25%, rgba(240, 197, 181, 0.35) 0%, transparent 55%),
@@ -1359,7 +1379,7 @@
     }
     .timeline-image-bot spline-viewer::part(logo) { display: none !important; }
     .timeline-bot-watermark-cover { display: none; }
-    /* Caption — sits BELOW the bot frame as a clean label, no overlay */
+    /* Caption, sits BELOW the bot frame as a clean label, no overlay */
     .timeline-bot-caption {
       position: absolute;
       bottom: 16px;
@@ -1497,7 +1517,7 @@
       box-shadow: 0 40px 80px rgba(40, 30, 25, 0.18);
     }
     /* ============================================================
-       HERO SHOWCASE — 3D scroll-tilt iPad frame holding CRM chat UI
+       HERO SHOWCASE, 3D scroll-tilt iPad frame holding CRM chat UI
        ============================================================ */
     .hero-showcase {
       position: relative;
@@ -1693,7 +1713,7 @@
     }
 
     /* ============================================================
-       CRM CHAT UI — embedded inside the iPad screen
+       CRM CHAT UI, embedded inside the iPad screen
        ============================================================ */
     .crm-app {
       position: absolute;
@@ -2256,7 +2276,7 @@
     }
 
     /* ============================================================
-       PIPELINE OVERVIEW — premium compact timeline on cream
+       PIPELINE OVERVIEW, premium compact timeline on cream
        Light cream background, dark text, tight rows, clean numerals
        ============================================================ */
     .pipeline-overview {
@@ -2346,7 +2366,7 @@
       .timeline-spine { left: 24px; transform: none; }
     }
 
-    /* === One row per step — compact === */
+    /* === One row per step, compact === */
     .timeline-step {
       position: relative;
       display: grid;
@@ -2367,7 +2387,7 @@
       }
     }
 
-    /* Marker column — dot on the spine */
+    /* Marker column, dot on the spine */
     .timeline-marker {
       grid-column: 2;
       display: flex;
@@ -2441,7 +2461,7 @@
       .timeline-step .timeline-content { grid-row: 1; }
     }
 
-    /* Step number — cleaner, no italic clipping, sane line-height */
+    /* Step number, cleaner, no italic clipping, sane line-height */
     .timeline-num {
       font-family: 'Instrument Serif', serif;
       font-size: clamp(44px, 6vw, 68px);
@@ -2580,7 +2600,7 @@
     }
 
     /* ============================================================
-       PIPELINE — CleanMyMac-style hover-expand strip
+       PIPELINE, CleanMyMac-style hover-expand strip
        Soft pastel gradient header + white card body + refined detail
        ============================================================ */
     .expand-section {
@@ -2669,7 +2689,7 @@
         0 8px 24px rgba(40, 30, 25, 0.08);
     }
 
-    /* HEADER — pastel gradient, holds the illustration */
+    /* HEADER, pastel gradient, holds the illustration */
     .expand-panel-header {
       position: relative;
       height: 62%;
@@ -2694,7 +2714,7 @@
     .expand-panel[data-i="4"] .expand-panel-header { background: url('generated/panel-5-confirm.png') center/cover #9CB1D6; }
     /* Hide the SVG illustration since the image IS the visual now */
     .expand-panel-illu { display: none; }
-    /* Step number — glass chip, top-left, always readable */
+    /* Step number, glass chip, top-left, always readable */
     .expand-panel-num {
       position: absolute;
       top: 14px;
@@ -2718,7 +2738,7 @@
     .expand-panel-pip { display: none; }
     .expand-panel-label { display: none; }
 
-    /* Illustration container — refined 2-color line art */
+    /* Illustration container, refined 2-color line art */
     .expand-panel-illu {
       position: relative;
       width: 50%;
@@ -2735,7 +2755,7 @@
       transform: translateY(0) scale(1);
     }
 
-    /* BODY — white card content */
+    /* BODY, white card content */
     .expand-panel-body {
       position: absolute;
       bottom: 0;
@@ -2814,7 +2834,7 @@
       .expand-panel-label { display: none; }
       .expand-panel-header { height: 220px; }
       .expand-panel-illu { opacity: 1; transform: none; width: 36%; max-width: 160px; }
-      /* Body flows naturally below header — no cut-off chips */
+      /* Body flows naturally below header, no cut-off chips */
       .expand-panel-body {
         position: relative;
         inset: auto;
@@ -2830,7 +2850,7 @@
     }
 
     /* ============================================================
-       PIPELINE — sticky stacking cards (LEGACY — superseded by expand-strip)
+       PIPELINE, sticky stacking cards (LEGACY, superseded by expand-strip)
        ============================================================ */
     .stack-section {
       background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
@@ -2970,7 +2990,7 @@
       z-index: 1;
     }
 
-    /* Per-card branded palette — peach → soft-blue progression */
+    /* Per-card branded palette, peach → soft-blue progression */
     .stack-card[data-i="0"] .stack-card-inner   { background: linear-gradient(135deg, #FFF6F0 0%, #FBE8DC 100%); }
     .stack-card[data-i="0"] .stack-card-visual  { background: linear-gradient(135deg, #F0C5B5 0%, #E29B7E 100%); }
 
@@ -3004,7 +3024,7 @@
     }
 
     /* ============================================================
-       PIPELINE FLOW — horizontal SVG line with milestone stops (LEGACY)
+       PIPELINE FLOW, horizontal SVG line with milestone stops (LEGACY)
        ============================================================ */
     .flow {
       background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
@@ -3054,7 +3074,7 @@
     }
     .flow-line.in-view .flow-line-path { stroke-dashoffset: 0; }
 
-    /* Stops grid — 5 columns across with content above + below the line */
+    /* Stops grid, 5 columns across with content above + below the line */
     .flow-stops {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -3484,16 +3504,22 @@
       .mega-services-head { grid-template-columns: 1fr; align-items: start; gap: 20px; margin-bottom: 28px; }
     }
     .mega-services-head h2 {
-      font-family: 'Instrument Serif', serif;
-      font-size: clamp(36px, 5vw, 60px);
-      line-height: 1.02;
-      letter-spacing: -0.015em;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: clamp(22px, 2.4vw, 30px);
+      line-height: 1.2;
+      letter-spacing: -0.005em;
       color: var(--charcoal);
-      font-weight: 400;
+      font-weight: 600;
       margin: 0;
       max-width: 22ch;
     }
-    .mega-services-head h2 em { color: #D9744D; font-style: italic; }
+    .mega-services-head h2 em {
+      font-family: 'Instrument Serif', serif;
+      color: #D9744D;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.1em;
+    }
     .mega-services-head .kicker {
       font-size: 10.5px;
       font-weight: 700;
@@ -3525,17 +3551,22 @@
       margin: 0;
     }
     .mega-item {
+      border-bottom: 1px solid rgba(40, 30, 25, 0.10);
+      list-style: none;
+    }
+    .mega-item:last-child { border-bottom: none; }
+    .mega-item-link {
       display: grid;
       grid-template-columns: 60px 1fr auto;
       gap: 32px;
       align-items: center;
       padding: 28px 0;
-      border-bottom: 1px solid rgba(40, 30, 25, 0.10);
-      transition: padding-left 0.5s cubic-bezier(0.22, 1, 0.36, 1), color 0.5s ease;
+      text-decoration: none;
+      color: inherit;
+      transition: padding-left 0.5s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .mega-item:last-child { border-bottom: none; }
     @media (max-width: 768px) {
-      .mega-item { grid-template-columns: 40px 1fr; padding: 20px 0; gap: 18px; }
+      .mega-item-link { grid-template-columns: 40px 1fr; padding: 20px 0; gap: 18px; }
       .mega-item-arrow { display: none; }
     }
     .mega-item-num {
@@ -3554,17 +3585,15 @@
       letter-spacing: -0.03em;
       color: var(--charcoal);
       transition: color 0.4s ease, letter-spacing 0.4s ease;
-      cursor: default;
     }
     .mega-item-title em {
       font-style: italic;
       color: #D9744D;
     }
-    .mega-item:hover .mega-item-title {
-      color: #D9744D;
-    }
-    .mega-item:hover { padding-left: 24px; }
-    @media (max-width: 768px) { .mega-item:hover { padding-left: 0; } }
+    .mega-item-link:hover .mega-item-title { color: #D9744D; }
+    .mega-item-link:hover { padding-left: 24px; }
+    .mega-item-link:focus-visible { outline: 2px solid #D9744D; outline-offset: 6px; border-radius: 4px; }
+    @media (max-width: 768px) { .mega-item-link:hover { padding-left: 0; } }
     .mega-item-arrow {
       width: 44px; height: 44px;
       border-radius: 50%;
@@ -3575,7 +3604,7 @@
       color: var(--charcoal);
       transition: background 0.3s ease, color 0.3s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .mega-item:hover .mega-item-arrow {
+    .mega-item-link:hover .mega-item-arrow {
       background: #D9744D;
       color: #fff;
       border-color: #D9744D;
@@ -3583,7 +3612,7 @@
     }
     .mega-item-arrow svg { width: 16px; height: 16px; }
 
-    /* ==================== INDUSTRIES — real names, no fake logos ==================== */
+    /* ==================== INDUSTRIES, real names, no fake logos ==================== */
     .industries-served {
       background: var(--warm-white);
       padding: 88px 32px 88px;
@@ -3660,7 +3689,7 @@
       font-weight: 600;
     }
 
-    /* ==================== TEAM — monogram avatars, real names ==================== */
+    /* ==================== TEAM, monogram avatars, real names ==================== */
     .team-section {
       background: var(--cream);
       padding: 96px 32px 88px;
@@ -3763,7 +3792,7 @@
       margin: 0;
     }
 
-    /* ==================== FOOTER — full compliance ==================== */
+    /* ==================== FOOTER, full compliance ==================== */
     .footer {
       padding: 64px 32px 32px;
       background: var(--charcoal);
@@ -3924,6 +3953,45 @@
       color: var(--charcoal);
     }
     .cookie-btn-accept:hover { background: #E29B7E; color: #fff; }
+    .cookie-banner-close {
+      position: absolute;
+      top: 8px; right: 10px;
+      background: transparent;
+      border: none;
+      color: rgba(255,255,255,0.55);
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: color 0.15s ease, background 0.15s ease;
+      font-family: inherit;
+    }
+    .cookie-banner-close:hover { color: #fff; background: rgba(255,255,255,0.08); }
+
+    /* Confirmation toast for cookie/privacy actions */
+    .cookie-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 32px;
+      transform: translate(-50%, 20px);
+      background: var(--charcoal);
+      color: #fff;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 13.5px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      box-shadow: 0 20px 40px -14px rgba(0,0,0,0.35);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1100;
+      transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.22,1,0.36,1);
+      max-width: min(560px, calc(100vw - 40px));
+      text-align: center;
+    }
+    .cookie-toast.show { opacity: 1; transform: translate(-50%, 0); }
     @media (max-width: 560px) {
       .cookie-banner { grid-template-columns: 1fr; text-align: left; }
       .cookie-banner-actions { justify-content: flex-end; }
@@ -4058,7 +4126,7 @@
   <!-- NAV -->
   <nav>
     <div class="nav-inner">
-      <a href="/" class="nav-logo" aria-label="INVEXA — From leads to patients on autopilot">
+      <a href="/" class="nav-logo" aria-label="INVEXA, From leads to patients on autopilot">
         <img class="nav-logo-mark" src="logos/INVEXA%20logo%20sin%20fondo/INVEXA-07.png" alt="INVEXA">
       </a>
       <div class="nav-links">
@@ -4066,7 +4134,7 @@
         <a href="#how">How It Works</a>
         <a href="#faq">FAQ</a>
       </div>
-      <a href="#apply" class="nav-cta" onclick="scrollToForm(); return false;">Free Audit</a>
+      <a href="#apply" class="nav-cta" onclick="scrollToForm(); return false;">Book a demo</a>
     </div>
   </nav>
 
@@ -4082,17 +4150,17 @@
       <div>
         <div class="hero-badge fade-up visible">
           <span class="hero-badge-dot"></span>
-          <span class="hb-desktop">Now booking <strong style="color:var(--charcoal); margin:0 4px;">May audits</strong> — <span id="spots-counter">12</span> of 20 spots claimed</span>
-          <span class="hb-mobile"><strong style="color:var(--charcoal); margin-right:4px;">May audits</strong> · <span id="spots-counter-m">12</span>/20 spots</span>
+          <span class="hb-desktop">Now booking <strong style="color:var(--charcoal); margin:0 4px;">free demos</strong>, <span id="spots-counter">12</span> of 20 spots claimed this month</span>
+          <span class="hb-mobile"><strong style="color:var(--charcoal); margin-right:4px;">Free demos</strong> · <span id="spots-counter-m">12</span>/20 spots</span>
         </div>
         <h1 class="fade-up visible delay-1">
           From leads to patients on autopilot.
         </h1>
         <p class="hero-sub fade-up visible delay-2">
-          We build the entire patient acquisition machine for wellness clinics and med spas. <strong>Get a free audit</strong> and we'll show you exactly where your patient pipeline is leaking.
+          We build the entire patient acquisition machine for wellness clinics, med spas, and therapy practices. <strong>Book a free demo</strong>, we'll walk you through the CRM live and show you exactly how the system works.
         </p>
         <div class="fade-up visible delay-3" style="display:flex; gap:14px; flex-wrap:wrap; justify-content:center;">
-          <a href="#hero-form-card" class="btn-primary" onclick="scrollToForm(); return false;">Get My Free Audit →</a>
+          <a href="#hero-form-card" class="btn-primary" onclick="scrollToForm(); return false;">Book my free demo →</a>
           <a href="#how" class="btn-secondary">See how it works</a>
         </div>
 
@@ -4100,7 +4168,7 @@
     </div>
   </section>
 
-  <!-- HERO SHOWCASE — iPad-framed CRM with AI agent conversation -->
+  <!-- HERO SHOWCASE, iPad-framed CRM with AI agent conversation -->
   <section class="hero-showcase">
     <div class="hero-showcase-glow" aria-hidden="true"></div>
 
@@ -4108,7 +4176,7 @@
     <div class="hero-showcase-stage">
       <div class="scroll-reveal-card" data-scroll-tilt>
       <div class="scroll-reveal-card-inner">
-        <div class="crm-app" aria-label="Invexa CRM — AI agent conversation with a wellness clinic lead">
+        <div class="crm-app" aria-label="Invexa CRM, AI agent conversation with a wellness clinic lead">
           <!-- Top bar -->
           <header class="crm-topbar">
             <div class="crm-logo-wrap">
@@ -4216,7 +4284,7 @@
                   <div class="crm-lead-body">
                     <div class="crm-lead-top"><span class="crm-lead-name">Michael Brennan</span><span class="crm-lead-time">3h</span></div>
                     <div class="crm-lead-meta"><span class="crm-badge crm-badge-converted">Booked</span></div>
-                    <div class="crm-lead-preview">See you Monday at 10 — thanks!</div>
+                    <div class="crm-lead-preview">See you Monday at 10, thanks!</div>
                   </div>
                 </div>
                 <div class="crm-lead-item">
@@ -4230,7 +4298,7 @@
               </div>
             </section>
 
-            <!-- Chat panel — selected lead's AI conversation -->
+            <!-- Chat panel, selected lead's AI conversation -->
             <section class="crm-chat" aria-label="Conversation with Sarah Mitchell">
               <div class="crm-chat-head">
                 <div class="crm-chat-avatar"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt=""></div>
@@ -4261,7 +4329,7 @@
                 </div>
                 <div class="crm-msg crm-msg-out">
                   <div class="crm-msg-agent-label">Invexa AI</div>
-                  <p>Hi Sarah, so glad you reached out 🌿 Yes — we accept most major plans and have cash-pay options too. What's been going on that made you look into IV therapy?</p>
+                  <p>Hi Sarah, so glad you reached out 🌿 Yes, we accept most major plans and have cash-pay options too. What's been going on that made you look into IV therapy?</p>
                   <span class="crm-msg-time">11:42 AM</span>
                 </div>
                 <div class="crm-msg crm-msg-in">
@@ -4270,7 +4338,7 @@
                 </div>
                 <div class="crm-msg crm-msg-out">
                   <div class="crm-msg-agent-label">Invexa AI</div>
-                  <p>I'm really sorry you've been carrying that. This is exactly what we help patients with — want to book a quick consult so we can build a plan around you?</p>
+                  <p>I'm really sorry you've been carrying that. This is exactly what we help patients with, want to book a quick consult so we can build a plan around you?</p>
                   <span class="crm-msg-time">11:43 AM</span>
                 </div>
                 <div class="crm-msg crm-msg-in">
@@ -4279,7 +4347,7 @@
                 </div>
                 <div class="crm-msg crm-msg-out">
                   <div class="crm-msg-agent-label">Invexa AI</div>
-                  <p>Perfect — let's get you in soon. I have Thursday 9:00 AM or Friday 10:30 AM open. Which feels easier for you?</p>
+                  <p>Perfect, let's get you in soon. I have Thursday 9:00 AM or Friday 10:30 AM open. Which feels easier for you?</p>
                   <span class="crm-msg-time">11:44 AM</span>
                 </div>
                 <div class="crm-msg crm-msg-in">
@@ -4305,9 +4373,9 @@
   <section class="section audit-section" id="hero-form-card">
     <div class="container">
       <div class="audit-header">
-        <span class="section-label fade-up">Free Audit · No Commitment</span>
-        <h2 class="fade-up">Get your free patient pipeline audit.</h2>
-        <p class="fade-up">We'll review your current setup and show you exactly where your patient pipeline is leaking. Takes 15 minutes. No cost.</p>
+        <span class="section-label fade-up">Free Demo · No Commitment</span>
+        <h2 class="fade-up">Book your free demo.</h2>
+        <p class="fade-up">A live 20-minute walkthrough of the CRM we'd build for you. You'll see the campaigns, the personalized assistant, and the booking flow working in real time. No slides, no pitch. Just the system, showing what it actually does.</p>
       </div>
       <div class="audit-widget-card fade-up">
         <div class="audit-widget-inner">
@@ -4364,7 +4432,7 @@
           <div>
             <span class="section-label fade-up">Where the leak happens</span>
             <h2 class="fade-up" style="margin-top:12px;">Every wellness clinic hits<br>the same wall.</h2>
-            <p class="fade-up">You went into wellness — not marketing. You're great at what you do. You just need patients walking through the door consistently.</p>
+            <p class="fade-up">You went into wellness, not marketing. You're great at what you do. You just need patients walking through the door consistently.</p>
           </div>
           <div class="problem-carousel-nav">
             <button class="problem-carousel-btn" data-problem-prev aria-label="Previous">
@@ -4394,7 +4462,7 @@
               <div class="problem-slide-content">
                 <span class="problem-slide-tag"><span class="problem-slide-tag-dot"></span>Problem 02</span>
                 <h3>Wasted ad spend</h3>
-                <p>You've tried Facebook ads or hired an agency. Reports show "impressions" and "clicks" — but actual patients never show up.</p>
+                <p>You've tried Facebook ads or hired an agency. Reports show "impressions" and "clicks", but actual patients never show up.</p>
               </div>
             </article>
 
@@ -4419,20 +4487,20 @@
     </div>
   </section>
 
-  <!-- SOLUTION — sticky crossfade: empty clinic → full clinic, scroll locks until done -->
+  <!-- SOLUTION, sticky crossfade: empty clinic → full clinic, scroll locks until done -->
   <section class="solution-scroll" id="solution" data-scroll-expand>
     <div class="scroll-expand-wrap">
       <div class="scroll-expand-sticky">
-        <!-- Empty clinic (under) — always 100% opacity -->
+        <!-- Empty clinic (under), always 100% opacity -->
         <img class="scroll-expand-img-empty" src="generated/solution-empty.png" alt="An empty wellness clinic waiting lobby at dusk">
-        <!-- Full clinic (on top) — opacity ramps from 0 → 1 as user scrolls -->
-        <img class="scroll-expand-img-full"  src="generated/solution-full.png"  alt="The same wellness clinic now full of patients — all shown from behind, no faces visible">
+        <!-- Full clinic (on top), opacity ramps from 0 → 1 as user scrolls -->
+        <img class="scroll-expand-img-full"  src="generated/solution-full.png"  alt="The same wellness clinic now full of patients, all shown from behind, no faces visible">
 
         <!-- Centered overlay: label + title + desc + scroll hint -->
         <div class="scroll-expand-overlay">
           <span class="section-label">The Invexa Method</span>
-          <h2 class="scroll-expand-title">A growth system —<br>not another agency.</h2>
-          <p class="scroll-expand-desc">Invexa Growth runs the entire pipeline — ad campaigns, creative production, lead qualification, booking — and hands you patients who are already warmed up and ready to confirm.</p>
+          <h2 class="scroll-expand-title">A growth system.<br>Not another agency.</h2>
+          <p class="scroll-expand-desc">Invexa Growth runs the entire pipeline, ad campaigns, creative production, lead qualification, booking, and hands you patients who are already warmed up and ready to confirm.</p>
           <div class="scroll-expand-hint">
             <span>Scroll to see what changes</span>
             <span class="scroll-expand-hint-arrow">↓</span>
@@ -4452,61 +4520,69 @@
           <h2>Four pieces. <em>One system.</em></h2>
         </div>
         <div class="mega-services-head-right">
-          <p>Designed, built, and wired together by us — so you never stitch anything yourself. Live in about seven days.</p>
+          <p>Designed, built, and wired together by us, so you never stitch anything yourself. Live in about seven days.</p>
         </div>
       </div>
       <ul class="mega-list">
         <li class="mega-item">
-          <span class="mega-item-num">01</span>
-          <span class="mega-item-title">Custom <em>ad</em> campaigns.</span>
-          <span class="mega-item-arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </span>
+          <a href="#campaigns" class="mega-item-link">
+            <span class="mega-item-num">01</span>
+            <span class="mega-item-title">Custom <em>ad</em> campaigns.</span>
+            <span class="mega-item-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </a>
         </li>
         <li class="mega-item">
-          <span class="mega-item-num">02</span>
-          <span class="mega-item-title">Branded <em>landing</em> page.</span>
-          <span class="mega-item-arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </span>
+          <a href="#landing" class="mega-item-link">
+            <span class="mega-item-num">02</span>
+            <span class="mega-item-title">Branded <em>landing</em> page.</span>
+            <span class="mega-item-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </a>
         </li>
         <li class="mega-item">
-          <span class="mega-item-num">03</span>
-          <span class="mega-item-title"><em>AI</em> virtual assistant.</span>
-          <span class="mega-item-arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </span>
+          <a href="#assistant" class="mega-item-link">
+            <span class="mega-item-num">03</span>
+            <span class="mega-item-title">Personalized <em>virtual</em> assistant.</span>
+            <span class="mega-item-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </a>
         </li>
         <li class="mega-item">
-          <span class="mega-item-num">04</span>
-          <span class="mega-item-title">Booking <em>system</em>.</span>
-          <span class="mega-item-arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </span>
+          <a href="#booking" class="mega-item-link">
+            <span class="mega-item-num">04</span>
+            <span class="mega-item-title">Booking <em>system</em>.</span>
+            <span class="mega-item-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </a>
         </li>
       </ul>
     </div>
   </section>
 
-  <!-- PIPELINE OVERVIEW — premium vertical timeline (4 deliverables) -->
+  <!-- PIPELINE OVERVIEW, premium vertical timeline (4 deliverables) -->
   <section class="pipeline-overview">
     <div class="pipeline-overview-head">
       <span class="section-label fade-up">Everything we build for you</span>
       <h2 class="fade-up">One system.<br>Built end to end.</h2>
-      <p class="fade-up">Custom ad campaigns, your branded landing page, an AI virtual assistant that qualifies every lead, and a booking system that fills your calendar — all designed, built, and wired together by us.</p>
+      <p class="fade-up">Custom ad campaigns, your branded landing page, a personalized virtual assistant that qualifies every lead, and a booking system that fills your calendar, all designed, built, and wired together by us.</p>
     </div>
 
     <div class="timeline-track" data-timeline>
-      <!-- Vertical spine — scroll-fills with brand gradient -->
+      <!-- Vertical spine, scroll-fills with brand gradient -->
       <div class="timeline-spine" aria-hidden="true"></div>
 
       <!-- 01 Campaigns -->
-      <article class="timeline-step" data-side="right">
+      <article class="timeline-step" data-side="right" id="campaigns">
         <div class="timeline-content">
           <div class="timeline-eyebrow"><span class="timeline-eyebrow-dot"></span>Step 01</div>
           <div class="timeline-num">01</div>
           <h3 class="timeline-title">Custom ad campaigns.</h3>
-          <p class="timeline-desc">We build, write, shoot, and run the Meta campaigns that bring your future patients in — every ad designed around your clinic and the patient you actually want.</p>
+          <p class="timeline-desc">We build, write, shoot, and run the Meta campaigns that bring your future patients in, every ad designed around your clinic and the patient you actually want.</p>
           <ul class="timeline-meta">
             <li>Strategy + creative</li>
             <li>Targeting + audiences</li>
@@ -4522,12 +4598,12 @@
       </article>
 
       <!-- 02 Landing page -->
-      <article class="timeline-step" data-side="left">
+      <article class="timeline-step" data-side="left" id="landing">
         <div class="timeline-content">
           <div class="timeline-eyebrow"><span class="timeline-eyebrow-dot"></span>Step 02</div>
           <div class="timeline-num">02</div>
           <h3 class="timeline-title">Your branded landing page.</h3>
-          <p class="timeline-desc">A custom landing page built for your clinic — designed to feel like a premium extension of your brand and engineered to convert visitors into booked patients.</p>
+          <p class="timeline-desc">A custom landing page built for your clinic, designed to feel like a premium extension of your brand and engineered to convert visitors into booked patients.</p>
           <ul class="timeline-meta">
             <li>Conversion-optimized</li>
             <li>On-brand design</li>
@@ -4542,13 +4618,13 @@
         </div>
       </article>
 
-      <!-- 03 AI virtual assistant -->
-      <article class="timeline-step" data-side="right">
+      <!-- 03 Personalized virtual assistant -->
+      <article class="timeline-step" data-side="right" id="assistant">
         <div class="timeline-content">
           <div class="timeline-eyebrow"><span class="timeline-eyebrow-dot"></span>Step 03</div>
           <div class="timeline-num">03</div>
-          <h3 class="timeline-title">An AI virtual assistant.</h3>
-          <p class="timeline-desc">A warm, on-brand AI agent that talks to every lead the moment they arrive — answering questions, qualifying fit, and warming them up before they ever reach your team.</p>
+          <h3 class="timeline-title">A personalized virtual assistant.</h3>
+          <p class="timeline-desc">A warm, on-brand AI agent that talks to every lead the moment they arrive, answering questions, qualifying fit, and warming them up before they ever reach your team.</p>
           <ul class="timeline-meta">
             <li>Sub-60s reply time</li>
             <li>On-brand voice</li>
@@ -4557,7 +4633,7 @@
         </div>
         <div class="timeline-marker"><div class="timeline-dot"></div></div>
         <div class="timeline-visual">
-          <div class="timeline-image timeline-image-bot" aria-label="Invexa AI — interactive 3D">
+          <div class="timeline-image timeline-image-bot" aria-label="Invexa AI, interactive 3D">
             <spline-viewer
               url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
               loading-anim-type="spinner-small-light"
@@ -4565,19 +4641,19 @@
             ></spline-viewer>
             <span class="timeline-bot-caption">
               <span class="timeline-bot-caption-dot"></span>
-              Your AI virtual assistant
+              Your Personalized virtual assistant
             </span>
           </div>
         </div>
       </article>
 
       <!-- 04 Booking system -->
-      <article class="timeline-step" data-side="left">
+      <article class="timeline-step" data-side="left" id="booking">
         <div class="timeline-content">
           <div class="timeline-eyebrow"><span class="timeline-eyebrow-dot"></span>Step 04</div>
           <div class="timeline-num">04</div>
           <h3 class="timeline-title">A booking system that fills your calendar.</h3>
-          <p class="timeline-desc">Qualified, warmed patients land on your calendar and book themselves into an open slot — synced to your real availability, no front desk involvement needed.</p>
+          <p class="timeline-desc">Qualified, warmed patients land on your calendar and book themselves into an open slot, synced to your real availability, no front desk involvement needed.</p>
           <ul class="timeline-meta">
             <li>Self-serve, 24/7</li>
             <li>Synced to your calendar</li>
@@ -4594,18 +4670,18 @@
     </div>
   </section>
 
-  <!-- PIPELINE — CleanMyMac-style hover-expand strip (5 steps) -->
+  <!-- PIPELINE, CleanMyMac-style hover-expand strip (5 steps) -->
   <section class="expand-section" id="how">
     <div class="expand-header">
       <span class="section-label fade-up">The Pipeline</span>
       <h2 class="fade-up">From the first scroll<br>to the first visit.</h2>
-      <p class="fade-up" style="margin-top:16px;">Hover any step to see what happens. Five stops, every patient — and you only step in at the end.</p>
+      <p class="fade-up" style="margin-top:16px;">Hover any step to see what happens. Five stops, every patient, and you only step in at the end.</p>
     </div>
 
     <div class="expand-strip" data-expand-strip role="tablist" aria-label="Patient acquisition pipeline">
 
       <!-- 01 Reach -->
-      <button class="expand-panel" data-i="0" data-active="true" role="tab" aria-label="Step 01 — Reach" aria-selected="true">
+      <button class="expand-panel" data-i="0" data-active="true" role="tab" aria-label="Step 01, Reach" aria-selected="true">
         <div class="expand-panel-header">
           <span class="expand-panel-num">Step 01</span>
           <span class="expand-panel-pip"></span>
@@ -4647,7 +4723,7 @@
       </button>
 
       <!-- 02 Connect -->
-      <button class="expand-panel" data-i="1" data-active="false" role="tab" aria-label="Step 02 — Connect">
+      <button class="expand-panel" data-i="1" data-active="false" role="tab" aria-label="Step 02, Connect">
         <div class="expand-panel-header">
           <span class="expand-panel-num">Step 02</span>
           <span class="expand-panel-pip"></span>
@@ -4671,7 +4747,7 @@
           </div>
         </div>
         <div class="expand-panel-body">
-          <h3>A real conversation starts — instantly.</h3>
+          <h3>A real conversation starts, instantly.</h3>
           <p>The moment they tap your ad, they're in a warm, two-way conversation. Their first questions get answered within seconds.</p>
           <div class="expand-panel-meta">
             <span class="expand-panel-chip"><span class="expand-panel-chip-dot"></span>Sub-60 second reply</span>
@@ -4681,7 +4757,7 @@
       </button>
 
       <!-- 03 Qualify -->
-      <button class="expand-panel" data-i="2" data-active="false" role="tab" aria-label="Step 03 — Qualify">
+      <button class="expand-panel" data-i="2" data-active="false" role="tab" aria-label="Step 03, Qualify">
         <div class="expand-panel-header">
           <span class="expand-panel-num">Step 03</span>
           <span class="expand-panel-pip"></span>
@@ -4712,7 +4788,7 @@
       </button>
 
       <!-- 04 Book -->
-      <button class="expand-panel" data-i="3" data-active="false" role="tab" aria-label="Step 04 — Book">
+      <button class="expand-panel" data-i="3" data-active="false" role="tab" aria-label="Step 04, Book">
         <div class="expand-panel-header">
           <span class="expand-panel-num">Step 04</span>
           <span class="expand-panel-pip"></span>
@@ -4745,7 +4821,7 @@
           </div>
         </div>
         <div class="expand-panel-body">
-          <h3>They reserve a spot — on their own.</h3>
+          <h3>They reserve a spot, on their own.</h3>
           <p>Qualified patients land on your booking page and pick the time that works for them. Your calendar fills itself.</p>
           <div class="expand-panel-meta">
             <span class="expand-panel-chip"><span class="expand-panel-chip-dot"></span>Self-serve, 24/7</span>
@@ -4755,7 +4831,7 @@
       </button>
 
       <!-- 05 Confirm -->
-      <button class="expand-panel" data-i="4" data-active="false" role="tab" aria-label="Step 05 — Confirm">
+      <button class="expand-panel" data-i="4" data-active="false" role="tab" aria-label="Step 05, Confirm">
         <div class="expand-panel-header">
           <span class="expand-panel-num">Step 05</span>
           <span class="expand-panel-pip"></span>
@@ -4776,7 +4852,7 @@
         </div>
         <div class="expand-panel-body">
           <h3>You make the final human call.</h3>
-          <p>Your team's only job is the warm handoff — a quick call to a patient who's already raised their hand, qualified, and booked.</p>
+          <p>Your team's only job is the warm handoff, a quick call to a patient who's already raised their hand, qualified, and booked.</p>
           <div class="expand-panel-meta">
             <span class="expand-panel-chip"><span class="expand-panel-chip-dot"></span>Warm patients only</span>
             <span class="expand-panel-chip"><span class="expand-panel-chip-dot"></span>Real human moment</span>
@@ -4788,20 +4864,25 @@
   </section>
 
 
-  <!-- INDUSTRIES SERVED — real names, no fake logos -->
+  <!-- INDUSTRIES SERVED, real names, no fake logos -->
   <section class="industries-served" id="who">
     <div class="industries-served-inner">
       <div class="industries-copy">
         <div class="kicker">Who we serve</div>
         <h2>Built for wellness practices that <em>want to grow.</em></h2>
         <p>If your clinic helps people feel and live better, there's a good chance we can build a pipeline for you. We work with practices across cash-pay wellness and insurance-billing specialties.</p>
-        <div class="footnote">Based in South Florida — serving practices across the United States.</div>
+        <div class="footnote">Based in South Florida, serving practices across the United States.</div>
       </div>
       <div class="industries-cloud">
-        <span class="industries-pill hot">Med spas</span>
-        <span class="industries-pill hot">IV therapy</span>
-        <span class="industries-pill hot">Hormone optimization</span>
-        <span class="industries-pill hot">Aesthetic surgery</span>
+        <span class="industries-pill">Med spas</span>
+        <span class="industries-pill">IV therapy</span>
+        <span class="industries-pill">Hormone optimization</span>
+        <span class="industries-pill">Aesthetic surgery</span>
+        <span class="industries-pill">Applied Behavior Analysis</span>
+        <span class="industries-pill">Occupational therapy</span>
+        <span class="industries-pill">Speech therapy</span>
+        <span class="industries-pill">Physical therapy</span>
+        <span class="industries-pill">Feeding therapy</span>
         <span class="industries-pill">Longevity clinics</span>
         <span class="industries-pill">Integrative medicine</span>
         <span class="industries-pill">Functional medicine</span>
@@ -4812,31 +4893,31 @@
         <span class="industries-pill">Nutrition</span>
         <span class="industries-pill">Dermatology</span>
         <span class="industries-pill">Dental &amp; orthodontics</span>
-        <span class="industries-pill">Physical therapy</span>
+        <span class="industries-pill">Pediatric therapy</span>
       </div>
     </div>
   </section>
 
-  <!-- TEAM — real names, real bios, monogram avatars (swap for real photos when ready) -->
+  <!-- TEAM, real names, real bios, monogram avatars (swap for real photos when ready) -->
   <section class="team-section" id="team">
     <div class="team-inner">
       <div class="team-head">
         <div class="kicker">The team</div>
         <h2>Built from <em>inside</em> the wellness sector.</h2>
-        <p>Invexa didn't come from an agency looking in from the outside. It came from operators. Both founders spent years working inside wellness clinics and med spas — managing patients, watching what closes, seeing where the funnel breaks in daily practice.</p>
+        <p>Invexa didn't come from an agency looking in from the outside. It came from operators. Both founders spent years working inside wellness clinics and med spas, managing patients, watching what closes, seeing where the funnel breaks in daily practice.</p>
       </div>
       <div class="team-grid">
         <article class="team-card">
           <div class="team-mono" aria-hidden="true">AB</div>
           <h3 class="team-name">Alejandro Blanco</h3>
-          <div class="team-role">Co-Founder · Growth &amp; Creative</div>
-          <p class="team-bio">Alejandro leads campaign strategy, creative direction, and brand for every Invexa client. Years of hands-on operating inside wellness clinics shape how the team designs pipelines that actually convert — not just campaigns that look good.</p>
+          <div class="team-role">Co-Founder · Systems &amp; Operations</div>
+          <p class="team-bio">Alejandro builds the technical backbone, the personalized assistants, CRM logic, and booking flows that keep every lead moving. Years operating inside wellness clinics mean every system is built for how a busy front desk actually works, not how it looks on paper.</p>
         </article>
         <article class="team-card">
-          <div class="team-mono" aria-hidden="true">EM</div>
-          <h3 class="team-name">Elias Martinez</h3>
-          <div class="team-role">Co-Founder · Systems &amp; Operations</div>
-          <p class="team-bio">Elias builds the technical backbone — the AI assistants, CRM logic, and booking flows that keep every lead moving. His background running clinic operations means every system is built for the reality of how a busy front desk actually works.</p>
+          <div class="team-mono" aria-hidden="true">EA</div>
+          <h3 class="team-name">Elias Abdou</h3>
+          <div class="team-role">Co-Founder · Strategy &amp; Growth</div>
+          <p class="team-bio">Elias leads strategy, brand, and campaign direction for every Invexa client. His years running clinic marketing and patient acquisition shape how the team designs pipelines that actually convert, not just campaigns that look good.</p>
         </article>
       </div>
     </div>
@@ -4849,7 +4930,7 @@
         <div class="lead-magnet-copy">
           <span class="section-label fade-up">Free Resource</span>
           <h2 class="fade-up">The Wellness Clinic<br>Patient Growth Checklist.</h2>
-          <p class="fade-up">12 things every high-growth wellness clinic has locked in before they scale. Most clinics are missing at least 6. This checklist has helped clinics identify exactly where their patient pipeline is leaking — and plug it.</p>
+          <p class="fade-up">12 things every high-growth wellness clinic has locked in before they scale. Most clinics are missing at least 6. This checklist has helped clinics identify exactly where their patient pipeline is leaking, and plug it.</p>
           <div class="lead-magnet-cta fade-up">
             <button class="btn-primary" onclick="openModal()">View the Checklist →</button>
             <span class="lead-magnet-note">No download required. Instant access.</span>
@@ -4899,7 +4980,7 @@
             <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
           <div class="faq-a">
-            <div class="faq-a-inner">We work with wellness-focused practices — peptide clinics, hormone optimization, IV therapy, anti-aging, integrative medicine, longevity centers, med spas, and most cash-pay wellness services. If your clinic helps people feel and live better, there's a good chance we can build a pipeline for you.</div>
+            <div class="faq-a-inner">We work with wellness-focused practices, peptide clinics, hormone optimization, IV therapy, anti-aging, integrative medicine, longevity centers, med spas, and most cash-pay wellness services. If your clinic helps people feel and live better, there's a good chance we can build a pipeline for you.</div>
           </div>
         </div>
         <div class="faq-item fade-up delay-1">
@@ -4915,7 +4996,7 @@
             <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
           <div class="faq-a">
-            <div class="faq-a-inner">No. We handle all ad creation, campaign management, and optimization end-to-end. We've seen clinics generate 5–8x return on ad spend in competitive markets. We manage the budget, you approve the spend — no marketing experience required on your end.</div>
+            <div class="faq-a-inner">No. We handle all ad creation, campaign management, and optimization end-to-end. We've seen clinics generate 5–8x return on ad spend in competitive markets. We manage the budget, you approve the spend, no marketing experience required on your end.</div>
           </div>
         </div>
         <div class="faq-item fade-up">
@@ -4923,7 +5004,7 @@
             <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
           <div class="faq-a">
-            <div class="faq-a-inner">Most agencies deliver leads. We deliver patients in your chair. The difference is the middle layer — our automated nurture, qualification, and confirmation systems that turn a lead into a kept appointment. We focus on wellness medicine, so we understand your compliance landscape, your patient psychology, and what actually converts in this space.</div>
+            <div class="faq-a-inner">Most agencies deliver leads. We deliver patients in your chair. The difference is the middle layer, our automated nurture, qualification, and confirmation systems that turn a lead into a kept appointment. We focus on wellness medicine, so we understand your compliance landscape, your patient psychology, and what actually converts in this space.</div>
           </div>
         </div>
         <div class="faq-item fade-up delay-1">
@@ -4931,7 +5012,7 @@
             <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
           <div class="faq-a">
-            <div class="faq-a-inner">About three weeks to get your system live and producing — after that, no long-term contracts. We share specific terms on the audit call once we've reviewed your setup and confirmed fit. We're not the cheapest option. We're the one that actually works.</div>
+            <div class="faq-a-inner">About three weeks to get your system live and producing, after that, no long-term contracts. We share specific terms on the demo call once we've walked you through the system and confirmed fit. We're not the cheapest option. We're the one that actually works.</div>
           </div>
         </div>
       </div>
@@ -4942,12 +5023,12 @@
   <section class="final-cta" id="apply">
     <div class="final-cta-bg"></div>
     <div class="container">
-      <span class="section-label fade-up" style="display:block;">Free Audit — Limited Slots</span>
+      <span class="section-label fade-up" style="display:block;">Free Demo · Limited Slots</span>
       <h2 class="fade-up">Ready to fill your calendar<br>with real patients?</h2>
-      <p class="fade-up">Start with a free audit. We'll review your current marketing setup, identify exactly where your patient pipeline is leaking, and show you what your growth system would look like — at no cost.</p>
+      <p class="fade-up">Book a free demo. We'll walk you through the CRM, show you exactly how the pipeline runs, and let you see the system in action. Most clinics book us on the same call.</p>
       <div class="cta-actions fade-up">
-        <button class="btn-primary" onclick="scrollToForm()" style="font-size:17px; padding:18px 40px;">Get My Free Audit →</button>
-        <span class="cta-subtext">Takes 60 seconds. We'll text you to confirm fit.</span>
+        <button class="btn-primary" onclick="scrollToForm()" style="font-size:17px; padding:18px 40px;">Book my free demo →</button>
+        <span class="cta-subtext">Takes 60 seconds to book. Call is 20 minutes.</span>
       </div>
     </div>
   </section>
@@ -4976,7 +5057,8 @@
             <li><a href="#solution">What we do</a></li>
             <li><a href="#how">How it works</a></li>
             <li><a href="#faq">FAQ</a></li>
-            <li><a href="mailto:connect@invexagrowth.com">Contact</a></li>
+            <!-- TODO(Alejandro): replace 1XXXXXXXXXX with your WhatsApp Business number (E.164, no +). -->
+            <li><a href="https://wa.me/1XXXXXXXXXX?text=Hi%20Invexa%2C%20I%27d%20like%20to%20book%20a%20demo%20of%20the%20CRM." target="_blank" rel="noopener">Contact (WhatsApp)</a></li>
           </ul>
         </div>
 
@@ -4984,10 +5066,10 @@
         <div>
           <div class="footer-col-title">Services</div>
           <ul class="footer-col-list">
-            <li><a href="#solution">Ad campaigns</a></li>
-            <li><a href="#solution">Landing pages</a></li>
-            <li><a href="#solution">AI virtual assistant</a></li>
-            <li><a href="#solution">Booking system</a></li>
+            <li><a href="#campaigns">Ad campaigns</a></li>
+            <li><a href="#landing">Landing pages</a></li>
+            <li><a href="#assistant">Personalized virtual assistant</a></li>
+            <li><a href="#booking">Booking system</a></li>
           </ul>
         </div>
 
@@ -4999,7 +5081,7 @@
             <li><a href="/terms.html">Terms of Service</a></li>
             <li><a href="/cookies.html">Cookie Policy</a></li>
             <li><a href="/accessibility.html">Accessibility</a></li>
-            <li><a href="#" onclick="event.preventDefault();window.__invexaCookies&&window.__invexaCookies.open();">Do Not Sell or Share My Info</a></li>
+            <li><a href="#" data-cookies-action="donotsell">Do Not Sell or Share My Info</a></li>
           </ul>
         </div>
       </div>
@@ -5016,7 +5098,7 @@
           <a href="/privacy.html">Privacy</a>
           <a href="/terms.html">Terms</a>
           <a href="/cookies.html">Cookies</a>
-          <a href="#" onclick="event.preventDefault();window.__invexaCookies&&window.__invexaCookies.open();">Cookie preferences</a>
+          <a href="#" data-cookies-action="preferences">Cookie preferences</a>
         </div>
       </div>
 
@@ -5025,43 +5107,113 @@
 
   <!-- COOKIE CONSENT BANNER -->
   <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Cookie consent" aria-live="polite">
+    <button class="cookie-banner-close" id="cookieBannerClose" type="button" aria-label="Dismiss (essential cookies only)">&times;</button>
     <div class="cookie-banner-copy">
       <strong>Cookies &amp; privacy.</strong> We use essential cookies to make this site work, plus optional analytics cookies to understand how visitors use it. See our <a href="/cookies.html">Cookie Policy</a>. Choose what's OK with you.
     </div>
     <div class="cookie-banner-actions">
-      <button class="cookie-btn cookie-btn-decline" type="button" onclick="window.__invexaCookies.deny()">Essential only</button>
-      <button class="cookie-btn cookie-btn-accept" type="button" onclick="window.__invexaCookies.accept()">Accept all</button>
+      <button class="cookie-btn cookie-btn-decline" id="cookieBtnDecline" type="button">Essential only</button>
+      <button class="cookie-btn cookie-btn-accept" id="cookieBtnAccept" type="button">Accept all</button>
     </div>
   </div>
 
-  <!-- Cookie consent logic (minimal, brand-styled; swap in Termly/CookieYes anytime) -->
+  <!-- Toast for cookie / privacy confirmations -->
+  <div class="cookie-toast" id="cookieToast" role="status" aria-live="polite"></div>
+
+  <!-- Cookie consent logic (defensive, event-listener based) -->
   <script>
     (function(){
       var KEY = 'invexa.cookieConsent.v1';
+      var DNS_KEY = 'invexa.doNotSell.v1';
       var banner = document.getElementById('cookieBanner');
-      function show(){ banner && banner.classList.add('show'); }
-      function hide(){ banner && banner.classList.remove('show'); }
+      var toast  = document.getElementById('cookieToast');
+      if (!banner) return;
+
+      function show(){ banner.classList.add('show'); }
+      function hide(){ banner.classList.remove('show'); }
       function save(val){
         try { localStorage.setItem(KEY, JSON.stringify({ choice: val, at: Date.now() })); } catch(e){}
       }
-      function loadNonEssential(){
-        // Hook: when consented, this is where you'd load GA / Meta Pixel / etc.
-        // Left intentionally empty until analytics is chosen.
+      function saveDoNotSell(){
+        try { localStorage.setItem(DNS_KEY, JSON.stringify({ optOut: true, at: Date.now() })); } catch(e){}
       }
+      function loadNonEssential(){
+        /* Hook: load GA / Meta Pixel / etc. here once user has consented AND has not opted out via DNS */
+        try {
+          var dns = localStorage.getItem(DNS_KEY);
+          if (dns && JSON.parse(dns).optOut) return;
+        } catch(e){}
+        /* GA / Meta pixel init would go here */
+      }
+      var toastTimer = null;
+      function showToast(msg){
+        if (!toast) { try { alert(msg); } catch(e){} return; }
+        toast.textContent = msg;
+        toast.classList.add('show');
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 4200);
+      }
+
+      // Wire banner buttons
+      var btnAccept  = document.getElementById('cookieBtnAccept');
+      var btnDecline = document.getElementById('cookieBtnDecline');
+      var btnClose   = document.getElementById('cookieBannerClose');
+
+      btnAccept  && btnAccept.addEventListener('click',  function(){ save('all');       loadNonEssential(); hide(); showToast('All cookies allowed. Thanks for helping us improve.'); });
+      btnDecline && btnDecline.addEventListener('click', function(){ save('essential'); hide(); showToast('Only essential cookies will be used.'); });
+      btnClose   && btnClose.addEventListener('click',   function(){ save('essential'); hide(); showToast('Only essential cookies will be used.'); });
+
+      // Wire footer links via data-attributes (works regardless of inline-handler policies)
+      function handleAction(action, e){
+        if (e && e.preventDefault) e.preventDefault();
+        if (action === 'preferences') {
+          show();
+        } else if (action === 'donotsell') {
+          save('essential');
+          saveDoNotSell();
+          hide();
+          showToast('You have opted out of the sale or sharing of your personal information.');
+        }
+      }
+      var links = document.querySelectorAll('[data-cookies-action]');
+      for (var i = 0; i < links.length; i++) {
+        (function(el){
+          el.addEventListener('click', function(e){ handleAction(el.getAttribute('data-cookies-action'), e); });
+        })(links[i]);
+      }
+
+      // Public API (kept for backwards compatibility / console access)
       window.__invexaCookies = {
-        open:   function(){ show(); },
-        accept: function(){ save('all'); loadNonEssential(); hide(); },
-        deny:   function(){ save('essential'); hide(); }
+        open:      show,
+        accept:    function(){ save('all');       loadNonEssential(); hide(); showToast('All cookies allowed.'); },
+        deny:      function(){ save('essential'); hide(); showToast('Only essential cookies will be used.'); },
+        doNotSell: function(){ save('essential'); saveDoNotSell(); hide(); showToast('You have opted out of the sale or sharing of your personal information.'); },
+        reset:     function(){ try { localStorage.removeItem(KEY); localStorage.removeItem(DNS_KEY); } catch(e){} show(); }
       };
+
+      // Honor Global Privacy Control (GPC) signal, auto opt-out for those browsers
+      try {
+        if (navigator && navigator.globalPrivacyControl) {
+          saveDoNotSell();
+        }
+      } catch(e){}
+
       // Show banner only if no choice recorded yet
+      var hasChoice = false;
       try {
         var existing = localStorage.getItem(KEY);
-        if (!existing) { setTimeout(show, 800); }
-        else {
-          var parsed = JSON.parse(existing);
-          if (parsed && parsed.choice === 'all') { loadNonEssential(); }
+        if (existing) {
+          hasChoice = true;
+          try {
+            var parsed = JSON.parse(existing);
+            if (parsed && parsed.choice === 'all') loadNonEssential();
+          } catch(e){}
         }
-      } catch(e) { setTimeout(show, 800); }
+      } catch(e){}
+
+      if (!hasChoice) {
+        setTimeout(show, 1200);
+      }
     })();
   </script>
 
@@ -5072,15 +5224,15 @@
       <div class="modal-body">
       <div class="modal-badge"><span class="badge"><span class="badge-dot"></span>Free Resource</span></div>
       <h2 style="font-family:'Instrument Serif',serif; font-weight:400;">The 12-Point Wellness Clinic<br>Patient Growth Checklist</h2>
-      <p>Every high-performing wellness clinic has these locked in before they scale. Audit yourself honestly — most clinics are missing at least 6.</p>
+      <p>Every high-performing wellness clinic has these locked in before they scale. Audit yourself honestly, most clinics are missing at least 6.</p>
       <div class="modal-checklist">
         <div class="modal-check"><div class="modal-check-num">1</div><div class="modal-check-text"><strong>Defined Ideal Patient Avatar</strong>5+ qualifying attributes that separate your best patients from time-wasters.</div></div>
         <div class="modal-check"><div class="modal-check-num">2</div><div class="modal-check-text"><strong>Active Pixel Tracking</strong>Meta and Google pixels live on your site, intake forms, and booking confirmation pages.</div></div>
         <div class="modal-check"><div class="modal-check-num">3</div><div class="modal-check-text"><strong>SMS Follow-Up in Under 5 Minutes</strong>First contact speed is the single biggest driver of lead conversion in wellness medicine.</div></div>
         <div class="modal-check"><div class="modal-check-num">4</div><div class="modal-check-text"><strong>3-Touch Appointment Confirmation</strong>Phone, SMS, and email confirmation cadence that cuts no-shows below 10%.</div></div>
-        <div class="modal-check"><div class="modal-check-num">5</div><div class="modal-check-text"><strong>Lifetime Value by Service Tier</strong>Know exactly what each patient type is worth — so you know how much to spend to acquire one.</div></div>
+        <div class="modal-check"><div class="modal-check-num">5</div><div class="modal-check-text"><strong>Lifetime Value by Service Tier</strong>Know exactly what each patient type is worth, so you know how much to spend to acquire one.</div></div>
         <div class="modal-check"><div class="modal-check-num">6</div><div class="modal-check-text"><strong>Weekly CPA Tracking by Channel</strong>Cost-per-acquisition tracked separately for every ad platform and campaign.</div></div>
-        <div class="modal-check"><div class="modal-check-num">7</div><div class="modal-check-text"><strong>Pre-Appointment Education Sequence</strong>Automated content that educates patients on your protocols before they arrive — reducing cancellations.</div></div>
+        <div class="modal-check"><div class="modal-check-num">7</div><div class="modal-check-text"><strong>Pre-Appointment Education Sequence</strong>Automated content that educates patients on your protocols before they arrive, reducing cancellations.</div></div>
         <div class="modal-check"><div class="modal-check-num">8</div><div class="modal-check-text"><strong>Post-Visit Reactivation Flow</strong>Every patient who doesn't rebook within 30 days gets a reactivation sequence that brings them back.</div></div>
         <div class="modal-check"><div class="modal-check-num">9</div><div class="modal-check-text"><strong>Referral Capture Mechanism</strong>A structured ask at the right moment that converts satisfied patients into your best sales team.</div></div>
         <div class="modal-check"><div class="modal-check-num">10</div><div class="modal-check-text"><strong>Review Generation System</strong>Automated post-visit sequence that builds your 5-star presence on Google and Healthgrades.</div></div>
@@ -5154,7 +5306,7 @@
       });
     });
 
-    // Spots counter — slow incremental progression based on time
+    // Spots counter, slow incremental progression based on time
     function updateSpots() {
       const els = [
         document.getElementById('spots-counter'),
@@ -5335,7 +5487,7 @@
       setProgress(0);
     })();
 
-    /* ===== Problem carousel — scroll-snap + arrows + dots ===== */
+    /* ===== Problem carousel, scroll-snap + arrows + dots ===== */
     (function initProblemCarousel(){
       const track = document.querySelector('[data-problem-track]');
       if (!track) return;
@@ -5392,7 +5544,7 @@
       updateButtons(); updateDots();
     })();
 
-    /* ===== Pipeline timeline — spine fill + step reveal ===== */
+    /* ===== Pipeline timeline, spine fill + step reveal ===== */
     (function initTimeline(){
       const track = document.querySelector('[data-timeline]');
       if (!track) return;
@@ -5408,7 +5560,7 @@
       }, { threshold: 0.25 });
       steps.forEach(s => io.observe(s));
 
-      // Scroll-driven spine fill — progress = how much of the track has scrolled past viewport top
+      // Scroll-driven spine fill, progress = how much of the track has scrolled past viewport top
       function updateSpine() {
         const rect = track.getBoundingClientRect();
         const vh = window.innerHeight;
@@ -5465,7 +5617,7 @@
       });
     })();
 
-    /* ===== Stacking cards — sticky-scroll (legacy, harmless if markup absent) ===== */
+    /* ===== Stacking cards, sticky-scroll (legacy, harmless if markup absent) ===== */
     (function initStackCards(){
       const section = document.querySelector('.stack-cards');
       if (!section) return;
@@ -5510,7 +5662,7 @@
     })();
   </script>
 
-  <!-- Spline Viewer — interactive 3D bot for the Solution section -->
+  <!-- Spline Viewer, interactive 3D bot for the Solution section -->
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.95/build/spline-viewer.js"></script>
 
   <!-- INVEXA Light Shader Hero Background -->
@@ -5525,7 +5677,7 @@
         void main() { gl_Position = vec4(position, 1.0); }
       `;
 
-      // Light prism shader — chromatic ring arcs using ONLY the brand bar
+      // Light prism shader, chromatic ring arcs using ONLY the brand bar
       // gradient colors (peach-2 ↔ soft-blue-2). 3 phase-shifted ring sets in
       // peach / mauve / soft-blue so the chromatic-aberration motion stays,
       // but every visible color is on-brand. Brightness floor prevents dark spots.
@@ -5540,17 +5692,17 @@
         const vec3 BG_PEACH = vec3(0.961, 0.831, 0.784); // #F5D4C8
         const vec3 BG_BLUE  = vec3(0.722, 0.773, 0.886); // #B8C5E2
 
-        // Ring hues — exactly the bar gradient stops + a soft mauve bridge
+        // Ring hues, exactly the bar gradient stops + a soft mauve bridge
         const vec3 RING_PEACH = vec3(0.941, 0.773, 0.710); // #F0C5B5  (--peach-2)
         const vec3 RING_MAUVE = vec3(0.847, 0.812, 0.835); // gentle peach↔blue mid
         const vec3 RING_BLUE  = vec3(0.659, 0.722, 0.847); // #A8B8D8  (--soft-blue-2)
 
-        // Brightness floor — overlapping rings can't compound into dark spots
+        // Brightness floor, overlapping rings can't compound into dark spots
         const float BRIGHTNESS_FLOOR = 0.78;
 
         void main(void) {
           vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / min(resolution.x, resolution.y);
-          // Faster intervals (0.014 → 0.022) — peaks come more often
+          // Faster intervals (0.014 → 0.022), peaks come more often
           float t = time * 0.022;
           float lineWidth = 0.0020;
 
@@ -5565,14 +5717,14 @@
             ib += lineWidth * fi * fi / abs(fract(t - 0.02 + fi * 0.01) * 5.0 - lenUV + modVal);
           }
 
-          // Ambient brand drift — soft peach↔blue wash always present
+          // Ambient brand drift, soft peach↔blue wash always present
           float wash  = 0.5 + 0.5 * sin(time * 0.06 + uv.x * 1.2);
           float wash2 = 0.5 + 0.5 * cos(time * 0.045 - uv.y * 1.1);
           vec3 brandWash = mix(BG_PEACH, BG_BLUE, wash);
           brandWash = mix(brandWash, mix(BG_PEACH, BG_BLUE, wash2), 0.5);
           vec3 ambient = mix(CREAM, brandWash, 0.22);
 
-          // Subtract each hue's COMPLEMENT — keeps the actual hue visible
+          // Subtract each hue's COMPLEMENT, keeps the actual hue visible
           float strength = 0.55;
           vec3 dark = vec3(0.0);
           dark += (vec3(1.0) - RING_PEACH) * ir * strength;
