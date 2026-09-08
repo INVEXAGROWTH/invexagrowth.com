@@ -862,40 +862,40 @@
       overflow: hidden;
     }
     .problem-track {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 24px;
-      padding: 8px 32px 8px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-    .problem-track::-webkit-scrollbar { display: none; }
-    @media (min-width: 1400px) {
-      .problem-track { padding: 8px max(8rem, calc(50vw - 700px)) 8px; }
+      padding: 8px 32px;
+      max-width: 1400px;
+      margin: 0 auto;
     }
     .problem-slide {
-      flex: 0 0 360px;
-      scroll-snap-align: start;
       position: relative;
       aspect-ratio: 16 / 12;
       border-radius: 20px;
       overflow: hidden;
-      cursor: grab;
       background: var(--charcoal);
       box-shadow: 0 20px 50px -16px rgba(40, 30, 25, 0.25), 0 8px 16px -4px rgba(40, 30, 25, 0.08);
     }
-    .problem-slide:active { cursor: grabbing; }
-    @media (max-width: 768px) {
-      .problem-slide {
-        flex-basis: 78vw;
-        max-width: 320px;
-        aspect-ratio: 4 / 5;  /* taller on mobile so content fits without clipping */
+    @media (max-width: 900px) {
+      .problem-track {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 8px 24px;
+        gap: 14px;
       }
-      .problem-track { gap: 14px; padding: 8px 24px; }
+      .problem-track::-webkit-scrollbar { display: none; }
+      .problem-slide {
+        flex: 0 0 78vw;
+        max-width: 320px;
+        aspect-ratio: 4 / 5;
+        scroll-snap-align: start;
+      }
       .problem-carousel-head { padding: 0 24px; flex-direction: column; align-items: flex-start; margin-bottom: 28px; }
-      .problem-carousel-nav { align-self: flex-end; }
       /* Slide content, tighter type, ensures chip + title + desc all fit */
       .problem-slide-content { padding: 24px 22px; }
       .problem-slide-tag { margin-bottom: 12px; font-size: 10px; letter-spacing: 0.12em; padding: 3px 8px 3px 6px; }
@@ -2264,7 +2264,7 @@
     .pipeline-overview {
       position: relative;
       background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
-      padding: 64px 0 72px;
+      padding: 112px 0 96px;
       overflow: hidden;
       color: var(--charcoal);
     }
@@ -2288,12 +2288,13 @@
     }
     .pipeline-overview-head {
       max-width: 760px;
-      margin: 0 auto 48px;
+      margin: 0 auto 64px;
       padding: 0 24px;
       text-align: center;
       position: relative;
       z-index: 2;
     }
+    .pipeline-overview-head strong { color: #D9744D; font-weight: 600; }
     .pipeline-overview-head .section-label {
       color: #8a4a32;
       letter-spacing: 0.14em;
@@ -3486,21 +3487,18 @@
       .mega-services-head { grid-template-columns: 1fr; align-items: start; gap: 20px; margin-bottom: 28px; }
     }
     .mega-services-head h2 {
-      font-family: 'Inter', -apple-system, sans-serif;
-      font-size: clamp(22px, 2.4vw, 30px);
-      line-height: 1.2;
-      letter-spacing: -0.005em;
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(34px, 4.4vw, 54px);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
       color: var(--charcoal);
-      font-weight: 600;
+      font-weight: 400;
       margin: 0;
       max-width: 22ch;
     }
     .mega-services-head h2 em {
-      font-family: 'Instrument Serif', serif;
       color: #D9744D;
       font-style: italic;
-      font-weight: 400;
-      font-size: 1.1em;
     }
     .mega-services-head .kicker {
       font-size: 10.5px;
@@ -4139,7 +4137,7 @@
           From leads to patients on autopilot.
         </h1>
         <p class="hero-sub fade-up visible delay-2">
-          We build the entire patient acquisition machine for wellness clinics, med spas, and therapy practices. <strong>Book a free demo</strong>, we'll walk you through the CRM live and show you exactly how the system works.
+          A complete patient acquisition system for wellness clinics, med spas, and therapy practices. Ad campaigns, personalized virtual assistant, and booking flow, all managed inside one CRM. <strong>Book a free demo</strong> and see it running live.
         </p>
         <div class="fade-up visible delay-3" style="display:flex; gap:14px; flex-wrap:wrap; justify-content:center;">
           <a href="#hero-form-card" class="btn-primary" onclick="scrollToForm(); return false;">Book my free demo →</a>
@@ -4356,8 +4354,8 @@
     <div class="container">
       <div class="audit-header">
         <span class="section-label fade-up">Free Demo · No Commitment</span>
-        <h2 class="fade-up">Book your free demo.</h2>
-        <p class="fade-up">A live 20-minute walkthrough of the CRM we'd build for you. You'll see the campaigns, the personalized assistant, and the booking flow working in real time. No slides, no pitch. Just the system, showing what it actually does.</p>
+        <h2 class="fade-up">Book a free demo of your CRM.</h2>
+        <p class="fade-up">A 20-minute live walkthrough of the CRM we'd build for your clinic. You'll see the ad campaigns, the personalized virtual assistant, and the booking flow running in real time inside one dashboard.</p>
       </div>
       <div class="audit-widget-card fade-up">
         <div class="audit-widget-inner">
@@ -4402,7 +4400,7 @@
   <div class="problem-band" aria-hidden="true">
     <div class="problem-band-copy">
       <span class="section-label fade-up">The Problem</span>
-      <h2 class="fade-up">Empty chairs.<br>Quiet weeks.<br>You've felt this before.</h2>
+      <h2 class="fade-up">Inconsistent patient flow.<br>Unpredictable revenue.</h2>
     </div>
   </div>
 
@@ -4412,17 +4410,9 @@
       <div class="problem-carousel">
         <div class="problem-carousel-head">
           <div>
-            <span class="section-label fade-up">Where the leak happens</span>
-            <h2 class="fade-up" style="margin-top:12px;">Every wellness clinic hits<br>the same wall.</h2>
-            <p class="fade-up">You went into wellness, not marketing. You're great at what you do. You just need patients walking through the door consistently.</p>
-          </div>
-          <div class="problem-carousel-nav">
-            <button class="problem-carousel-btn" data-problem-prev aria-label="Previous">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-            </button>
-            <button class="problem-carousel-btn" data-problem-next aria-label="Next">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </button>
+            <span class="section-label fade-up">Where clinics lose leads</span>
+            <h2 class="fade-up" style="margin-top:12px;">Three common failure points<br>in patient acquisition.</h2>
+            <p class="fade-up">Most clinics have one or two of these partially solved. Fixing all three inside one connected system is what produces predictable patient flow.</p>
           </div>
         </div>
 
@@ -4434,7 +4424,7 @@
               <div class="problem-slide-content">
                 <span class="problem-slide-tag"><span class="problem-slide-tag-dot"></span>Problem 01</span>
                 <h3>Inconsistent lead flow</h3>
-                <p>One week your calendar is packed. The next, it's a ghost town. Without a system, you're at the mercy of word-of-mouth and walk-ins.</p>
+                <p>Referrals and walk-ins produce unpredictable weeks. A working acquisition system converts that variance into a steady, forecastable volume of appointments.</p>
               </div>
             </article>
 
@@ -4443,8 +4433,8 @@
               <div class="problem-slide-overlay"></div>
               <div class="problem-slide-content">
                 <span class="problem-slide-tag"><span class="problem-slide-tag-dot"></span>Problem 02</span>
-                <h3>Wasted ad spend</h3>
-                <p>You've tried Facebook ads or hired an agency. Reports show "impressions" and "clicks", but actual patients never show up.</p>
+                <h3>Ad spend that doesn't convert</h3>
+                <p>Impressions and clicks are vanity metrics. Cost per booked appointment is the number that matters, and most clinics never see it tracked correctly.</p>
               </div>
             </article>
 
@@ -4454,17 +4444,12 @@
               <div class="problem-slide-content">
                 <span class="problem-slide-tag"><span class="problem-slide-tag-dot"></span>Problem 03</span>
                 <h3>High no-show rates</h3>
-                <p>When leads do come in, half ghost before the appointment. You spend as much time chasing patients as treating them.</p>
+                <p>Booked leads often don't arrive. A structured qualification and confirmation sequence closes that gap and protects your calendar's revenue.</p>
               </div>
             </article>
           </div>
         </div>
 
-        <div class="problem-dots" data-problem-dots>
-          <button class="problem-dot" aria-current="true" aria-label="Go to slide 1"></button>
-          <button class="problem-dot" aria-label="Go to slide 2"></button>
-          <button class="problem-dot" aria-label="Go to slide 3"></button>
-        </div>
       </div>
     </div>
   </section>
@@ -4480,9 +4465,9 @@
 
         <!-- Centered overlay: label + title + desc + scroll hint -->
         <div class="scroll-expand-overlay">
-          <span class="section-label">The Invexa Method</span>
-          <h2 class="scroll-expand-title">A growth system.<br>Not another agency.</h2>
-          <p class="scroll-expand-desc">Invexa Growth runs the entire pipeline, ad campaigns, creative production, lead qualification, booking, and hands you patients who are already warmed up and ready to confirm.</p>
+          <span class="section-label">The Invexa System</span>
+          <h2 class="scroll-expand-title">The patient acquisition system<br>your clinic runs on.</h2>
+          <p class="scroll-expand-desc">One CRM that runs the full pipeline: ad campaigns, lead qualification, booking, and patient communication. Your team logs into a single dashboard to manage every lead, message, and appointment.</p>
           <div class="scroll-expand-hint">
             <span>Scroll to see what changes</span>
             <span class="scroll-expand-hint-arrow">↓</span>
@@ -4502,7 +4487,7 @@
           <h2>Four pieces. <em>One system.</em></h2>
         </div>
         <div class="mega-services-head-right">
-          <p>Designed, built, and wired together by us, so you never stitch anything yourself. Live in about seven days.</p>
+          <p>Four deliverables, one integrated CRM. Fully built and configured by our team, typically live within three weeks of engagement.</p>
         </div>
       </div>
       <ul class="mega-list">
@@ -4551,7 +4536,7 @@
     <div class="pipeline-overview-head">
       <span class="section-label fade-up">Everything we build for you</span>
       <h2 class="fade-up">One system.<br>Built end to end.</h2>
-      <p class="fade-up">Custom ad campaigns, your branded landing page, a personalized virtual assistant that qualifies every lead, and a booking system that fills your calendar, all designed, built, and wired together by us.</p>
+      <p class="fade-up">Custom ad campaigns, your branded landing page, a personalized virtual assistant that qualifies every lead, and a booking system that fills your calendar. All feeding into <strong>your CRM,</strong> the single dashboard your team uses to manage every lead, message, and appointment. Designed, built, and wired together by us.</p>
     </div>
 
     <div class="timeline-track" data-timeline>
@@ -4564,7 +4549,7 @@
           <div class="timeline-eyebrow"><span class="timeline-eyebrow-dot"></span>Step 01</div>
           <div class="timeline-num">01</div>
           <h3 class="timeline-title">Custom ad campaigns.</h3>
-          <p class="timeline-desc">We build, write, shoot, and run the Meta campaigns that bring your future patients in, every ad designed around your clinic and the patient you actually want.</p>
+          <p class="timeline-desc">We plan, produce, and run Meta ad campaigns targeted to your ideal patient. Full creative production, audience management, and daily optimization are included.</p>
           <ul class="timeline-meta">
             <li>Strategy + creative</li>
             <li>Targeting + audiences</li>
@@ -4585,7 +4570,7 @@
           <div class="timeline-eyebrow"><span class="timeline-eyebrow-dot"></span>Step 02</div>
           <div class="timeline-num">02</div>
           <h3 class="timeline-title">Your branded landing page.</h3>
-          <p class="timeline-desc">A custom landing page built for your clinic, designed to feel like a premium extension of your brand and engineered to convert visitors into booked patients.</p>
+          <p class="timeline-desc">A dedicated landing page for your clinic, built on your brand and structured to convert visitors into booked appointments.</p>
           <ul class="timeline-meta">
             <li>Conversion-optimized</li>
             <li>On-brand design</li>
@@ -4606,7 +4591,7 @@
           <div class="timeline-eyebrow"><span class="timeline-eyebrow-dot"></span>Step 03</div>
           <div class="timeline-num">03</div>
           <h3 class="timeline-title">A personalized virtual assistant.</h3>
-          <p class="timeline-desc">A warm, on-brand AI agent that talks to every lead the moment they arrive, answering questions, qualifying fit, and warming them up before they ever reach your team.</p>
+          <p class="timeline-desc">A personalized virtual assistant that responds to every lead instantly through SMS and WhatsApp. Answers common questions, confirms fit, and prepares each patient before they reach your team.</p>
           <ul class="timeline-meta">
             <li>Sub-60s reply time</li>
             <li>On-brand voice</li>
@@ -4635,7 +4620,7 @@
           <div class="timeline-eyebrow"><span class="timeline-eyebrow-dot"></span>Step 04</div>
           <div class="timeline-num">04</div>
           <h3 class="timeline-title">A booking system that fills your calendar.</h3>
-          <p class="timeline-desc">Qualified, warmed patients land on your calendar and book themselves into an open slot, synced to your real availability, no front desk involvement needed.</p>
+          <p class="timeline-desc">Qualified patients book directly into your calendar through real-time availability sync. Confirmations, reminders, and reschedules are handled automatically inside the CRM.</p>
           <ul class="timeline-meta">
             <li>Self-serve, 24/7</li>
             <li>Synced to your calendar</li>
@@ -4656,8 +4641,8 @@
   <section class="expand-section" id="how">
     <div class="expand-header">
       <span class="section-label fade-up">The Pipeline</span>
-      <h2 class="fade-up">From the first scroll<br>to the first visit.</h2>
-      <p class="fade-up" style="margin-top:16px;">Hover any step to see what happens. Five stops, every patient, and you only step in at the end.</p>
+      <h2 class="fade-up">How the pipeline works.</h2>
+      <p class="fade-up" style="margin-top:16px;">Four stages, all built for your clinic and wired into one CRM: reach, capture, qualify, book. Every lead moves through the same predictable path, and your team sees every touchpoint in one place.</p>
     </div>
 
     <div class="expand-strip" data-expand-strip role="tablist" aria-label="Patient acquisition pipeline">
@@ -4851,8 +4836,8 @@
     <div class="industries-served-inner">
       <div class="industries-copy">
         <div class="kicker">Who we serve</div>
-        <h2>Built for wellness practices that <em>want to grow.</em></h2>
-        <p>If your clinic helps people feel and live better, there's a good chance we can build a pipeline for you. We work with practices across cash-pay wellness and insurance-billing specialties.</p>
+        <h2>Practices we build systems for.</h2>
+        <p>We work with wellness clinics, medical practices, and therapy providers across both cash-pay and insurance-billing models. The pipeline is configured to your specialty, patient type, and service mix.</p>
         <div class="footnote">Based in South Florida, serving practices across the United States.</div>
       </div>
       <div class="industries-cloud">
@@ -4885,21 +4870,21 @@
     <div class="team-inner">
       <div class="team-head">
         <div class="kicker">The team</div>
-        <h2>Built from <em>inside</em> the wellness sector.</h2>
-        <p>Invexa didn't come from an agency looking in from the outside. It came from operators. Both founders spent years working inside wellness clinics and med spas, managing patients, watching what closes, seeing where the funnel breaks in daily practice.</p>
+        <h2>The team behind <em>Invexa.</em></h2>
+        <p>Both founders spent years working inside wellness clinics and med spas. That's where the system was designed, and it's the standard every client engagement runs on.</p>
       </div>
       <div class="team-grid">
         <article class="team-card">
           <div class="team-mono" aria-hidden="true">AB</div>
           <h3 class="team-name">Alejandro Blanco</h3>
           <div class="team-role">Co-Founder · Systems &amp; Operations</div>
-          <p class="team-bio">Alejandro builds the technical backbone, the personalized assistants, CRM logic, and booking flows that keep every lead moving. Years operating inside wellness clinics mean every system is built for how a busy front desk actually works, not how it looks on paper.</p>
+          <p class="team-bio">Builds and maintains the CRM, the personalized virtual assistant, and the booking flows. Owns technical delivery for every client account.</p>
         </article>
         <article class="team-card">
           <div class="team-mono" aria-hidden="true">EA</div>
           <h3 class="team-name">Elias Abdou</h3>
           <div class="team-role">Co-Founder · Strategy &amp; Growth</div>
-          <p class="team-bio">Elias leads strategy, brand, and campaign direction for every Invexa client. His years running clinic marketing and patient acquisition shape how the team designs pipelines that actually convert, not just campaigns that look good.</p>
+          <p class="team-bio">Leads strategy, brand, and campaign direction. Owns creative and paid media performance across every client account.</p>
         </article>
       </div>
     </div>
@@ -4982,11 +4967,11 @@
           </div>
         </div>
         <div class="faq-item fade-up">
-          <button class="faq-q">What makes INVEXA different from a regular marketing agency?
+          <button class="faq-q">What does INVEXA actually deliver?
             <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
           <div class="faq-a">
-            <div class="faq-a-inner">Most agencies deliver leads. We deliver patients in your chair. The difference is the middle layer, our automated nurture, qualification, and confirmation systems that turn a lead into a kept appointment. We focus on wellness medicine, so we understand your compliance landscape, your patient psychology, and what actually converts in this space.</div>
+            <div class="faq-a-inner">Booked patients on your calendar. We handle the full pipeline: ad campaigns, landing page, personalized virtual assistant that qualifies every lead, and the booking system. Everything runs through one CRM your team uses to manage leads, conversations, and appointments in one place.</div>
           </div>
         </div>
         <div class="faq-item fade-up delay-1">
@@ -4994,7 +4979,7 @@
             <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
           <div class="faq-a">
-            <div class="faq-a-inner">About three weeks to get your system live and producing, after that, no long-term contracts. We share specific terms on the demo call once we've walked you through the system and confirmed fit. We're not the cheapest option. We're the one that actually works.</div>
+            <div class="faq-a-inner">About three weeks from signed engagement to live system. Pricing is a monthly retainer that covers build, launch, ad spend management, and ongoing optimization. No long-term contracts. Specific numbers are shared on the demo call once we've reviewed your setup.</div>
           </div>
         </div>
       </div>
@@ -5006,8 +4991,8 @@
     <div class="final-cta-bg"></div>
     <div class="container">
       <span class="section-label fade-up" style="display:block;">Free Demo · Limited Slots</span>
-      <h2 class="fade-up">Ready to fill your calendar<br>with real patients?</h2>
-      <p class="fade-up">Book a free demo. We'll walk you through the CRM, show you exactly how the pipeline runs, and let you see the system in action. Most clinics book us on the same call.</p>
+      <h2 class="fade-up">Book a demo of the CRM.</h2>
+      <p class="fade-up">A 20-minute live walkthrough of the system your clinic would run: ad campaigns, virtual assistant, booking flow, all inside one dashboard. Pricing and timeline are shared on the call.</p>
       <div class="cta-actions fade-up">
         <button class="btn-primary" onclick="scrollToForm()" style="font-size:17px; padding:18px 40px;">Book my free demo →</button>
         <span class="cta-subtext">Takes 60 seconds to book. Call is 20 minutes.</span>
