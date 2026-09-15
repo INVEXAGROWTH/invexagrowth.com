@@ -3591,6 +3591,7 @@
       transform: translateX(8px);
     }
     .mega-item-arrow svg { width: 16px; height: 16px; }
+    @media (max-width: 768px) { .mega-item-arrow { display: none; } }
 
     /* ==================== INDUSTRIES, real names, no fake logos ==================== */
     .industries-served {
@@ -3747,6 +3748,21 @@
     .team-card:nth-child(2) .team-mono {
       background: linear-gradient(135deg, #A8B8D8 0%, #7E97C4 100%);
       box-shadow: 0 10px 24px -8px rgba(168, 184, 216, 0.5);
+    }
+    .team-photo {
+      width: 96px; height: 96px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 24px;
+      background: #f0e6dd;
+      box-shadow: 0 10px 24px -8px rgba(40, 30, 25, 0.18);
+      border: 2px solid #fff;
+    }
+    .team-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
     .team-name {
       font-family: 'Instrument Serif', serif;
@@ -4130,8 +4146,7 @@
       <div>
         <div class="hero-badge fade-up visible">
           <span class="hero-badge-dot"></span>
-          <span class="hb-desktop">Now booking <strong style="color:var(--charcoal); margin:0 4px;">free demos</strong>, <span id="spots-counter">12</span> of 20 spots claimed this month</span>
-          <span class="hb-mobile"><strong style="color:var(--charcoal); margin-right:4px;">Free demos</strong> · <span id="spots-counter-m">12</span>/20 spots</span>
+          <span>Now booking <strong style="color:var(--charcoal); margin:0 4px;">free demos</strong></span>
         </div>
         <h1 class="fade-up visible delay-1">
           From leads to patients on autopilot.
@@ -4374,27 +4389,6 @@
     </div>
   </section>
 
-  <!-- TRUST BAR -->
-  <div class="trust-bar">
-    <div class="trust-inner">
-      <div class="trust-item fade-up">
-        <div class="trust-num"><span class="counter" data-target="30">0</span>+</div>
-        <div class="trust-label">Leads in 30 days, guaranteed</div>
-      </div>
-      <div class="trust-item fade-up">
-        <div class="trust-num"><span class="counter" data-target="3">0</span>x</div>
-        <div class="trust-label">Avg patient volume increase</div>
-      </div>
-      <div class="trust-item fade-up">
-        <div class="trust-num"><span class="counter" data-target="3">0</span> wks</div>
-        <div class="trust-label">To live campaigns</div>
-      </div>
-      <div class="trust-item fade-up">
-        <div class="trust-num"><span class="counter" data-target="92">0</span>%</div>
-        <div class="trust-label">Patient show rate</div>
-      </div>
-    </div>
-  </div>
 
   <!-- PROBLEM PARALLAX BAND -->
   <div class="problem-band" aria-hidden="true">
@@ -4748,8 +4742,8 @@
           <h3>We confirm they're a fit for you.</h3>
           <p>A few thoughtful questions and we know whether this person is right for your service. Only the warm, ready ones move forward.</p>
           <div class="expand-panel-meta">
-            <span class="expand-panel-chip"><span class="expand-panel-chip-dot"></span>92% qualification rate</span>
-            <span class="expand-panel-chip"><span class="expand-panel-chip-dot"></span>No cold leads</span>
+            <span class="expand-panel-chip"><span class="expand-panel-chip-dot"></span>Structured qualification</span>
+            <span class="expand-panel-chip"><span class="expand-panel-chip-dot"></span>Warm handoff to your team</span>
           </div>
         </div>
       </button>
@@ -4875,13 +4869,17 @@
       </div>
       <div class="team-grid">
         <article class="team-card">
-          <div class="team-mono" aria-hidden="true">AB</div>
+          <div class="team-photo">
+            <img src="team/alejandro.png" alt="Alejandro Blanco" loading="lazy">
+          </div>
           <h3 class="team-name">Alejandro Blanco</h3>
           <div class="team-role">Co-Founder · Systems &amp; Operations</div>
           <p class="team-bio">Builds and maintains the CRM, the personalized virtual assistant, and the booking flows. Owns technical delivery for every client account.</p>
         </article>
         <article class="team-card">
-          <div class="team-mono" aria-hidden="true">EA</div>
+          <div class="team-photo">
+            <img src="team/elias.png" alt="Elias Abdou" loading="lazy">
+          </div>
           <h3 class="team-name">Elias Abdou</h3>
           <div class="team-role">Co-Founder · Strategy &amp; Growth</div>
           <p class="team-bio">Leads strategy, brand, and campaign direction. Owns creative and paid media performance across every client account.</p>
@@ -5147,23 +5145,6 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-    // Counter animation
-    const counterObserver = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { animateCounter(e.target); counterObserver.unobserve(e.target); } });
-    }, { threshold: 0.5 });
-    document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
-    function animateCounter(el) {
-      const target = parseInt(el.dataset.target, 10);
-      const start = performance.now();
-      const easeOut = t => 1 - Math.pow(1 - t, 3);
-      function step(now) {
-        const p = Math.min((now - start) / 1400, 1);
-        el.textContent = Math.round(easeOut(p) * target);
-        if (p < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }
-
     // Bar chart animation
     const barObserver = new IntersectionObserver(entries => {
       entries.forEach(e => {
@@ -5198,22 +5179,6 @@
         }
       });
     });
-
-    // Spots counter, slow incremental progression based on time
-    function updateSpots() {
-      const els = [
-        document.getElementById('spots-counter'),
-        document.getElementById('spots-counter-m')
-      ].filter(Boolean);
-      if (!els.length) return;
-      // Base: 12. Increment slowly over time (1 every ~30 seconds, max 18)
-      const base = 12;
-      const increments = Math.min(Math.floor((Date.now() / 30000) % 6), 6);
-      const current = base + increments;
-      els.forEach(el => el.textContent = current);
-    }
-    updateSpots();
-    setInterval(updateSpots, 30000);
 
     /* ===== Scroll-driven 3D tilt reveal (Aceternity ContainerScroll vanilla port) ===== */
     (function initScrollTilt(){
